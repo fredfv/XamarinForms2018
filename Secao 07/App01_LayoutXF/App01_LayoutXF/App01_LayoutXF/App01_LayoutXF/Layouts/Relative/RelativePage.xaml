@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App01_LayoutXF.Layouts.Relative.RelativePage">
+    <ContentPage.Content>
+        <RelativeLayout>
+            <BoxView RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.5, Constant=-50}" BackgroundColor="Blue"/>
+            <BoxView BackgroundColor="Red" Margin="100" WidthRequest="100" HeightRequest="100" x:Name="Vermelho"/>
+            <BoxView BackgroundColor="Green" 
+                     WidthRequest="100"
+                     HeightRequest="100"
+                     RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=Vermelho, Property=X, Factor=1, Constant=20}"
+                     RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=Vermelho, Property=Y, Factor=1, Constant=20}"
+                     />
+        </RelativeLayout>
+    </ContentPage.Content>
+</ContentPage>
+    
+    <!--
+    LEMBRANDO QUE QUANDO ADICIONAR O PRIMEIRO ELEMENBTO ELE VAI SER FULL SCREEN
+    
+    heightRequest, width request da um tamanho para o objeto
+    
+    pode ser posicionado em qualquer lugar, 
+    
+    no absoluto pode ser colocar em qualquer lugar[
+    
+    no relative, da para pegar relaçaõ de objetos, assim voce consegue agrupar items sem fazer com que um passe por outro
+    
+    Bem tenso de aprender
+    
+    O que devemos entender, que só usado para criar exprecoes, de posicionamento relativo a alguma coisa
+    
+    nese caso o boxview vai ser posicionado referente a um outro elemento
+    
+    {ConstraintExpression Type= Se ele vai se relacionar com outros elementos e qual é a forma, posso dizer que o box view esta relacionado ao elemento pai ou a outros elementos, nesse caso usamos relacao com o pai
+    informando o tipo nao precisa usar o elementName, por que vc ja indicou quem é
+    
+    
+    
+    , ElementName=, 
+    
+    Property= Aqui falamos o que queremos do objeto, nesse caso queremos o width
+    
+    
+    
+    
+    , Factor= um valor de 0 a 1, 1 = 100%, o quanto queremos daquele objeto
+    
+    , Constant= ela impacta a largura do fator, se eu pegar 50% do valor eu posso modificar esse adicionar ou remover um valor desses 50%
+    
+    
+    
+    }
+    
+    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=Vermelho, Property=Y, Factor=1, Constraint=20}
+    fazemos cp,m qiue o elemento fique sempre um pouco afrente do elemento alvo
+    
+    
+
+    usando o Type=RelativeToView, eu falo que ele esta referenciado a uma view(qualquer elemento na tela)
+                E passo o ElementName= X:Name da view alvo
+    
+    
+    
+    -->

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App01_LayoutXF.Layouts.Stack.StackPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Margin="15, 5, 10, 20" Padding="30" BackgroundColor="Gray" Spacing="0" Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <BoxView BackgroundColor="Green" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                <BoxView BackgroundColor="Blue" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+            </StackLayout>
+            <StackLayout Spacing="0" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <BoxView BackgroundColor="Green" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                <BoxView BackgroundColor="Blue" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+
+
+
+
+
+<!-- O stack layout permite que voce coloque um elemento um abaixo do outro por padrao
+            é possivel alinhar de outra forma, o stack nao deixa os elementos atrapalhar outros elementos
+            sempre para alinha e usar para organizar, pode se usar varios mesmo em conjunto, o primeiro ocupa toda a tela
+            e dentro dele vc pode por outros assim cada um vai ter uma linha, por que o layout e seu pai
+            assim é possivel controlar os stacks que estao dentro de outro stack
+    
+                box view é um controle, permite voce ter uma caixa, ele cria essa area pódendo ter uma cor
+    
+                pode se usar o margin, com 1 valor para todos, 2 para baixo e cima, 4 para cada lado
+    
+    paddign, ele cria uma margem para dentro e nao para fora
+        a cor de ufndo é do stack
+    -->
+            

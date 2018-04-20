@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App01_LayoutXF.Layouts.Absolute.AbsolutePage">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <BoxView AbsoluteLayout.LayoutBounds="0,0,200,100" BackgroundColor="Blue"/>
+            <BoxView AbsoluteLayout.LayoutBounds="50,50,100,100" BackgroundColor="Green"/>
+            <BoxView AbsoluteLayout.LayoutBounds="150,150, 50,50" BackgroundColor="Red"/>
+
+            <BoxView AbsoluteLayout.LayoutFlags="WidthProportional" AbsoluteLayout.LayoutBounds="0,400, 0.8, 100" BackgroundColor="Yellow"/>
+            
+            <BoxView AbsoluteLayout.LayoutFlags="SizeProportional" AbsoluteLayout.LayoutBounds="300,300, 0.5,0.5" BackgroundColor="GreenYellow"/>
+            
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>
+    
+    <!--Lembrando q todo elemento dentro da contente page ocupa o espaco todo da telas
+    
+    Esse absolute vai ser resoponsavel por toda a tela
+    
+    LayoutBounds, vc passa os valores de posicao (x y w h) para onde o elemento vai ficar na tela
+    
+    LayoutFlags, por padrao none. 8 possibilidades
+    Ele é um tipo de posicionamento proporcional a tela, usando valor entre 0 e 1, sendo 100% = 1
+    heightProporcional - altura
+    widthProporcional - largura
+    posicao x e posicao y, aquele elemento vai ser, ou x ou y
+    positionproporcional = x e y
+    sizeproporcional x e y fixa, tamanho e altura e largura proporcional
+    
+    
+    
+    
+    
+    
+    -->

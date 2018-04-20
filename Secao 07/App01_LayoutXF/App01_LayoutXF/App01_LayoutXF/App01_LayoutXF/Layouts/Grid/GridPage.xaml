@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App01_LayoutXF.Layouts.Grid.GridPage">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <!-- Definir as colunas quantas vao ter -->
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+
+
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <!-- Definir as Linhas -->
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+
+            <BoxView Grid.Column="0" Grid.Row="0" BackgroundColor="Red" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+            
+            <BoxView Grid.Column="2" Grid.Row="0" BackgroundColor="Blue" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+            
+            <BoxView Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" BackgroundColor="Yellow" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+            
+            <BoxView Grid.Column="0" Grid.Row="2" Grid.RowSpan="2" BackgroundColor="Red" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+            
+            
+            
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
+    
+    <!-- 
+    é uma tabela
+    
+    colocar em celulas, que sao criados por meio de colunas e linhas
+    
+    Grid diferente do stack layout com orientacao horizontal, aqui o controle das colunas elas nao sao redimencionadas
+    o grid pode ser facilmente usado para criar um app de calc
+    
+    ColumDefinition - Cada uma é uma coluna, na coluna usamos o Width, que é largura
+    Colunas sao colocadas uma ao lado da outra
+    Importante definir a largura de cada coluna
+    Auto, ele vai alinhas de acordo com o conteudo
+    * preenche todo o valor restante todo o valor que sobrou, tem o mesmo comportamento do FILLANDEXPAND
+    
+    
+    RowDefinition - cada uma sera uma linha, e nela usamos o Height que é altura
+    
+    Para posicionar um elemento dentro de uma row pertencente a uma coluna (obvil)
+    
+    voce taga ela como = Grid.Column=" indice da coluna, iniciado por 0 " Grid.Row="Indicice da linha"
+    
+    Grid.Colum/Row. Spam, usado para falar quantas celulas ele vai ocupar, vc poe do Grid.Row ate O grid.rowSpam, assim ele vai do row para o spam
+    
+    -->
