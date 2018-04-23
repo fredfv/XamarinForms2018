@@ -19,8 +19,6 @@
                 </StackLayout>
             </StackLayout>
         </ContentPage>
-        
-        
     </MasterDetailPage.Master>
     <MasterDetailPage.Detail>
         <!-- Paginas -->
@@ -29,9 +27,7 @@
                 <pag:Perfil1 />
             </x:Arguments>
         </NavigationPage>
-        
     </MasterDetailPage.Detail>
-    
 </MasterDetailPage>
     
     <!--

@@ -104,7 +104,9 @@
     <None Include="App02_Xamarin.UWP_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Fundo.png" />
     <Content Include="Logo.png" />
+    <Content Include="Perfil.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-100.png" />
     <Content Include="Assets\LockScreenLogo.scale-125.png" />
