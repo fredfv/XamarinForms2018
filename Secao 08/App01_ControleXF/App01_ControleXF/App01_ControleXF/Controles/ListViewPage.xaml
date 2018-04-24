@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mod="clr-namespace:App01_ControleXF.Modelo"
+             x:Class="App01_ControleXF.Controles.ListViewPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView>
+                <ListView.ItemsSource>
+                    <x:Array Type="{x:Type mod:Pessoa}">
+                        <mod:Pessoa Nome="Fred" Idade="29"/>
+                        <mod:Pessoa Nome="Elias" Idade="29"/>
+                        <mod:Pessoa Nome="Tito" Idade="29"/>
+                        <mod:Pessoa Nome="Mica" Idade="29"/>
+                        <mod:Pessoa Nome="Lala" Idade="29"/>
+                        <mod:Pessoa Nome="Mi" Idade="29"/>
+                        <mod:Pessoa Nome="Tig" Idade="29"/>
+                        <mod:Pessoa Nome="Nemith" Idade="29"/>
+                    </x:Array>
+                </ListView.ItemsSource>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Nome}"/>
+                                <Label Text=" - " />
+                                <Label Text="{Binding Idade}"/>
+                            </StackLayout>    
+                        </ViewCell>    
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
+            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="5" Color="Black" />
+            
+            <ListView x:Name="ListaPessoas">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Margin="10" Orientation="Horizontal">
+                                <Label Text="{Binding Nome}"/>
+                                <Label Text=" - " />
+                                <Label Text="{Binding Idade}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>    
+                </ListView.ItemTemplate>
+            </ListView>
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+    
+    
+    <!--
+    Apresenta um conjunto de elementos em lista
+    
+    tem como mudar o layout ou a forma de como vai ser mostrado
+    
+    o uso é muito comum, apresentando sempre esse formato de lista
+    
+    
+     <x:Array Type="{x:Type mod:Pessoa}"    
+    Tipo, x Type mod Pessoa estamos dizendo que o tipo do array vem da classe pessoa
+    
+                        
+                </ListView.ItemTemplate>
+    
+    falamos que tipo de template vamos usar
+    
+    Construcao de uma lista no xaml
+    
+    <x:Array Type="{x:Type mod:Pessoa}">
+                        <mod:Pessoa Nome="Fred" Idade="29"/>
+                        <mod:Pessoa Nome="Elias" Idade="29"/>
+                        <mod:Pessoa Nome="Tito" Idade="29"/>
+                        <mod:Pessoa Nome="Mica" Idade="29"/>
+                        <mod:Pessoa Nome="Lala" Idade="29"/>
+                        <mod:Pessoa Nome="Mi" Idade="29"/>
+                        <mod:Pessoa Nome="Tig" Idade="29"/>
+                        <mod:Pessoa Nome="Nemith" Idade="29"/>
+                    </x:Array>  
+    
+    
+    Usando o list view, sempre usando o data template, ao ter um item template
+    
+    o binding faz a ligacao com o c#
+    
+    Binding "  .  " passa o objeto pessoa
+    
+    -->

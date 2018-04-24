@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App01_ControleXF.Controles.TableViewPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <TableView Intent="Settings">
+                <TableRoot>
+                    <TableSection Title="BackUp">
+                        <SwitchCell Text="Backup das Images" On="False"/>
+                        <SwitchCell Text="Backup dos Textos" On="False"/>
+                        <SwitchCell Text="Backup do Chat" On="False"/>
+
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="BackUp Frequencia Semanal"/>
+                                <Slider HorizontalOptions="FillAndExpand" Minimum="0" Maximum="7"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </TableSection>
+                    <TableSection Title="Segurança">
+                        <SwitchCell Text="Senhas Criptografadas" On="True"/>
+                    </TableSection>
+                </TableRoot>
+            </TableView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+    
+    
+    <!--
+    
+    é uma tabela, bem parecida com uma listview
+    
+    ela tem a celula switch cell
+    
+    utilizado para paginas de configuracoes
+    onde o usuario pode configurar o app,
+    
+    intent, para que vou usar
+    
+                    </TableRoot>
+    raiz da tabela
+    
+                    <TableSection>
+    
+    secao da tabela
+                            <SwitchCell>    <Cell>
+    
+    Cria as celulas
+    
+    
+    
+    -->

@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App01_ControleXF.Controles.WebViewPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Entry x:Name="EnderecoSite" HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Ok" Clicked="GoPagina" />
+                <Button Text="Próximo" Clicked="GoProximo" />
+                <Button Text="Voltar" Clicked="GoVoltar" />
+            </StackLayout>
+            
+            <WebView x:Name="Navegador"
+                    Source="https://gmpromo.com.br"
+                    Navigating="ActionCarregando"
+                    Navigated="ActionCarregado"
+                
+                
+                     HorizontalOptions="FillAndExpand" 
+                     VerticalOptions="FillAndExpand">
+                
+                
+            </WebView>
+            <Label x:Name="LblStatus" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+    
+    <!--
+    
+    Componnete que deixa mostrar uma pagina da internet dentro do app
+
+    3 linguages que sao escritas as paginas da web
+    
+    linguagem de marcacao, 
+    HTML - 
+    Utilizado para construir o conteudo, Texto, Conteudo, (Video, Imagem) que sao externos, usamos
+    o html para mostrar de onde vem tal parte
+    
+    CSS - 
+    Estilo, Aparencia
+    
+    JavaScrpit - 
+    Logica, Validações, comunicação, transferencia.
+    
+    WebView Consegue interpretar essas linguagens.
+    nao seguem o padrao do zamarin, já sao consolidadas, podemos assim chamar um site dentro do APP
+    
+    
+    
+    
+    
+    
+    -->

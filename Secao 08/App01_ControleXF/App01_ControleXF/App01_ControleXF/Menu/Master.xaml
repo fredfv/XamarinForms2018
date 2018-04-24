@@ -13,13 +13,16 @@
                 <Button Text="Label" Clicked="GoLabel"/>
                 <Button Text="Button" Clicked="GoButton"/>
                 <Button Text="Entry" Clicked="GoEntryEditor"/>
-                <Button Text="Date Picker" Clicked="DatePicker"/>
-                <Button Text="Time Picker" Clicked="TimePicker"/>
-                <Button Text="Picker" Clicked="Picker"/>
-                <Button Text="Search Bar" Clicked="SearchBar"/>
-                <Button Text="Slider / Stepper" Clicked="SliderStepper"/>
-                <Button Text="Switch" Clicked="Switch"/>
-                <Button Text="Image" Clicked="Image"/>
+                <Button Text="Date Picker" Clicked="GoDatePicker"/>
+                <Button Text="Time Picker" Clicked="GoTimePicker"/>
+                <Button Text="Picker" Clicked="GoPicker"/>
+                <Button Text="Search Bar" Clicked="GoSearchBar"/>
+                <Button Text="Slider / Stepper" Clicked="GoSliderStepper"/>
+                <Button Text="Switch" Clicked="GoSwitch"/>
+                <Button Text="Image" Clicked="GoImage"/>
+                <Button Text="List View" Clicked="GoListView"/>
+                <Button Text="Table View" Clicked="GoTableView"/>
+                <Button Text="Web View" Clicked="GoWebView"/>
 
                 </StackLayout>
             </ScrollView> 

@@ -53,49 +53,67 @@ namespace App01_ControleXF.Menu
             IsPresented = false;
         }
 
-        private void DatePicker(object sender, EventArgs args)
+        private void GoDatePicker(object sender, EventArgs args)
         {
             Detail = new Controles.DatePickerPage();
             IsPresented = false;
         }
 
 
-        private void TimePicker(object sender, EventArgs args)
+        private void GoTimePicker(object sender, EventArgs args)
         {
             Detail = new Controles.TimePickerPage();
             IsPresented = false;
         }
 
-        private void Picker(object sender, EventArgs args)
+        private void GoPicker(object sender, EventArgs args)
         {
             Detail = new Controles.PickerPage();
             IsPresented = false;
         }
 
-        private void SearchBar(object sender, EventArgs args)
+        private void GoSearchBar(object sender, EventArgs args)
         {
             Detail = new Controles.SearchBarPage();
             IsPresented = false;
         }
 
-        private void SliderStepper(object sender, EventArgs args)
+        private void GoSliderStepper(object sender, EventArgs args)
         {
             Detail = new Controles.SliderStepperPage();
             IsPresented = false;
         }
 
-        private void Switch(object sender, EventArgs args)
+        private void GoSwitch(object sender, EventArgs args)
         {
             Detail = new Controles.SwitchPage();
             IsPresented = false;
         }
 
-        private void Image(object sender, EventArgs args)
+        private void GoImage(object sender, EventArgs args)
         {
             Detail = new Controles.ImagePage();
             IsPresented = false;
         }
 
+        private void GoListView(object sender, EventArgs args)
+        {
+            Detail = new Controles.ListViewPage();
+            IsPresented = false;
+        }
+
+        private void GoTableView(object sender, EventArgs args)
+        {
+            Detail = new Controles.TableViewPage();
+            IsPresented = false;
+        }
+
+        private void GoWebView(object sender, EventArgs args)
+        {
+            Detail = new Controles.WebViewPage();
+            IsPresented = false;
+
+        }
 
     }
 }
