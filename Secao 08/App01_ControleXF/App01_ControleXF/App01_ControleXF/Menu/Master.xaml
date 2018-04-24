@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:page="clr-namespace:App01_ControleXF"
+                  x:Class="App01_ControleXF.Menu.Master">
+    <MasterDetailPage.Master>
+        <ContentPage Title="Menu">
+            <ScrollView>
+            <StackLayout>
+                <Button Text="Activiy Indicator" Clicked="GoActivityIndicator"/>
+                <Button Text="Progress Bar" Clicked="GoProgressBar"/>
+                <Button Text="Box View" Clicked="GoBoxView"/>
+                <Button Text="Label" Clicked="GoLabel"/>
+                <Button Text="Button" Clicked="GoButton"/>
+                <Button Text="Entry" Clicked="GoEntryEditor"/>
+                <Button Text="Date Picker" Clicked="DatePicker"/>
+                <Button Text="Time Picker" Clicked="TimePicker"/>
+                <Button Text="Picker" Clicked="Picker"/>
+                <Button Text="Search Bar" Clicked="SearchBar"/>
+                <Button Text="Slider / Stepper" Clicked="SliderStepper"/>
+                <Button Text="Switch" Clicked="Switch"/>
+                <Button Text="Image" Clicked="Image"/>
+
+                </StackLayout>
+            </ScrollView> 
+        </ContentPage>
+    </MasterDetailPage.Master>
+
+    <MasterDetailPage.Detail>
+        <page:MainPage />
+    </MasterDetailPage.Detail>
+</MasterDetailPage>

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App01_ControleXF.Controles.EntryEditorPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <!-- ENTRY USADO PARA CAMPOS COM POUCOS VALORES -->
+            <Entry x:Name="TxtIdade"
+                Text=""
+                TextColor="Red"
+                Placeholder="Enquanto na há valor eu apareco"
+                PlaceholderColor="Blue"
+                
+                Keyboard="Numeric"
+                
+                BackgroundColor="Gray"
+                />
+            <!-- PARA QUANDO PRECISA DE SE USAR TEXTOS MAIORES -->
+            <Label x:Name="Lbl_Duplicada" />
+            <Editor x:Name="TxtComentario"
+                    HeightRequest="200"
+                />
+            <Label x:Name="Lbl_Qtd"/>
+
+
+
+            <Button Text="Exibir como senha" Clicked="MostrarPassword"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

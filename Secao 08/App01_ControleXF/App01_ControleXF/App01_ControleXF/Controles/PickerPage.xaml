@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App01_ControleXF.Controles.PickerPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Picker
+                Title="Empresas de T.I"
+                TextColor="Blue"
+
+                SelectedIndex="2"
+                SelectedIndexChanged="ActionMudarIndex"
+                >
+                <Picker.Items>
+                    <x:String>Microsoft</x:String>
+                    <x:String>Apple</x:String>
+                    <x:String>Oracle</x:String>
+                    <x:String>Tesla</x:String>
+                    <x:String>SpaceX</x:String>
+                </Picker.Items>
+            </Picker>
+            <Label x:Name="Resultado"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+    
+    <!--
+    CRIA UMA LISTA DE ELEMENTOS DE TEXTO
+    
+    O PICKER SEMPRE TEM QUE TER UMA LISTA
+    
+    E PODE SER INFORMADO PELO XAML
+    
+    
+    
+            <Picker BackgroundColor="Red"/>
+
+            <Picker>
+                <Picker.BackgroundColor>
+                    Red
+                </Picker.BackgroundColor>
+            </Picker>
+    
+    
+    
+    pode ser colocado pelo c# adicionar uma lista, contendo valor
+    picker.itens = esse dicionario
+    -->

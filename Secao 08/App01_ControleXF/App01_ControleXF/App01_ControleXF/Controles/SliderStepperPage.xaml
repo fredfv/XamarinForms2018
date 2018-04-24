@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App01_ControleXF.Controles.SliderStepperPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Slider 
+                Minimum="0"
+                Maximum="100"
+                Value="20"
+                ValueChanged="ActionValorMudou"
+                />
+            <Label x:Name="SliderResult"/>
+            
+            <Stepper
+                Minimum="0"
+                Maximum="10"
+                Increment="2"
+                Value="5"
+                ValueChanged="ActionValorMudouStepper"
+                />
+            <Label x:Name="StepperResult"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+    
+    
+    <!--
+    slider, eh uma barra horizontal, que tem uma bolinha para mecher na barra. ocila de cada sistema
+    
+    representa valores, voce pode mudar o valor de acordoc com ela 
+    
+    
+    
+    stepper, basicamente dois botos, pode ir para cima ou para baixo o valor que vamos selecionar, muda de cada sistema
+    
+    pode ser exibido como um sinal de mais ou de menos, pode ser usado para acrecentar ou diminuir
+    
+    pode ser usado para passar para acrescer valores em uma label para bsca
+    
+    -->

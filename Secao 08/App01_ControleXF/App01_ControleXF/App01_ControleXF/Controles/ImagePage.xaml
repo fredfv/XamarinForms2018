@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App01_ControleXF.Controles.ImagePage">
+    <ContentPage.Content>
+        <StackLayout x:Name="Container">
+            <Image 
+                Source="http://3.bp.blogspot.com/_2-G6qA24tGo/SuXqJfRmVbI/AAAAAAAAALY/xnjeWF6GWBk/s320/carrefour-logo-logotipo-logomarca.png"
+                Aspect="Fill"
+                
+                IsOpaque="True"
+               
+                x:Name="ImageOne"
+                
+                VerticalOptions="FillAndExpand"
+                
+                /> 
+
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+    
+    <!--
+    PODE SE PEGAR UMA IMAGEM DE
+    
+    RESOURCE, estao armazenadas no projeto
+    
+    LOCAL, estao armazenadas no projeto
+    
+    INTERNET, somente conectado obvio
+    
+    Aspect - 
+    
+    fill preencher o maximo da tela, independente do tamanho da iamgem, DESTORCE IMAGEM
+   
+    AspectFill - almenta o maximo sem perder proporcao
+    
+    AspectFit - Apresenta do tamanho que ela é, só muda o tamanho da imagem se ela nao couber na tela
+    
+    IsOpaque = true, quando nao tem fundo transparente. nao tem fundo. ganha performance, nao verifica se a imagem tem fundo ou nao.
+               false para png, pois tem canal alfa. tem fundo
+    
+    
+    -->
