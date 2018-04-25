@@ -23,9 +23,9 @@
 	<key>MinimumOSVersion</key>
 	<string>10.3</string>
 	<key>CFBundleDisplayName</key>
-	<string>App01_ControleXF</string>
+	<string>App02_Tarefa</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.yourcompany.App01_ControleXF</string>
+	<string>com.yourcompany.App02_Tarefa</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>CFBundleIconFiles</key>
@@ -49,11 +49,6 @@
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>CFBundleName</key>
-	<string>App01_ControleXF</string>
-  <key>NSAppTransportSecurity</key>
-    <dict>
-        <key>NSAllowsArbitraryLoads </key>
-        <true/>
-    </dict>
+	<string>App02_Tarefa</string>
 </dict>
 </plist>

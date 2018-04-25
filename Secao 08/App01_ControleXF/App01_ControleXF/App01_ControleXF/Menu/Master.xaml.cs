@@ -16,103 +16,101 @@ namespace App01_ControleXF.Menu
 		{
 			InitializeComponent ();
 		}
-
+        //antes de instaciar a pagina, poe o NavigationPage para criar o menu
         private void GoActivityIndicator(object sender, EventArgs args)
         {
-            Detail = new Controles.ActivityIndicatorPage();
+            Detail = new NavigationPage(new Controles.ActivityIndicatorPage());
             IsPresented = false;
         }
 
         private void GoProgressBar(object sender, EventArgs args)
         {
-            Detail = new Controles.ProgressBarPage();
+            Detail = new NavigationPage(new Controles.ProgressBarPage());
             IsPresented = false;
         }
 
         private void GoBoxView(object sender, EventArgs args)
         {
-            Detail = new Controles.BoxViewPage();
+            Detail = new NavigationPage(new Controles.BoxViewPage());
             IsPresented = false;
         }
 
         private void GoLabel(object sender, EventArgs args)
         {
-            Detail = new Controles.LabelPage();
+            Detail = new NavigationPage(new Controles.LabelPage());
             IsPresented = false;
         }
 
         private void GoButton(object sender, EventArgs args)
         {
-            Detail = new Controles.ButtonPage();
+            Detail = new NavigationPage(new Controles.ButtonPage());
             IsPresented = false;
         }
 
         private void GoEntryEditor(object sender, EventArgs args)
         {
-            Detail = new Controles.EntryEditorPage();
+            Detail = new NavigationPage(new Controles.EntryEditorPage());
             IsPresented = false;
         }
 
         private void GoDatePicker(object sender, EventArgs args)
         {
-            Detail = new Controles.DatePickerPage();
+            Detail = new NavigationPage(new Controles.DatePickerPage());
             IsPresented = false;
         }
 
-
         private void GoTimePicker(object sender, EventArgs args)
         {
-            Detail = new Controles.TimePickerPage();
+            Detail = new NavigationPage(new Controles.TimePickerPage());
             IsPresented = false;
         }
 
         private void GoPicker(object sender, EventArgs args)
         {
-            Detail = new Controles.PickerPage();
+            Detail = new NavigationPage(new Controles.PickerPage());
             IsPresented = false;
         }
 
         private void GoSearchBar(object sender, EventArgs args)
         {
-            Detail = new Controles.SearchBarPage();
+            Detail = new NavigationPage(new Controles.SearchBarPage());
             IsPresented = false;
         }
 
         private void GoSliderStepper(object sender, EventArgs args)
         {
-            Detail = new Controles.SliderStepperPage();
+            Detail = new NavigationPage(new Controles.SliderStepperPage());
             IsPresented = false;
         }
 
         private void GoSwitch(object sender, EventArgs args)
         {
-            Detail = new Controles.SwitchPage();
+            Detail = new NavigationPage(new Controles.SwitchPage());
             IsPresented = false;
         }
 
         private void GoImage(object sender, EventArgs args)
         {
-            Detail = new Controles.ImagePage();
+            Detail = new NavigationPage(new Controles.ImagePage());
             IsPresented = false;
         }
 
         private void GoListView(object sender, EventArgs args)
         {
-            Detail = new Controles.ListViewPage();
+            Detail = new NavigationPage(new Controles.ListViewPage());
             IsPresented = false;
         }
 
         private void GoTableView(object sender, EventArgs args)
         {
-            Detail = new Controles.TableViewPage();
+            Detail = new NavigationPage(new Controles.TableViewPage());
             IsPresented = false;
         }
 
         private void GoWebView(object sender, EventArgs args)
         {
-            Detail = new Controles.WebViewPage();
+            Detail = new NavigationPage(new Controles.WebViewPage());
             IsPresented = false;
-
         }
 
     }

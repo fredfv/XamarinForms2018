@@ -6,30 +6,48 @@
     <MasterDetailPage.Master>
         <ContentPage Title="Menu">
             <ScrollView>
-            <StackLayout>
-                <Button Text="Activiy Indicator" Clicked="GoActivityIndicator"/>
-                <Button Text="Progress Bar" Clicked="GoProgressBar"/>
-                <Button Text="Box View" Clicked="GoBoxView"/>
-                <Button Text="Label" Clicked="GoLabel"/>
-                <Button Text="Button" Clicked="GoButton"/>
-                <Button Text="Entry" Clicked="GoEntryEditor"/>
-                <Button Text="Date Picker" Clicked="GoDatePicker"/>
-                <Button Text="Time Picker" Clicked="GoTimePicker"/>
-                <Button Text="Picker" Clicked="GoPicker"/>
-                <Button Text="Search Bar" Clicked="GoSearchBar"/>
-                <Button Text="Slider / Stepper" Clicked="GoSliderStepper"/>
-                <Button Text="Switch" Clicked="GoSwitch"/>
-                <Button Text="Image" Clicked="GoImage"/>
-                <Button Text="List View" Clicked="GoListView"/>
-                <Button Text="Table View" Clicked="GoTableView"/>
-                <Button Text="Web View" Clicked="GoWebView"/>
-
+                <StackLayout>
+                    <Button Text="Activiy Indicator" Clicked="GoActivityIndicator"/>
+                    <Button Text="Progress Bar" Clicked="GoProgressBar"/>
+                    <Button Text="Box View" Clicked="GoBoxView"/>
+                    <Button Text="Label" Clicked="GoLabel"/>
+                    <Button Text="Button" Clicked="GoButton"/>
+                    <Button Text="Entry" Clicked="GoEntryEditor"/>
+                    <Button Text="Date Picker" Clicked="GoDatePicker"/>
+                    <Button Text="Time Picker" Clicked="GoTimePicker"/>
+                    <Button Text="Picker" Clicked="GoPicker"/>
+                    <Button Text="Search Bar" Clicked="GoSearchBar"/>
+                    <Button Text="Slider / Stepper" Clicked="GoSliderStepper"/>
+                    <Button Text="Switch" Clicked="GoSwitch"/>
+                    <Button Text="Image" Clicked="GoImage"/>
+                    <Button Text="List View" Clicked="GoListView"/>
+                    <Button Text="Table View" Clicked="GoTableView"/>
+                    <Button Text="Web View" Clicked="GoWebView"/>
                 </StackLayout>
             </ScrollView> 
         </ContentPage>
     </MasterDetailPage.Master>
 
     <MasterDetailPage.Detail>
-        <page:MainPage />
+        <NavigationPage>
+            <x:Arguments>
+                <page:MainPage />
+            </x:Arguments>
+        </NavigationPage>
     </MasterDetailPage.Detail>
 </MasterDetailPage>
+    
+    <!--
+            <NavigationPage>
+            <x:Arguments>
+                <page:MainPage />
+            </x:Arguments>
+        </NavigationPage>
+    
+    Libera a primeira pagina ter um toolbar
+     
+    Agora quando chamar pelos metedos, precisamos instanciar a tool bar e tbm esconder o menu
+    
+    
+    
+    -->

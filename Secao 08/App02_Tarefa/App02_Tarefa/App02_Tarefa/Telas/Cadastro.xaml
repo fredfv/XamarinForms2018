@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App02_Tarefa.Telas.Cadastro">
+    <ContentPage.Content>
+        <StackLayout Padding="20" Spacing="20">
+            <Label  Text="Nome" FontAttributes="Bold"/>
+            <Entry x:Name="TxtNome" />
+            <Label Text="Prioridade" FontAttributes="Bold"/>
+            <StackLayout x:Name="SLPrioridades">
+                
+                <StackLayout  Orientation="Horizontal" Spacing="10">
+                    <Image>
+                        <Image.Source>
+                            <OnPlatform x:TypeArguments="ImageSource">
+                                <On Platform="Android, iOS" Value="i4.png" />
+                                <On Platform="UWP" Value="Images/4.png" />
+                            </OnPlatform>
+                        </Image.Source>
+                    </Image>
+                    <Label Text="Urgente e Importante" TextColor="Gray" HorizontalOptions="FillAndExpand"/>
+                    <StackLayout.GestureRecognizers>
+                        <!--
+                        Aqui dentro dizemos que tipo de gesto queremos pegar
+                        -->
+                        <TapGestureRecognizer Tapped="PrioridadeSelectAction"/>
+
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                
+                <StackLayout  Orientation="Horizontal" Spacing="10">
+                    <Image>
+                        <Image.Source>
+                            <OnPlatform x:TypeArguments="ImageSource">
+                                <On Platform="Android, iOS" Value="i3.png" />
+                                <On Platform="UWP" Value="Images/3.png" />
+                            </OnPlatform>
+                        </Image.Source>
+                    </Image>
+                    <Label Text="Urgente" TextColor="Gray" HorizontalOptions="FillAndExpand"/>
+                    <StackLayout.GestureRecognizers>
+                        <!--
+                        Aqui dentro dizemos que tipo de gesto queremos pegar
+                        -->
+                        <TapGestureRecognizer Tapped="PrioridadeSelectAction"/>
+
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                
+                <StackLayout  Orientation="Horizontal" Spacing="10">
+                    <Image>
+                        <Image.Source>
+                            <OnPlatform x:TypeArguments="ImageSource">
+                                <On Platform="Android, iOS" Value="i2.png" />
+                                <On Platform="UWP" Value="Images/2.png" />
+                            </OnPlatform>
+                        </Image.Source>
+                    </Image>
+                    <Label Text="Importante" TextColor="Gray" HorizontalOptions="FillAndExpand"/>
+                    <StackLayout.GestureRecognizers>
+                        <!--
+                        Aqui dentro dizemos que tipo de gesto queremos pegar
+                        -->
+                        <TapGestureRecognizer Tapped="PrioridadeSelectAction"/>
+
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                
+                <StackLayout  Orientation="Horizontal" Spacing="10">
+                    <Image>
+                        <Image.Source>
+                            <OnPlatform x:TypeArguments="ImageSource">
+                                <On Platform="Android, iOS" Value="i1.png" />
+                                <On Platform="UWP" Value="Images/1.png" />
+                            </OnPlatform>
+                        </Image.Source>
+                    </Image>
+                    <Label Text="Lembrete " TextColor="Gray" HorizontalOptions="FillAndExpand"/>
+                    <StackLayout.GestureRecognizers>
+                        <!--
+                        Aqui dentro dizemos que tipo de gesto queremos pegar
+                        -->
+                        <TapGestureRecognizer Tapped="PrioridadeSelectAction"/>
+
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+            </StackLayout>
+
+            <Button Clicked="SalvarAction" Text="Ok" HorizontalOptions="End" TextColor="White" BackgroundColor="Blue"  />  
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+    
+    
+    
+<!--
+                        Pode se trabalahar os atributos como source, ou como tambem podendo pegar imagem.source
+                        aqui se consegue definir o on platform
+                        <On Platform="Android, IOS" Value="4.png"/>
+                        aqui eu informo onde o ios e android vao pegar
+                        
+                        ao usar o onplatform precisa usar o tipo de argumento, dizer qual tipo de informacao sera passada
+                        informar a classe, se for um texto, x:string tipos primitivos, x:"TIPO"
+                        
+                        E essa informacao da imagem ela é o tipo (somente o nome da classe)ImageSource, assim ele reconhece qual tipo de informacao
+                        sera passado para a propriedade source, e passa o local de onde vai pegar
+                        x:TypeArguments=" ? "
+                        -->
