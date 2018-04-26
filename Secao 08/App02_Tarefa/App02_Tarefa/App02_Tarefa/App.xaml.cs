@@ -14,7 +14,7 @@ namespace App02_Tarefa
 			InitializeComponent();
 
             //Aqui temos uma tela de inicio. 
-            MainPage = new NavigationPage(new App02_Tarefa.Telas.Inicio());
+            MainPage = new NavigationPage(new App02_Tarefa.Telas.Inicio()) { BarBackgroundColor = Color.FromHex("#264aa5") };
 		}
 
 		protected override void OnStart ()

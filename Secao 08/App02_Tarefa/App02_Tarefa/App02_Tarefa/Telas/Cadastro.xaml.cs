@@ -56,10 +56,6 @@ namespace App02_Tarefa.Telas
                 String Prioridade = Source.File.ToString().Replace("i", "").Replace(".png", "");
                 this.Prioridade = byte.Parse(Prioridade);
             }
-
-
-     
-  
         }
 
         public void SalvarAction(object sender, EventArgs args)

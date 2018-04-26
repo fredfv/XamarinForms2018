@@ -5,7 +5,7 @@
     <ContentPage.Content>
         <StackLayout Padding="20" Spacing="20">
             <Label  Text="Nome" FontAttributes="Bold"/>
-            <Entry x:Name="TxtNome" />
+            <Entry x:Name="TxtNome" Text=""/>
             <Label Text="Prioridade" FontAttributes="Bold"/>
             <StackLayout x:Name="SLPrioridades">
                 
