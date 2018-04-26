@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App1_Cell.Pagina.EntryCellPage">
+    <ContentPage.Content>
+        <TableView >
+            <TableRoot>
+                <TableSection Title="Cadastro">
+                    <EntryCell Label="Nome" Placeholder="Digite o Nome" />
+                    <EntryCell Label="Cargo" Placeholder="Digite o Cargo" />
+                </TableSection>
+            </TableRoot>
+        </TableView>
+    </ContentPage.Content>
+</ContentPage>
+    
+    <!--
+        USAR O ENTRY CELL DENTRO DE UMA TABLE VIEW PQ DENTRO DA TABLE VIEW VC CONSEGUE USAR O 
+    O LIST SO SERVE PARA EXIBIR UMA LISTA.
+    
+    O TABLE view DA PARA CRIAR FORMULARIO COM ENTRADA DE DADOS
+
+    TODO TABLE VIEW PRECISA DE UM TABLE ROOT E UM TABLE SECTION
+    CRIA UMA SECTION
+     E DENTRO DELA UM ENTRY CELL, UMA CELULA COM UMA LABEL E UM CAMPO DE ENTRADA DE TEXTO
+    Label é o titluo
+    
+        -->

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App1_Cell.Pagina.SwitchCellPage">
+    <ContentPage.Content>
+        <TableView>
+            <TableRoot>
+                <TableSection Title="Configuracão">
+                    <SwitchCell On="False" Text="BackUp Automatico" />
+                    <SwitchCell On="True" Text="Salvar Senhas" />
+                </TableSection>
+            </TableRoot>
+        </TableView>
+    </ContentPage.Content>
+</ContentPage>
+    
+    <!--
+    MESMO PRINCIPIO DE ENTRY,
+    VAI TER UM ELEMENTO SWITCH DENTRO DE UMA CELULA, MELHORANDO A CHAMADA DE TAL INFORMACAO
+    
+    tbm eh uma entrada de dados entao comecamos ele como table viw, table root, table section
+    -->

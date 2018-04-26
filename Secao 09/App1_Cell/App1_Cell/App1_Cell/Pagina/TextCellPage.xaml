@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App1_Cell.Pagina.TextCellPage">
+    <ContentPage.Content>
+        <!--
+        COMO O LIST VIEW VAI SER O PRIMEIRO ELE VAI OCUPAR TODA A TELA
+        
+        Todo list View eu posso colocar o layout dentro dele usando o Item template e usar o data template
+        -->
+
+        <ListView x:Name="ListaDeFuncionarios">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                        <!--
+                        UMA CELULA PODE SER USADA NO LIST VIEW OU NO TABLE VIEW 
+                            O MOMENTO DE SER USADO, DENTRO DE UM ITEM TEMPLATE E DENTRO DE UM DATA TEMPLATE
+                        O VIEW CELL DEIXA VC CRIAR SEU PROPRIO MODELO PARA CADA LINHA, COLOCANDO UM STACKLAYOUT E MAIS
+                        
+                        O TEXT CELL PODE APRESENTAR UM OU DOIS TEXTOS, PELO ATRIBUTO TEXT, ESSE VALOR NORMAMELTE VAI SER UM DADO DO BANCO
+                        PODENDO APRESENTAR UMA LABEL, UM TEXO
+                        
+                        E PARA USAR AS DUAS LINHAS, VC POE O TEXT="", DETAIL=""
+                        
+                    GANHA EM PERFORMANCE
+                    
+                    <TextCell Text="Texto" Detail="Texto 2" TextColor="" DetailColor=""/> 
+                    ELE É MENOS TRABALHOSO, POIS NAO PRECISA CRIAR LAYOUTS 
+                    
+                    ASSIM VAMOS USAR O {BINDING NOME}
+                    
+                        -->
+                    <TextCell Text="{Binding Nome}" Detail="{Binding Cargo}" />
+
+
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>
