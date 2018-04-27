@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        
+             x:Class="App1_Estilo.Pagina.ImplicitStyle">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+        <!--
+            usado para adicionar estilos
+        
+            Setter - Uma propriedade dentro da label
+            
+            Propriedade para aquilo que queremos alterar dentro da label
+            na label, background color = alguma cor.
+            usando o setter eu ponho o background color como propriedade
+            
+            PRINCIPAL COLOCAR O Target.Type
+            Colocando o VIEW muitos elementos vao sofrer
+            -->
+            <Style TargetType="Label">
+                <Setter Property="BackgroundColor" Value="Blue"/>
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+            </Style>   
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Welcome to Xamarin.Forms! 12"/>
+            <Label Text="Welcome to Xamarin.Forms! 34"/>
+            <Label Text="Welcome to Xamarin.Forms! 56"/>
+            <Label Text="Welcome to Xamarin.Forms! 78"/>
+            <Label Text="Welcome to Xamarin.Forms! 90"/>
+            <StackLayout>
+                <StackLayout.Resources>
+                    <ResourceDictionary>
+                        <Style TargetType="Label">
+                            <Setter Property="TextColor" Value="Yellow"/>
+                            <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+                            <Setter Property="BackgroundColor" Value="Gray"/>
+                        </Style>    
+                    </ResourceDictionary>
+                </StackLayout.Resources>
+                <Label Text="Welcome to Xamarin.Forms! 12"/>
+                <Label Text="Welcome to Xamarin.Forms! 34"/>
+                <Label Text="Welcome to Xamarin.Forms! 56"/>
+                <Label Text="Welcome to Xamarin.Forms! 78"/>
+                <Label Text="Welcome to Xamarin.Forms! 90"/>
+            </StackLayout>
+        </StackLayout>
+              <!--
+        PODE APLICA ESTILO NA PAGINA, e aplica no rescource para colocar o estilo
+        ou pode adicionar no layout
+        
+        Como adicionar os estilos para serem aplicados apenas aos elementos dentro de um determinado layout
+        
+                        <StackLayout.Resources>
+                    <ResourceDictionary>
+                        <Style TargetType="Label">
+                            
+                        </Style>    
+                    </ResourceDictionary>
+                </StackLayout.Resources>
+        
+        ao criar isso vc força a mudanca somente das labels dentro do stacklayout
+        -->
+    </ContentPage.Content>
+</ContentPage>

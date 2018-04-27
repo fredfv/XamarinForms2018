@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App1_Estilo.Pagina.ExplicitStyle">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="BackgroundColor" Value="Red"/>
+            </Style>
+            <Style x:Key="LblStyle" TargetType="Label">
+                <Setter Property="BackgroundColor" Value="Green"/>
+            </Style>
+            
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Welcome to Xamarin.Forms!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Welcome to Xamarin.Forms!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Welcome to Xamarin.Forms!" Style="{StaticResource LblStyle}"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Welcome to Xamarin.Forms!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+
+
+<!--
+                    Ate aqui iqual ao implicit
+                a diferenca e que posso criar um estilo que vai ser aplicado a todos ou a todos os que vao querer adotar o style
+                
+                Qual a diferenca entre implict e explicit
+                o implicit e aplicado a todos os elemtos com aquele tipo
+                e o explicit e somente para os que querem aquele style x:Key="LblStyle">
+                aplicando assim
+                      <Label Style="{StaticResource LblStyle}" Text="Welcome to Xamarin.Forms!"
+                -->
