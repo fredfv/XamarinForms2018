@@ -6,7 +6,12 @@
         <ListView x:Name="ListaDeFuncionarios" ItemSelected="ItemSelecionadoAction">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Nome}" Detail="{Binding Cargo}"/> 
+                    <TextCell Text="{Binding Nome}" Detail="{Binding Cargo}">
+                        <TextCell.ContextActions>
+                            <MenuItem  Text="Ferias" Clicked="FeriasAction" CommandParameter="{Binding .}" />
+                            <MenuItem Text="Abono" Clicked="AbonoAction"  CommandParameter="{Binding .}" />
+                        </TextCell.ContextActions>
+                    </TextCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
@@ -20,5 +25,11 @@
     ItemSelected ele faz virar um botao
     Selected iitem deixa o item selecionad
     
+    Context Action, e um recurso amais do list view
+    oferece uma opcao para que ele possa trabalhar com aquela linha apresentada no listview
     
+    ContextActions Acrescenta botoes para criar acoes ao registro, adicionados pela TAGA MENU ITEM
+    
+    Command Parameter, para saber qual foi o registro que foi selecionado, uma forma de chamar outros metedos
+        assim passando pelo Binding .
     -->

@@ -21,6 +21,7 @@
 
                     <Label Text="Componentes"/>
                     <Button  Text="List View" Clicked="GoPagina6"/>
+                    <Button  Text="List View Button" Clicked="GoPagina7"/>
                 </StackLayout>
             </ScrollView>
         </ContentPage>

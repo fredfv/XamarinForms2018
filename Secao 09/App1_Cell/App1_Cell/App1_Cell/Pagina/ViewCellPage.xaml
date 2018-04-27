@@ -4,7 +4,7 @@
              x:Class="App1_Cell.Pagina.ViewCellPage">
     <ContentPage.Content>
         <StackLayout>
-            <ListView x:Name="ListaDeFuncionarios">
+            <ListView x:Name="ListaDeFuncionarios" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

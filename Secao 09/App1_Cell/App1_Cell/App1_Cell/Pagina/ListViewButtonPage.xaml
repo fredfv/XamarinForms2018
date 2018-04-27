@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App1_Cell.Pagina.ListViewButtonPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="ListaDeFuncionarios" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Label Text="{Binding Nome}"/> 
+                                <Label Text="{Binding Cargo}"/>
+                                <Button Text="Ferias" Clicked="FeriasAction" CommandParameter="{Binding .}" /> 
+
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+     
+    <!--
+    LEMBRAR QUE OU TEM BUTTON OU TEM CONTEXT ACTION
+    SE QUISER OS DOIS CRIAR DENTRO DO STACKLAYOUT
+    
+    ROW HEIGHT TAMANHO SEMPRE IQUAL
+    
+    hAS uNEVENROWS, para true, cada linha vai ter seu tamanho certo
+    -->
