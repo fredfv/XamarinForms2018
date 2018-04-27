@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App2_ListaBrasil.Estados">
+    <ContentPage.Content>
+        <StackLayout Padding="10" Spacing="30">
+            <Entry PlaceholderColor="LimeGreen" TextColor="White" HeightRequest="30" Placeholder="Pesquisar . . ." x:Name="BuscaEstado" TextChanged="BuscaRapida"/> 
+            <ListView x:Name="ListaEstados" ItemSelected="SelecaoEstadoAction">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell TextColor="LightSkyBlue" Text="{Binding nome}" DetailColor="LightGray" Detail="{Binding sigla}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
