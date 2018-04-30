@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App2_Cinemix.App">
+	<Application.Resources>
+        <ResourceDictionary>
+            <!-- CABECALHO -->
+            <Style x:Key="Cabecalho" TargetType="StackLayout">
+                <Setter Property="Padding" Value="10"/>
+                <Setter Property="Spacing" Value="0"/>
+            </Style>
+            
+            <!--CONTEUDO DO STACKLAYOUT -->
+            <Style x:Key="Conteudo" TargetType="StackLayout">
+                <Setter Property="Padding" Value="10" />
+                <Setter Property="BackgroundColor" Value="#6A34B0" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+            
+            <!--TITULO (BASE DE TEXTO)-->
+            </Style>
+                <Style x:Key="Titulo" TargetType="Label">
+                <Setter Property="FontFamily" Value="Segoe UI" />
+                <Setter Property="TextColor" Value="#6A34B0" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            </Style>
+            
+            <!-- TITULO DO APP-->             
+            <Style x:Key="TituloApp" TargetType="Label" BasedOn="{StaticResource Titulo}">
+                <Setter Property="FontSize" Value="24" /> 
+            </Style>
+
+            <!-- SUBTIULO -->
+            <Style x:Key="Subtitulo" TargetType="Label" BasedOn="{StaticResource Titulo}">
+                <Setter Property="FontSize" Value="12" /> 
+            </Style>
+
+            <!-- DESCRICAO DO FILME -->
+            <Style x:Key="Lancamento" TargetType="Label" BasedOn="{StaticResource Subtitulo}">
+                <Setter Property="TextColor" Value="#947AC4"/>
+                <Setter Property="HorizontalOptions" Value="Start" />
+            </Style>
+
+            <!-- TITULO DO FILME -->
+            <Style x:Key="TituloDoFilme" TargetType="Label" BasedOn="{StaticResource Titulo}">
+                <Setter Property="TextColor" Value="#FFFFFF"/>
+                <Setter Property="FontSize" Value="64"/>
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            
+            <!--HORARIO-->
+            <Style x:Key="Horario" TargetType="StackLayout">
+                <Setter Property="BackgroundColor" Value="#947AC4" />
+                <Setter Property="Padding" Value="15,7" />
+            </Style>
+        </ResourceDictionary>
+	</Application.Resources>
+</Application>
