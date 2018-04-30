@@ -9,6 +9,8 @@
                 <Button Text="Implicit Style" Clicked="GoPagina1"/>
                 <Button Text="Explicit Style" Clicked="GoPagina2"/>
                 <Button Text="Global Style" Clicked="GoPagina3"/>
+                <Button Text="Inherit Style" Clicked="GoPagina4" />
+                <Button Text="Dynamic Style" Clicked="GoPagina5" />
             </StackLayout>
         </ContentPage>
     </MasterDetailPage.Master>
@@ -20,3 +22,9 @@
         </NavigationPage>
     </MasterDetailPage.Detail>
 </MasterDetailPage>
+    
+    <!--
+    paRA USAR a heranca pode ser pelo app ou mais centralizado usando esse metodo
+    
+    
+    -->

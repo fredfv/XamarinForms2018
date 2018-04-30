@@ -9,14 +9,14 @@ using Xamarin.Forms.Xaml;
 
 namespace App1_Estilo.Menu
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Master : MasterDetailPage
     {
-		public Master ()
-		{
-			InitializeComponent ();
+        public Master()
+        {
+            InitializeComponent();
             //Detail = new NavigationPage(new MainPage());
-		}
+        }
 
         private void GoPagina1(object sender, EventArgs args)
         {
@@ -35,6 +35,17 @@ namespace App1_Estilo.Menu
             IsPresented = false;
         }
 
+        private void GoPagina4(object sender, EventArgs args)
+        {
+            Detail = new NavigationPage(new Pagina.InheritStyle());
+            IsPresented = false;
+        }
+
+        private void GoPagina5(object sender, EventArgs args)
+        {
+            Detail = new NavigationPage(new Pagina.DynamicStyle());
+            IsPresented = false;
+        }
     }
 }
 
@@ -50,3 +61,6 @@ namespace App1_Estilo.Menu
     //2 paginas , vamos aprender esse
 
     //3 todo projeto
+
+
+    //inherit page , heranca

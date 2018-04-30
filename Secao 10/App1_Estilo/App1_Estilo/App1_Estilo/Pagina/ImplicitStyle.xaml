@@ -19,6 +19,7 @@
             -->
             <Style TargetType="Label">
                 <Setter Property="BackgroundColor" Value="Blue"/>
+                <Setter Property="TextColor" Value="Blue"/>
                 <Setter Property="VerticalOptions" Value="CenterAndExpand" />
                 <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
             </Style>   
@@ -38,7 +39,7 @@
                         <Style TargetType="Label">
                             <Setter Property="TextColor" Value="Yellow"/>
                             <Setter Property="HorizontalOptions" Value="StartAndExpand" />
-                            <Setter Property="BackgroundColor" Value="Gray"/>
+                            <Setter Property="BackgroundColor" Value="Black"/>
                         </Style>    
                     </ResourceDictionary>
                 </StackLayout.Resources>

@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App1_Estilo.Pagina.InheritStyle">
+    <ContentPage.Resources>
+        <!--adicionando estilo
+        sempre que quisere usar como referencia usa a key
+        target type é definitivo tenho que cuidar para nao chamar uma heranca para nao chamar propriedades que nao tem na classe alvo
+        based on eu referencio o x style
+        
+        criando uma serie de estilos baseado em um estilo pai
+        -->
+        <ResourceDictionary>
+            <Style x:Key="xStyleView"  TargetType="View">
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="BackgroundColor" Value="Green" />
+                
+            </Style>
+            <Style x:Key="xStyleLbl" TargetType="Label"  BasedOn="{StaticResource xStyleView}">
+                <Setter Property="TextColor" Value="Red" />
+
+            </Style>
+
+            <Style x:Key="xStyleBtn" TargetType="Button" BasedOn="{StaticResource xStyleView}">
+                <Setter Property="TextColor" Value="Blue" />
+
+            </Style>
+
+
+
+        </ResourceDictionary>
+        
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Style="{StaticResource xStyleLbl}" Text="Welcome to Xamarin.Forms!" />
+            <Label Style="{StaticResource xStyleLbl}" Text="Welcome to Xamarin.Forms!" />
+            <Label Text="Welcome to Xamarin.Forms!" />
+            <Button Style="{StaticResource xStyleBtn}" Text="Ok" />
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
