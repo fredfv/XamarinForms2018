@@ -2,58 +2,91 @@
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="App2_Cinemix.App">
-	<Application.Resources>
+    <Application.Resources>
         <ResourceDictionary>
-            <!-- CABECALHO -->
             <Style x:Key="Cabecalho" TargetType="StackLayout">
-                <Setter Property="Padding" Value="10"/>
-                <Setter Property="Spacing" Value="0"/>
+                <Setter Property="Padding" Value="10" />
+                <Setter Property="Spacing" Value="0" />
             </Style>
-            
-            <!--CONTEUDO DO STACKLAYOUT -->
             <Style x:Key="Conteudo" TargetType="StackLayout">
                 <Setter Property="Padding" Value="10" />
                 <Setter Property="BackgroundColor" Value="#6A34B0" />
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="VerticalOptions" Value="FillAndExpand" />
-            
-            <!--TITULO (BASE DE TEXTO)-->
             </Style>
-                <Style x:Key="Titulo" TargetType="Label">
+
+            <Style x:Key="Titulo" TargetType="Label">
                 <Setter Property="FontFamily" Value="Segoe UI" />
                 <Setter Property="TextColor" Value="#6A34B0" />
                 <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
                 <Setter Property="VerticalOptions" Value="CenterAndExpand" />
             </Style>
-            
-            <!-- TITULO DO APP-->             
             <Style x:Key="TituloApp" TargetType="Label" BasedOn="{StaticResource Titulo}">
-                <Setter Property="FontSize" Value="24" /> 
+                <Setter Property="FontSize" Value="24" />
             </Style>
-
-            <!-- SUBTIULO -->
-            <Style x:Key="Subtitulo" TargetType="Label" BasedOn="{StaticResource Titulo}">
-                <Setter Property="FontSize" Value="12" /> 
+            <Style x:Key="SubtituloApp" TargetType="Label" BasedOn="{StaticResource Titulo}">
+                <Setter Property="FontSize" Value="12" />
             </Style>
-
-            <!-- DESCRICAO DO FILME -->
-            <Style x:Key="Lancamento" TargetType="Label" BasedOn="{StaticResource Subtitulo}">
-                <Setter Property="TextColor" Value="#947AC4"/>
+            <Style x:Key="Lancamento" TargetType="Label" BasedOn="{StaticResource SubtituloApp}">
+                <Setter Property="TextColor" Value="#947AC4" />
                 <Setter Property="HorizontalOptions" Value="Start" />
             </Style>
-
-            <!-- TITULO DO FILME -->
-            <Style x:Key="TituloDoFilme" TargetType="Label" BasedOn="{StaticResource Titulo}">
-                <Setter Property="TextColor" Value="#FFFFFF"/>
-                <Setter Property="FontSize" Value="64"/>
+            <Style x:Key="TituloFilme" TargetType="Label" BasedOn="{StaticResource SubtituloApp}">
+                <Setter Property="TextColor" Value="#FFFFFF" />
+                <Setter Property="FontSize">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="Android, iOS" Value="24" />
+                            <On Platform="UWP" Value="64" />
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
                 <Setter Property="VerticalOptions" Value="Center" />
             </Style>
-            
-            <!--HORARIO-->
-            <Style x:Key="Horario" TargetType="StackLayout">
-                <Setter Property="BackgroundColor" Value="#947AC4" />
-                <Setter Property="Padding" Value="15,7" />
+
+            <Style x:Key="Fundo" TargetType="Image">
+                <Setter Property="Aspect" Value="AspectFit" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
             </Style>
+
+            <Style x:Key="Poster" TargetType="Image">
+                <Setter Property="Margin">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="Android, iOS" Value="0, 50, 0, 0" />
+                            <On Platform="UWP" Value="0, 20, 0, 0" />
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Start" />
+            </Style>
+
+            <Style x:Key="Sinopse" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="WidthRequest" Value="460" />
+                <Setter Property="Margin" Value="0, 10, 0, 0" />
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="FontFamily" Value="Segoe UI" />
+                <Setter Property="TextColor" Value="#947AC4" />
+            </Style>
+
+
+            <Style x:Key="Horarios" TargetType="StackLayout">
+                <Setter Property="Spacing" Value="20" />
+                <Setter Property="Margin" Value="0,0,0,10" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="End" />
+                <Setter Property="Orientation" Value="Horizontal" />
+            </Style>
+            <Style x:Key="Horario" TargetType="StackLayout">
+                <Setter Property="BackgroundColor"  Value="#947AC4" />
+                <Setter Property="Padding"  Value="15, 7" />
+            </Style>
+
         </ResourceDictionary>
-	</Application.Resources>
+        <!-- Application resource dictionary -->
+
+    </Application.Resources>
 </Application>
