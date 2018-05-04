@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App1_Mimica.View.Inicio">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Nome do Grupo 1 " />
+            <Entry Placeholder="(Opcional)" />
+
+            <Label Text="Nome do Grupo 2 " />
+            <Entry Placeholder="(Opcional)" />
+
+            <Label Text="Nível " />
+            <Picker>
+                <Picker.Items>
+                    <x:String>Aleatório</x:String>
+                    <x:String>Fácil</x:String>
+                    <x:String>Médio</x:String>
+                    <x:String>Difícil</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <Label Text="Tempo de cada palavra(SEG)" />
+            <Entry Text="120" />
+
+            <Label Text="Rodadas" />
+            <Entry Text="7" />
+
+            <Button Text="Iniciar"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

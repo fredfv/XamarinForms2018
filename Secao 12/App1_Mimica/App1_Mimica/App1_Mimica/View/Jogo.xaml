@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App1_Mimica.View.Jogo">
+    <ContentPage.Content>
+        <StackLayout>
+            
+            <StackLayout>
+                <Label Text="Grupo"/>
+                <Label Text="Palavra - Pontuação (1)" />
+                <Label Text="********" HorizontalOptions="CenterAndExpand"/>
+                <Button Text="Mostrar" /> 
+            </StackLayout>
+        
+            <StackLayout>
+                <Label Text="Contagem Regressiva" FontSize="200" HorizontalOptions="CenterAndExpand"/>
+                <Label Text="seg" FontSize="200" HorizontalOptions="CenterAndExpand"/>
+                <StackLayout>
+                    <Button Text="Acertou" BackgroundColor="LightGreen" />
+                    <Button Text="Errou" BackgroundColor="IndianRed" />
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout>
+                <Button Text="Iniciar"/>
+            </StackLayout>
+
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

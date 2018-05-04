@@ -9,11 +9,10 @@
                 <Label Text="Encontre seu emprego aqui" FontSize="12"/>
             </StackLayout>
 
-            <Entry Placeholder="Pesquisar" />
+            <Entry Placeholder="Pesquisar" TextChanged="PesquisarAction"/>
             <Label x:Name="lblCount" Text="" />
-            <ListView x:Name="ListaVagas">
+            <ListView x:Name="ListaVagas" HasUnevenRows="True">
                 <ListView.ItemTemplate>
-
                     <DataTemplate>
                         <ViewCell>
                             <Grid>
