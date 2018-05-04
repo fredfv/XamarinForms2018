@@ -12,7 +12,7 @@
                 <Button Text="Adicionar" Clicked="GoCadastro" />
                 <Button Text="Minhas Vagas" Clicked="GoMinhasVagas"/>
             </StackLayout>
-            <Entry Placeholder="Pesquisar" />
+            <Entry Placeholder="Pesquisar" TextChanged="PesquisarAction"/>
             <Label x:Name="lblCount" Text="" />
             <ListView x:Name="ListaVagas">
                 <ListView.ItemTemplate>

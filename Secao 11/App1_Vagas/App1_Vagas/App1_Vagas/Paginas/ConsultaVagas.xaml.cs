@@ -14,13 +14,15 @@ namespace App1_Vagas.Paginas
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ConsultaVagas : ContentPage
 	{
-		public ConsultaVagas ()
+        List<Vaga> Lista { get; set; }
+
+        public ConsultaVagas ()
 		{
 			InitializeComponent ();
 
 
             DataBase database = new DataBase();
-            var Lista = database.Consultar();
+            Lista = database.Consultar();
             ListaVagas.ItemsSource = Lista;
 
 
@@ -49,6 +51,13 @@ namespace App1_Vagas.Paginas
             Vaga vaga = ((TapGestureRecognizer)LblDetalhe.GestureRecognizers[0]).CommandParameter as Vaga;
 
             Navigation.PushAsync(new DetalheVaga(vaga));
+        }
+
+        public void PesquisarAction(object sender, TextChangedEventArgs args)
+        {
+            //a ultima informacao que foi digitida
+            ListaVagas.ItemsSource =  Lista.Where(a => a.NomeVaga.Contains(args.NewTextValue)).ToList();
+            
         }
 
     }
