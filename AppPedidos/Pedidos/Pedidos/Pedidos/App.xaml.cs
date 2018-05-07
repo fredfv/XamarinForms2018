@@ -13,7 +13,7 @@ namespace Pedidos
 		{
 			InitializeComponent();
 
-			MainPage = new Pedidos.MainPage();
+            MainPage = new NavigationPage(new Pedidos.Sqlite.Paginas.Marca.Consultar());
 		}
 
 		protected override void OnStart ()

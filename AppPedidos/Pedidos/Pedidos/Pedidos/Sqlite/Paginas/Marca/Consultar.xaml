@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Pedidos.Sqlite.Paginas.Marca.Consultar">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Marcas" FontSize="24" />
+            </StackLayout>
+            
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Adicionar" Clicked="GoCadastro" />
+                <Button Text="Minhas Marcas" Clicked="GoMinhasMarcas" />
+            </StackLayout>
+
+            <Entry Placeholder="Pesquisar" TextChanged="PesquisarAction"/>
+            
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Quantidade de Marcas encontradas"/>
+                <Label x:Name="lblCount" Text=""/>
+            </StackLayout>
+            <ListView x:Name="ListaMarcas">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="100" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                </Grid.RowDefinitions>
+
+                                <StackLayout Grid.Column="0">
+
+                                    <Label  Text="{Binding Nome}" FontAttributes="Bold" FontSize="20"/>
+                                    <Label Grid.Column="0" Text="{Binding Codigo}" FontAttributes="Italic" TextColor="LightGray" FontSize="14" />
+
+
+                                </StackLayout>
+                            
+                                <Label Grid.Column="1" Text=" + Abrir" FontSize="20">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="AbrirAction" CommandParameter="{Binding .}"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
