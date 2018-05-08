@@ -11,21 +11,20 @@ using Pedidos.Sqlite.Banco;
 
 
 
-namespace Pedidos.Sqlite.Paginas.Marca
+namespace Pedidos.Sqlite.Paginas.MarcaView
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class Cadastrar : ContentPage
-	{
-		public Cadastrar ()
-		{
-			InitializeComponent ();
-
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class Cadastrar : ContentPage
+    {
+        public Cadastrar()
+        {
+            InitializeComponent();
         }
 
         public void SalvarAction(object sender, EventArgs args)
         {
             //VALIDAR DADOS
-            Modelos.Marca marca = new Modelos.Marca();
+            Marca marca = new Marca();
 
             marca.Nome = Nome.Text;
             marca.Codigo = int.Parse(Codigo.Text);

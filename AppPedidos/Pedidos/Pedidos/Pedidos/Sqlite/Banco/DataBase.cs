@@ -19,7 +19,7 @@ namespace Pedidos.Sqlite.Banco
         public DataBase()
         {
             var dep = DependencyService.Get<ICaminho>();
-            string caminho = dep.ObterCaminho("pedidosdb.sqlite");
+            string caminho = dep.ObterCaminho("pedidos01db.sqlite");
 
             _conexao = new SQLiteConnection(caminho);
 
@@ -90,19 +90,19 @@ namespace Pedidos.Sqlite.Banco
             return _conexao.Table<Marca>().Where(a => a.Id == id).FirstOrDefault();
         }
 
-        public void MarcaCadastrar(Marca funcao)
+        public void MarcaCadastrar(Marca marca)
         {
-            _conexao.Insert(funcao);
+            _conexao.Insert(marca);
         }
 
-        public void MarcaAtualizar(Marca funcao)
+        public void MarcaAtualizar(Marca marca)
         {
-            _conexao.Update(funcao);
+            _conexao.Update(marca);
         }
 
-        public void MarcaExcluir(Marca funcao)
+        public void MarcaExcluir(Marca marca)
         {
-            _conexao.Delete(funcao);
+            _conexao.Delete(marca);
         }
 
         //CRUD MARCA

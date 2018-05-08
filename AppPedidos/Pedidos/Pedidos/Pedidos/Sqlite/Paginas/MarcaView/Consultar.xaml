@@ -1,25 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Pedidos.Sqlite.Paginas.Marca.Consultar">
+             x:Class="Pedidos.Sqlite.Paginas.MarcaView.Consultar">
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Orientation="Horizontal">
                 <Label Text="Marcas" FontSize="24" />
             </StackLayout>
-            
+
             <StackLayout Orientation="Horizontal">
                 <Button Text="Adicionar" Clicked="GoCadastro" />
                 <Button Text="Minhas Marcas" Clicked="GoMinhasMarcas" />
             </StackLayout>
 
             <Entry Placeholder="Pesquisar" TextChanged="PesquisarAction"/>
-            
+
             <StackLayout Orientation="Horizontal">
                 <Label Text="Quantidade de Marcas encontradas"/>
                 <Label x:Name="lblCount" Text=""/>
             </StackLayout>
-            <ListView x:Name="ListaMarcas">
+            <ListView x:Name="ListaMarcas" ItemSelected="MarcaSelecionada" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -39,12 +39,12 @@
 
 
                                 </StackLayout>
-                            
-                                <Label Grid.Column="1" Text=" + Abrir" FontSize="20">
+
+                                <!--<Label Grid.Column="1" Text=" + Abrir" FontSize="20">
                                     <Label.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="AbrirAction" CommandParameter="{Binding .}"/>
                                     </Label.GestureRecognizers>
-                                </Label>
+                                </Label>-->
 
                             </Grid>
                         </ViewCell>

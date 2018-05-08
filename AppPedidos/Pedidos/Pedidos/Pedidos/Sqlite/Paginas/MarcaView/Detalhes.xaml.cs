@@ -8,14 +8,14 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Pedidos.Sqlite.Modelos;
 
-namespace Pedidos.Sqlite.Paginas.Marca
+namespace Pedidos.Sqlite.Paginas.MarcaView
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class Detalhes : ContentPage
-	{
-		public Detalhes (Modelos.Marca marca)
-		{
-			InitializeComponent ();
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class Detalhes : ContentPage
+    {
+        public Detalhes(Modelos.Marca marca)
+        {
+            InitializeComponent();
 
             //DisplayAlert("MSG", marca.Nome, "OK");
 
@@ -30,6 +30,6 @@ namespace Pedidos.Sqlite.Paginas.Marca
                 Ativo.Text = "Desativado";
             }
 
-		}
-	}
+        }
+    }
 }

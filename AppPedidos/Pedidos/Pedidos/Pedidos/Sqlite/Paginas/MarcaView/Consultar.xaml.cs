@@ -9,16 +9,16 @@ using Xamarin.Forms.Xaml;
 using Pedidos.Sqlite.Modelos;
 using Pedidos.Sqlite.Banco;
 
-namespace Pedidos.Sqlite.Paginas.Marca
+namespace Pedidos.Sqlite.Paginas.MarcaView
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class Consultar : ContentPage
-	{
-        List<Modelos.Marca> Lista { get; set; }
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class Consultar : ContentPage
+    {
+        List<Marca> Lista { get; set; }
 
-        public Consultar ()
-		{
-			InitializeComponent ();
+        public Consultar()
+        {
+            InitializeComponent();
 
             DataBase database = new DataBase();
 
@@ -27,36 +27,35 @@ namespace Pedidos.Sqlite.Paginas.Marca
             ListaMarcas.ItemsSource = Lista;
             lblCount.Text = Lista.Count.ToString();
 
-		}
+        }
 
         public void GoCadastro(object sender, EventArgs args)
         {
             Navigation.PushAsync(new Cadastrar());
-             
-
         }
 
         public void GoMinhasMarcas(object sender, EventArgs args)
         {
             Navigation.PushAsync(new MinhasMarcas());
-
         }
 
-        public void AbrirAction(object sender, EventArgs args)
+        //public void AbrirAction(object sender, EventArgs args)
+        //{
+        //    Label lblDetalhe = (Label)sender;
+        //    Marca marca = ((TapGestureRecognizer)lblDetalhe.GestureRecognizers[0]).CommandParameter as Marca;
+
+        //    Navigation.PushAsync(new Detalhes(marca));
+        //}
+
+        public void MarcaSelecionada(object sender, SelectedItemChangedEventArgs args)
         {
-
-            Label lblDetalhe = (Label)sender;
-            Modelos.Marca marca = ((TapGestureRecognizer)lblDetalhe.GestureRecognizers[0]).CommandParameter as Modelos.Marca;
-
-
+            Marca marca = (Marca)args.SelectedItem;
             Navigation.PushAsync(new Detalhes(marca));
-
         }
 
         public void PesquisarAction(object sender, TextChangedEventArgs args)
         {
-            ListaMarcas.ItemsSource =  Lista.Where(a => a.Nome.Contains(args.NewTextValue)).ToList();
+            ListaMarcas.ItemsSource = Lista.Where(a => a.Nome.Contains(args.NewTextValue)).ToList();
         }
-
     }
 }
