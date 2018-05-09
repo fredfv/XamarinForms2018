@@ -4,7 +4,7 @@
              x:Class="Pedidos.SqlServer.Pages.MarcaView">
     <ContentPage.Content>
         <StackLayout>
-            <Entry Placeholder="Pesquisar. . ." x:Name="TxtMunicipio" TextChanged="BuscaMarca"/> 
+            <Entry Placeholder="Pesquisar. . ."  TextChanged="BuscaMarca"/> 
             <ListView x:Name="ListaMarcas" ItemSelected="MarcaSelecionada">
                 <ListView.ItemTemplate>
                     <DataTemplate>

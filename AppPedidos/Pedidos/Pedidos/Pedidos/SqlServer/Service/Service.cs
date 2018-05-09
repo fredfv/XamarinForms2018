@@ -20,8 +20,22 @@ namespace Pedidos.SqlServer.Service
         private static string URLProdutos = "http://192.168.1.39/api/produto/obtertodas/{0}";
 
 
+        private static string URLPedidoPorId = "http://192.168.1.39/api/pedido/obterporid/{0}";
 
-       
+
+
+
+        public static List<Pedido> GetPedidoPorId(int id)
+        {
+            string NewURL = string.Format(URLPedidoPorId, id);
+            WebClient wc = new WebClient();
+            string conteudo = wc.DownloadString(NewURL);
+
+
+            return JsonConvert.DeserializeObject<List<Pedido>>(conteudo);
+        }
+
+
         public static  List<Pessoa> GetPessoas()
         {
             WebClient wc = new WebClient();

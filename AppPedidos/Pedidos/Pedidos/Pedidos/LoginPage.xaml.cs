@@ -15,7 +15,7 @@ namespace Pedidos
 	public partial class LoginPage : ContentPage
 	{
 
-        public List<Pessoa> usuarioLogado { get; set; }
+        private List<Pessoa> usuarioLogado { get; set; }
 
         public LoginPage()
 		{
@@ -40,8 +40,7 @@ namespace Pedidos
 
             if (usuarioLogado[0].cep == Senha.Text)
             {
-                App.Current.MainPage = new Pedidos.Menu.Master();
-                //App.Current.MainPage = new NavigationPage(new Pedidos.Menu.Master());
+                App.Current.MainPage = new Pedidos.Menu.Master(usuarioLogado[0]);
             }
             else
             {
