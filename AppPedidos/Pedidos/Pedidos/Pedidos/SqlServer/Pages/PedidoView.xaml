@@ -4,7 +4,7 @@
              x:Class="Pedidos.SqlServer.Pages.PedidoView">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
+            <Label Text="Pedidos VAI SER UMA MODAL"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
         </StackLayout>

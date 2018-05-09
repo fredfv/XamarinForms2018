@@ -4,7 +4,7 @@
              x:Class="Pedidos.SqlServer.Pages.PessoaView">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
+            <Label Text="PESSOAS"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
         </StackLayout>

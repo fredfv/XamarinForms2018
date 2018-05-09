@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Pedidos
+namespace Pedidos.Menu
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class Home : ContentPage

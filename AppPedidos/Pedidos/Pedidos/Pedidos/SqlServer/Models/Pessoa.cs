@@ -11,7 +11,8 @@ namespace Pedidos.SqlServer.Models
         public string nome { get; set; }
         public string cpf { get; set; }
 
-        public DateTime? dataNascimento { get; set; }
+        public string dataNascimento { get; set; }
+        //public DateTime? dataNascimento { get; set; }
 
         public string rg { get; set; }
         public string sexo { get; set; }
@@ -26,9 +27,9 @@ namespace Pedidos.SqlServer.Models
 
         public bool ativo { get; set; }
 
-        public DateTime? dataInclusao { get; set; }
-        public int? idUsuarioInclusao { get; set; }
-        public DateTime? dataAlteracao { get; set; }
-        public int? idUsuarioAlteracao { get; set; }
+        //public DateTime? dataInclusao { get; set; }
+        //public int? idUsuarioInclusao { get; set; }
+        //public DateTime? dataAlteracao { get; set; }
+        //public int? idUsuarioAlteracao { get; set; }
     }
 }

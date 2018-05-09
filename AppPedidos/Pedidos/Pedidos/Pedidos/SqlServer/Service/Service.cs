@@ -9,11 +9,17 @@ namespace Pedidos.SqlServer.Service
 {
     class Service
     {
-        private static string URLPessoas = "http://192.168.1.31/api/pessoa/obtertodas";
 
-        private static string URLMarcas = "http://192.168.1.31/api/marca/obtertodas";
+        private static string URLPessoas = "http://192.168.1.39/api/pessoa/obtertodas";
 
-        private static string URLProdutos = "http://192.168.1.31/api/produto/obtertodas/{0}";
+        private static string URLPessoaPorId ="http://192.168.1.39/api/pessoa/obterporid/{0}";
+
+
+        private static string URLMarcas = "http://192.168.1.39/api/marca/obtertodas";
+
+        private static string URLProdutos = "http://192.168.1.39/api/produto/obtertodas/{0}";
+
+
 
        
         public static  List<Pessoa> GetPessoas()
@@ -23,6 +29,17 @@ namespace Pedidos.SqlServer.Service
 
             return JsonConvert.DeserializeObject<List<Pessoa>>(conteudo);  
         }
+
+        public static List<Pessoa> GetPessoaPorId(int id)
+        {
+            string NewURL = string.Format(URLPessoaPorId, id);
+            WebClient wc = new WebClient();
+            string conteudo = wc.DownloadString(NewURL);
+
+
+            return JsonConvert.DeserializeObject<List<Pessoa>>(conteudo);
+        }
+
 
         public static List<Marca> GetMarcas()
         {

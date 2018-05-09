@@ -1,0 +1,60 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+using Pedidos.SqlServer.Models;
+using Pedidos.SqlServer.Service;
+
+namespace Pedidos
+{
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class LoginPage : ContentPage
+	{
+
+        public List<Pessoa> usuarioLogado { get; set; }
+
+        public LoginPage()
+		{
+			InitializeComponent();
+		}
+
+        private void VerSenha(object sender, EventArgs args)
+        {
+            Senha.IsPassword = !Senha.IsPassword;
+        }
+
+        private void Logar(object sender, EventArgs args)
+        {
+            Carregando.IsRunning = true;
+
+            Login.IsEnabled = false;
+            Senha.IsEnabled = false;
+
+            int login = int.Parse(Login.Text);
+
+            usuarioLogado = Service.GetPessoaPorId(login);
+
+            if (usuarioLogado[0].cep == Senha.Text)
+            {
+                App.Current.MainPage = new Pedidos.Menu.Master();
+                //App.Current.MainPage = new NavigationPage(new Pedidos.Menu.Master());
+            }
+            else
+            {
+                Carregando.IsRunning = false;
+
+                DisplayAlert("Erro ao logar", "Usuario ou senha errados!", "Okey");
+
+                Login.Text = "";
+                Senha.Text = "";
+
+                Login.IsEnabled = true;
+                Senha.IsEnabled = true;
+            }
+        }
+    }
+}

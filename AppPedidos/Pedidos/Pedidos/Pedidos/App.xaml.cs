@@ -9,11 +9,14 @@ namespace Pedidos
 {
 	public partial class App : Application
 	{
-		public App ()
+		public App()
 		{
 			InitializeComponent();
 
-            MainPage = new NavigationPage(new Pedidos.SqlServer.Pages.MarcaView());
+
+            //aqui ele vai chamar uma login page, que em seguida chama a pagina referente ao seu acesso
+            MainPage = new LoginPage();
+            //MainPage = new NavigationPage(new Menu.Master());
 		}
 
 		protected override void OnStart ()
