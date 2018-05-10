@@ -6,23 +6,22 @@
     <MasterDetailPage.Master>
         <ContentPage Title="Pedidos">
             <StackLayout>
-                <StackLayout>
+                <StackLayout Spacing="25">
                     <!--ABRINDO A LISTA DE CADA OBJETO-->
-                    <Button Text="Pessoas" Clicked="GoListaPessoas"/>
-                    <Button Text="Marcas" Clicked="GoListaMarcas"/>
-                    <Button Text="Pedidos" Clicked="GoListaPedidos"/>
+                    <Button x:Name="btnPessoas" Text="Pessoas" Clicked="GoListaPessoas"/>
+                    <Button x:Name="btnMarcas" Text="Marcas" Clicked="GoListaMarcas"/>
+                    <Button x:Name="btnProdutos" Text="Produtos" Clicked="GoListaProdutos"/>
+                    <Button x:Name="btnPedidos" Text="Pedidos" Clicked="GoListaPedidos"/>
                 </StackLayout>
-                <StackLayout VerticalOptions="Center">
-                    <!-- Primeiro saber a marca e depois o produto-->
-                    <Button Text="Produtos" Clicked="GoListaProdutos"/>
-                </StackLayout>
-                
-                
-                
-                <StackLayout VerticalOptions="EndAndExpand">
-                    <Button Text="Perfil" Clicked="GoPerfil"/>
-                    <Label x:Name="Nome"/>
-                    <Label x:Name="Tipo"/>
+                <StackLayout VerticalOptions="EndAndExpand" Spacing="30">
+                    <StackLayout>
+                        <Button Text="Perfil" Clicked="GoPerfil"/>
+                        <Label FontAttributes="Italic" x:Name="Nome"/>
+                        <Label FontAttributes="Italic" TextColor="Gray" x:Name="Tipo"/>
+                    </StackLayout>
+                    <StackLayout >
+                        <Button BackgroundColor="Transparent" TextColor="Red" Text="Deslogar" Clicked="Sair"/>
+                    </StackLayout>
                 </StackLayout>
             </StackLayout>
         </ContentPage>

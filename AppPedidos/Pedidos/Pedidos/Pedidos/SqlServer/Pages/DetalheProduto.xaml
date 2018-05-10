@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Pedidos.SqlServer.Pages.DetalheMarca">
+             x:Class="Pedidos.SqlServer.Pages.DetalheProduto">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Margin="10" Padding="10">
@@ -13,6 +13,9 @@
 
                 <Label Text="Data Inclusão - " TextColor="DarkGreen" FontSize="18" FontAttributes="Italic"/>
                 <Label Text="{Binding dataInclusao}" FontSize="22"/>
+
+                <Label Text="Data Alteração - " TextColor="DarkGreen" FontSize="18" FontAttributes="Italic"/>
+                <Label Text="{Binding dataAlteracao}" FontSize="22"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

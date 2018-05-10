@@ -13,6 +13,8 @@ namespace Pedidos.Menu
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class Master : MasterDetailPage
 	{
+
+        //0 adm 1 promotor
         public static int IdLogado { get; set; }
         private Pessoa usuario { get; set; }
 
@@ -24,9 +26,18 @@ namespace Pedidos.Menu
             IdLogado = usuarioLogado.idPessoa;
 
             Nome.Text = usuarioLogado.nome;
-            Tipo.Text = IdLogado.ToString();
-        }
 
+            if (usuario.rg.ToString().Contains("1"))
+            {
+                Tipo.Text = "- Promotor";
+                btnMarcas.IsVisible = false;
+                btnPessoas.IsVisible = false;
+            }
+            else
+            {
+                Tipo.Text = "- Adm";
+            }
+        }
 
         private void GoListaPessoas(object sender, EventArgs args)
         {
@@ -36,26 +47,32 @@ namespace Pedidos.Menu
 
         private void GoListaMarcas(object sender, EventArgs args)
         {
-            Detail = new NavigationPage(new SqlServer.Pages.ListarMarcas()) { BarBackgroundColor = Color.Black };
-            IsPresented = false;
-        }
-
-        private void GoListaPedidos(object sender, EventArgs args)
-        {
-           // Detail = new NavigationPage(new SqlServer.Pages.PedidoView());
+            Detail = new NavigationPage(new SqlServer.Pages.ListaMarcas()) { BarBackgroundColor = Color.Black };
             IsPresented = false;
         }
 
         private void GoListaProdutos(object sender, EventArgs args)
         {
-            //Detail = new NavigationPage(new SqlServer.Pages.PessoaPerfil(usuario));
+            Detail = new NavigationPage(new SqlServer.Pages.ListaProdutos()) { BarBackgroundColor = Color.Black };
             IsPresented = false;
         }
-        
+
+        private void GoListaPedidos(object sender, EventArgs args)
+        {
+            Detail = new NavigationPage(new SqlServer.Pages.ListaPedidos()) { BarBackgroundColor = Color.Black };
+            IsPresented = false;
+        }
+
         private void GoPerfil(object sender, EventArgs args)
         {
-            //Detail = new NavigationPage(new SqlServer.Pages.PessoaPerfil(usuario));
+            Detail = new NavigationPage(new SqlServer.Pages.DetalhePessoa(usuario)) { BarBackgroundColor = Color.Black };
             IsPresented = false;
+        }
+
+        private void Sair(object sender, EventArgs args)
+        {
+            App.Current.MainPage = new LoginPage();
+
         }
     }
 }

@@ -82,7 +82,9 @@ namespace Pedidos.SqlServer.Service
         //PEDIDOS
         public static List<Pedido> GetPedidos(string data)
         {
-            string NewURL = string.Format(URLPedidos, data);
+            string dataParaEnvio = "?Data=" + data;
+
+            string NewURL = string.Format(URLPedidos, dataParaEnvio);
             WebClient wc = new WebClient();
             string conteudo = wc.DownloadString(NewURL);
 
