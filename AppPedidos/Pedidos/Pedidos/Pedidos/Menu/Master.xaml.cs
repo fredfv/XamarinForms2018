@@ -19,7 +19,7 @@ namespace Pedidos.Menu
 		public Master (Pessoa usuarioLogado)
 		{
 			InitializeComponent ();
-            Detail = new NavigationPage(new Home());
+            Detail = new NavigationPage(new Home()) { BarBackgroundColor=Color.Black };
             usuario = usuarioLogado;
             IdLogado = usuarioLogado.idPessoa;
 
@@ -27,23 +27,35 @@ namespace Pedidos.Menu
             Tipo.Text = IdLogado.ToString();
         }
 
-        private void AbrirMarcas(object sender, EventArgs args)
+
+        private void GoListaPessoas(object sender, EventArgs args)
         {
-            Detail = new NavigationPage(new SqlServer.Pages.MarcaView());
+            Detail = new NavigationPage(new SqlServer.Pages.ListaPessoas()) { BarBackgroundColor = Color.Black };
             IsPresented = false;
         }
 
-        private void AbrirPedidos(object sender, EventArgs args)
+        private void GoListaMarcas(object sender, EventArgs args)
         {
-            Detail = new NavigationPage(new SqlServer.Pages.PedidoView());
+            Detail = new NavigationPage(new SqlServer.Pages.ListarMarcas()) { BarBackgroundColor = Color.Black };
             IsPresented = false;
         }
 
-        private void AbrirPerfil(object sender, EventArgs args)
+        private void GoListaPedidos(object sender, EventArgs args)
         {
-            Detail = new NavigationPage(new SqlServer.Pages.PessoaPerfil(usuario));
+           // Detail = new NavigationPage(new SqlServer.Pages.PedidoView());
             IsPresented = false;
         }
 
+        private void GoListaProdutos(object sender, EventArgs args)
+        {
+            //Detail = new NavigationPage(new SqlServer.Pages.PessoaPerfil(usuario));
+            IsPresented = false;
+        }
+        
+        private void GoPerfil(object sender, EventArgs args)
+        {
+            //Detail = new NavigationPage(new SqlServer.Pages.PessoaPerfil(usuario));
+            IsPresented = false;
+        }
     }
 }

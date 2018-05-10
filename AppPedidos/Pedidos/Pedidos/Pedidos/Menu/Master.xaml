@@ -7,11 +7,20 @@
         <ContentPage Title="Pedidos">
             <StackLayout>
                 <StackLayout>
-                    <Button Text="Marca" Clicked="AbrirMarcas"/>
-                    <Button Text="Pedidos" Clicked="AbrirPedidos"/>
+                    <!--ABRINDO A LISTA DE CADA OBJETO-->
+                    <Button Text="Pessoas" Clicked="GoListaPessoas"/>
+                    <Button Text="Marcas" Clicked="GoListaMarcas"/>
+                    <Button Text="Pedidos" Clicked="GoListaPedidos"/>
                 </StackLayout>
+                <StackLayout VerticalOptions="Center">
+                    <!-- Primeiro saber a marca e depois o produto-->
+                    <Button Text="Produtos" Clicked="GoListaProdutos"/>
+                </StackLayout>
+                
+                
+                
                 <StackLayout VerticalOptions="EndAndExpand">
-                    <Button Text="Perfil" Clicked="AbrirPerfil"/>
+                    <Button Text="Perfil" Clicked="GoPerfil"/>
                     <Label x:Name="Nome"/>
                     <Label x:Name="Tipo"/>
                 </StackLayout>
