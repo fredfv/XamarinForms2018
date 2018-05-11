@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Pedidos.SqlServer.Models;
+using Pedidos.SqlServer.Model;
 
-namespace Pedidos.SqlServer.Pages
+namespace Pedidos.SqlServer.View
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ListaPessoas : ContentPage
@@ -21,7 +21,6 @@ namespace Pedidos.SqlServer.Pages
         {
             InitializeComponent();
             //ListaInterna = Service.Service.GetPessoas();
-            ListaInterna = Service.ServiceWS.GetPessoas();
             Lista.ItemsSource = ListaInterna;
         }
 

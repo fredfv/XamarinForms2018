@@ -36,7 +36,9 @@ namespace Pedidos
 
             int login = int.Parse(Login.Text);
 
-            usuarioLogado = Service.GetPessoaPorId(login);
+            //usuarioLogado = Service.GetPessoaPorId(login);
+            usuarioLogado = ServiceWS.GetPessoaPorId(login);
+
 
             if (usuarioLogado[0].cep == Senha.Text)
             {

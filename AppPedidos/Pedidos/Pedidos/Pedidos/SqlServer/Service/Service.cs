@@ -9,7 +9,7 @@ namespace Pedidos.SqlServer.Service
 {
     class Service
     {
-        private static string URLBase = "http://192.168.1.39/api/";
+        private static string URLBase = "http://192.168.1.38/api/";
         
         private static string URLPessoas = URLBase+"pessoa/obtertodas";
         private static string URLPessoaPorId = URLBase+"pessoa/obterporid/{0}";

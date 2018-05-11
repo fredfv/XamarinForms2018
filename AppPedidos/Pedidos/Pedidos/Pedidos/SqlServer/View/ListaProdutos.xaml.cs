@@ -6,30 +6,29 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Pedidos.SqlServer.Models;
+using Pedidos.SqlServer.Model;
 
-namespace Pedidos.SqlServer.Pages
+namespace Pedidos.SqlServer.View
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ListaPessoas : ContentPage
+	public partial class ListaProdutos : ContentPage
 	{
 
-        private List<Pessoa> ListaInterna { get; set; }
-        private List<Pessoa> ListaFiltrada { get; set; }
+        private List<Marca> ListaInterna { get; set; }
+        private List<Marca> ListaFiltrada { get; set; }
 
-        public ListaPessoas()
+        public ListaProdutos()
         {
             InitializeComponent();
-            //ListaInterna = Service.Service.GetPessoas();
-            ListaInterna = Service.ServiceWS.GetPessoas();
+            //ListaInterna = Service.Service.GetMarcas();
             Lista.ItemsSource = ListaInterna;
         }
 
         private void GoDetalhe(object sender, SelectedItemChangedEventArgs args)
         {
-            Pessoa pessoa = (Pessoa)args.SelectedItem;
+            Marca marca = (Marca)args.SelectedItem;
 
-            Navigation.PushAsync(new DetalhePessoa(pessoa));
+            Navigation.PushAsync(new ListaProdutosPorMarca(marca));
         }
 
         private void Buscar(object sender, TextChangedEventArgs args)

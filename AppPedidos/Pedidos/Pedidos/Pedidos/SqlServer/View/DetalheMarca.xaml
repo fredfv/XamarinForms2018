@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Pedidos.SqlServer.View.DetalheMarca">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Margin="10" Padding="10">
+                <Label Text="Nome - " TextColor="DarkGreen" FontSize="20" FontAttributes="Italic"/>
+                <Label Text="{Binding nome}" FontAttributes="Bold" FontSize="24"/>
+
+                <Label Text="Codigo - " TextColor="DarkGreen" FontSize="18" FontAttributes="Italic" />
+                <Label Text="{Binding codigo}" FontSize="22"/>
+
+                <Label Text="Data Inclusão - " TextColor="DarkGreen" FontSize="18" FontAttributes="Italic"/>
+                <Label Text="{Binding dataInclusao}" FontSize="22"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -5,13 +5,14 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Nome do Grupo 1 " />
+            <Entry Placeholder="(Opcional)" Text="{Binding Jogo.Grupo1.Nome}" />
             <Entry Placeholder="(Opcional)" />
 
-            <Label Text="Nome do Grupo 2 " />
-            <Entry Placeholder="(Opcional)" />
+            <Label Text="Nome do Grupo 2"/>
+            <Entry Placeholder="(Opcional)" Text="{Binding Jogo.Grupo2.Nome}"  />
 
-            <Label Text="Nível " />
-            <Picker>
+            <Label Text="Nível "/>
+            <Picker SelectedItem="{Binding Jogo.Nivel}">
                 <Picker.Items>
                     <x:String>Aleatório</x:String>
                     <x:String>Fácil</x:String>
@@ -21,12 +22,12 @@
             </Picker>
 
             <Label Text="Tempo de cada palavra(SEG)" />
-            <Entry Text="120" />
+            <Entry Text="{Binding Jogo.TempoPalavra}" />
 
             <Label Text="Rodadas" />
-            <Entry Text="7" />
+            <Entry Text="{Binding Jogo.Rodadas}" />
 
-            <Button Text="Iniciar"/>
+            <Button Text="Iniciar" Command="{Binding IniciarCommand}"/>
 
         </StackLayout>
     </ContentPage.Content>
