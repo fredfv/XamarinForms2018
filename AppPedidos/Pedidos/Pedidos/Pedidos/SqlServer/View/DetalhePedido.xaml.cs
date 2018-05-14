@@ -16,14 +16,14 @@ namespace Pedidos.SqlServer.View
 		public DetalhePedido (Pedido pedido)
 		{
 			InitializeComponent ();
-
-            //List<Produto> produto = Service.Service.GetProdutoPorId(pedido.idProduto);
-            //NomeProduto.Text = produto[0].nome;
-
-            //List<Marca> marca = Service.Service.GetMarcaPorId(produto[0].)
-
-
             BindingContext = pedido;
+
+            NomeProduto.Text = pedido.nomeProduto;
+
+            List<Produto> produto = Service.ServiceWS.GetProdutoPorId(pedido.idProduto);
+
+            NomeMarca.Text = produto[0].nomeMarca;
+
 		}
 	}
 }

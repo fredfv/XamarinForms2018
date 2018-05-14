@@ -12,6 +12,10 @@ namespace Pedidos.SqlServer.Model
 
         public int? codigo { get; set; }
 
+        public int idMarca { get; set; }
+
+        public string nomeMarca { get; set; }
+
         public DateTime dataInclusao { get; set; }
 
         public DateTime? dataAlteracao { get; set; }

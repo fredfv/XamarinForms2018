@@ -8,6 +8,9 @@
                 <Label Text="Nome - " TextColor="DarkGreen" FontSize="20" FontAttributes="Italic"/>
                 <Label Text="{Binding nome}" FontAttributes="Bold" FontSize="24"/>
 
+                <Label Text="Marca - " TextColor="DarkGreen" FontSize="20" FontAttributes="Italic"/>
+                <Label Text="{Binding nomeMarca}" FontSize="24"/>
+
                 <Label Text="Codigo - " TextColor="DarkGreen" FontSize="18" FontAttributes="Italic" />
                 <Label Text="{Binding codigo}" FontSize="22"/>
 

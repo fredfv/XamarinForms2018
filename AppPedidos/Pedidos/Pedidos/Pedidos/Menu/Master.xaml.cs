@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Pedidos.SqlServer.Models;
+using Pedidos.SqlServer.Model;
 
 namespace Pedidos.Menu
 {
@@ -41,31 +41,37 @@ namespace Pedidos.Menu
 
         private void GoListaPessoas(object sender, EventArgs args)
         {
-            Detail = new NavigationPage(new SqlServer.Pages.ListaPessoas()) { BarBackgroundColor = Color.Black };
+            Detail = new NavigationPage(new SqlServer.View.ListaPessoas()) { BarBackgroundColor = Color.Black };
             IsPresented = false;
         }
 
         private void GoListaMarcas(object sender, EventArgs args)
         {
-            Detail = new NavigationPage(new SqlServer.Pages.ListaMarcas()) { BarBackgroundColor = Color.Black };
+            Detail = new NavigationPage(new SqlServer.View.ListaMarcas()) { BarBackgroundColor = Color.Black };
             IsPresented = false;
         }
 
         private void GoListaProdutos(object sender, EventArgs args)
         {
-            Detail = new NavigationPage(new SqlServer.Pages.ListaProdutos()) { BarBackgroundColor = Color.Black };
+            Detail = new NavigationPage(new SqlServer.View.ListaProdutos()) { BarBackgroundColor = Color.Black };
             IsPresented = false;
         }
 
         private void GoListaPedidos(object sender, EventArgs args)
         {
-            Detail = new NavigationPage(new SqlServer.Pages.ListaPedidos()) { BarBackgroundColor = Color.Black };
+            Detail = new NavigationPage(new SqlServer.View.ListaPedidos()) { BarBackgroundColor = Color.Black };
             IsPresented = false;
         }
 
         private void GoPerfil(object sender, EventArgs args)
         {
-            Detail = new NavigationPage(new SqlServer.Pages.DetalhePessoa(usuario)) { BarBackgroundColor = Color.Black };
+            Detail = new NavigationPage(new SqlServer.View.DetalhePessoa(usuario)) { BarBackgroundColor = Color.Black };
+            IsPresented = false;
+        }
+
+        private void GoCadastrarMarca(object sender, EventArgs args)
+        {
+            Detail = new NavigationPage(new SqlServer.View.CadastrarMarca()) { BarBackgroundColor = Color.Black };
             IsPresented = false;
         }
 

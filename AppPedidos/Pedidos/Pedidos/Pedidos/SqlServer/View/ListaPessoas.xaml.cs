@@ -21,6 +21,7 @@ namespace Pedidos.SqlServer.View
         {
             InitializeComponent();
             //ListaInterna = Service.Service.GetPessoas();
+            ListaInterna = Service.ServiceWS.GetPessoas();
             Lista.ItemsSource = ListaInterna;
         }
 

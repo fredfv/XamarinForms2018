@@ -19,6 +19,8 @@ namespace Pedidos.SqlServer.Model
 
         public string obs { get; set; }
 
+        public string nomeProduto { get; set; }
+
         public DateTime dataInclusao { get; set; }
         public int idUsuarioInclusao { get; set; }
 

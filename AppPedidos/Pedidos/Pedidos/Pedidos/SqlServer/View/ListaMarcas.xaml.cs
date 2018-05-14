@@ -20,21 +20,35 @@ namespace Pedidos.SqlServer.View
         public ListaMarcas()
         {
             InitializeComponent();
-            //ListaInterna = Service.Service.GetMarcas();
-            Lista.ItemsSource = ListaInterna;
+            Atualizar();
         }
 
-        private void GoDetalhe(object sender, SelectedItemChangedEventArgs args)
+        private void Atualizar()
         {
-            Marca marca = (Marca)args.SelectedItem;
-
-            Navigation.PushAsync(new DetalheMarca(marca));
+            ListaInterna = Service.ServiceWS.GetMarcas();
+            Lista.ItemsSource = ListaInterna;
         }
 
         private void Buscar(object sender, TextChangedEventArgs args)
         {
             ListaFiltrada = ListaInterna.Where(a => a.nome.ToLower().Contains(args.NewTextValue.ToLower())).ToList();
             Lista.ItemsSource = ListaFiltrada;
+        }
+
+        private void GoDetalhe(object sender, SelectedItemChangedEventArgs args)
+        {
+            Marca marca = (Marca)args.SelectedItem;
+            Navigation.PushAsync(new DetalheMarca(marca));
+        }
+
+        private void GoModalCadastrar(object sender, EventArgs args)
+        {
+            Navigation.PushModalAsync(new CadastrarMarca());
+        }
+
+        private void AtualizarAction(object sender, EventArgs args)
+        {
+            Atualizar();
         }
     }
 }

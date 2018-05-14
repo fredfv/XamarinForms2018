@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Pedidos.SqlServer.Models;
+using Pedidos.SqlServer.Model;
 using Pedidos.SqlServer.Service;
 
 namespace Pedidos

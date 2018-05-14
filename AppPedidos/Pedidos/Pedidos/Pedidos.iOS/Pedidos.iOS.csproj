@@ -132,4 +132,28 @@
       <Name>Pedidos</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\refreshW.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\plusW.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\trashW.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\editW.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\trash.png" />
+  </ItemGroup>
 </Project>

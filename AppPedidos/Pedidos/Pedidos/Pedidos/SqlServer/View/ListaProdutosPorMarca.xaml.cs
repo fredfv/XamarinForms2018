@@ -22,6 +22,7 @@ namespace Pedidos.SqlServer.View
 			InitializeComponent ();
 
             //ListaInterna = Service.Service.GetProdutos(marca.id);
+            ListaInterna = Service.ServiceWS.GetProdutos(marca.id);
             Lista.ItemsSource = ListaInterna;
         }
 

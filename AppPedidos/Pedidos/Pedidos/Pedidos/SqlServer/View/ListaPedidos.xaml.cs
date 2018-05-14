@@ -23,7 +23,7 @@ namespace Pedidos.SqlServer.View
             DateTime dataDeHoje = DateTime.Now;
             calendario.MaximumDate = DateTime.Now;
 
-            //ListaInterna = Service.Service.GetPedidos(dataDeHoje.ToString("dd/MM/yy"));
+            ListaInterna = Service.ServiceWS.GetPedidos(dataDeHoje.ToString("dd/MM/yy"));
             Lista.ItemsSource = ListaInterna;
         }
 
@@ -36,7 +36,7 @@ namespace Pedidos.SqlServer.View
 
         private void Buscar(object sender, DateChangedEventArgs args)
         {
-            //ListaInterna = Service.Service.GetPedidos(args.NewDate.ToString("dd/MM/yy"));
+            ListaInterna = Service.ServiceWS.GetPedidos(args.NewDate.ToString("dd/MM/yy"));
             Lista.ItemsSource = ListaInterna;
         }
     }

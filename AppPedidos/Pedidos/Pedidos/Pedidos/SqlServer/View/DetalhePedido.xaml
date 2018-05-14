@@ -9,7 +9,7 @@
                 <Label x:Name="NomeProduto" FontAttributes="Bold" FontSize="24"/>
 
                 <Label Text="Marca - " TextColor="DarkGreen" FontSize="20" FontAttributes="Italic"/>
-                <Label x:Name="MarcaProduto" FontAttributes="Italic" FontSize="24"/>
+                <Label x:Name="NomeMarca" FontAttributes="Italic" FontSize="24"/>
 
                 <Label Text="Perda - " TextColor="DarkGreen" FontSize="18" FontAttributes="Italic" />
                 <Label Text="{Binding perda}" FontSize="22"/>
