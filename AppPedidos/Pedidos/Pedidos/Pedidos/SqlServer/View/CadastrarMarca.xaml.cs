@@ -15,7 +15,7 @@ namespace Pedidos.SqlServer.View
 	public partial class CadastrarMarca : ContentPage
 	{
 
-        bool isCadastaro { get; set; }
+        bool isCadastro { get; set; }
         Marca marcaNaPagina { get; set; }
 
 		public CadastrarMarca (Marca marca = null)
@@ -26,13 +26,13 @@ namespace Pedidos.SqlServer.View
             if (marca != null)
             {
                 BtnCadastro.Text = "Salvar";
-                isCadastaro = false;
+                isCadastro = false;
                 marcaNaPagina = marca;
             }
             else
             {
                 BtnCadastro.Text = "Cadastrar";
-                isCadastaro = true;
+                isCadastro = true;
             }
         }
 
@@ -42,7 +42,7 @@ namespace Pedidos.SqlServer.View
             novaMarca.nome = Nome.Text;
             novaMarca.codigo = int.Parse(Codigo.Text);
 
-            if (!isCadastaro)
+            if (!isCadastro)
             {
                 novaMarca.id = marcaNaPagina.id;
                 teste.Text = marcaNaPagina.id.ToString();
@@ -52,7 +52,7 @@ namespace Pedidos.SqlServer.View
 
             if (ok)
             {
-                if (isCadastaro)
+                if (isCadastro)
                 {
                     Mensagem.Text = "Cadastro efetuado com sucesso";
                 }
@@ -63,7 +63,7 @@ namespace Pedidos.SqlServer.View
             }
             else
             {
-                if (isCadastaro)
+                if (isCadastro)
                 {
                     Mensagem.Text = "Ocorreu um erro no cadastro";
                 }

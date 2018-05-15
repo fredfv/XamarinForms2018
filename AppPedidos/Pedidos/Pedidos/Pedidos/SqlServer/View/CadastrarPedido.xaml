@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Pedidos.SqlServer.View.CadastrarPedido">
+    <ContentPage.Content>
+        <StackLayout Spacing="40" Padding="10" Margin="10">
+            <StackLayout Orientation="Horizontal" HeightRequest="40">
+                <Label Text="Cadastrar Pedido" FontSize="Large"/>
+                <Button Text="X" Clicked="FecharModal" HorizontalOptions="EndAndExpand"/>
+            </StackLayout>
+
+            <ScrollView>
+                <StackLayout Spacing="30">
+
+                    <Label Text="{Binding nomeProduto}" TextColor="Gold" FontAttributes="Bold" FontSize="Large"/>
+                    <Label x:Name="Marca" FontAttributes="Italic" TextColor="Gray" FontSize="Small"/>
+
+                    <Entry x:Name="Perda" Placeholder="Perda" Keyboard="Numeric" />
+                    <Entry x:Name="Troca" Placeholder="Troca" Keyboard="Numeric" />
+                    <Entry x:Name="Quantidade" Placeholder="Quantidade" Keyboard="Numeric" />
+
+                    <Label Text="Observação: " FontAttributes="Bold" />
+                    <Editor x:Name="Obs" HeightRequest="200" />
+
+
+                    <Button x:Name="BtnCadastro" Text="Cadastrar" Clicked="Cadastrar"/>
+                    <Label x:Name="Mensagem" HorizontalOptions="CenterAndExpand" TextColor="Red"/>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

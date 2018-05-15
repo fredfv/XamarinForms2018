@@ -69,12 +69,6 @@ namespace Pedidos.Menu
             IsPresented = false;
         }
 
-        private void GoCadastrarMarca(object sender, EventArgs args)
-        {
-            Detail = new NavigationPage(new SqlServer.View.CadastrarMarca()) { BarBackgroundColor = Color.Black };
-            IsPresented = false;
-        }
-
         private void Sair(object sender, EventArgs args)
         {
             App.Current.MainPage = new LoginPage();

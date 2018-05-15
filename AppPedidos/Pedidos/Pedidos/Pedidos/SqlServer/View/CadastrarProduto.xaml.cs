@@ -14,9 +14,11 @@ namespace Pedidos.SqlServer.View
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class CadastrarProduto : ContentPage
 	{
-        bool isCadastaro { get; set; }
+        bool isCadastro { get; set; }
         Produto produtoNaPagina { get; set; }
+
         Marca marcaNaPagina { get; set; }
+        bool ok { get; set; }
 
         public CadastrarProduto (Marca marca, Produto produto = null)
 		{
@@ -27,13 +29,13 @@ namespace Pedidos.SqlServer.View
             if (produto != null)
             {
                 BtnCadastro.Text = "Salvar";
-                isCadastaro = false;
+                isCadastro = false;
                 produtoNaPagina = produto;
             }
             else
             {
                 BtnCadastro.Text = "Cadastrar";
-                isCadastaro = true;
+                isCadastro = true;
             }
         }
 
@@ -43,18 +45,19 @@ namespace Pedidos.SqlServer.View
             novoProduto.nome = Nome.Text;
             novoProduto.codigo = int.Parse(Codigo.Text);
 
-            if (!isCadastaro)
+            if (!isCadastro)
             {
                 novoProduto.id = produtoNaPagina.id;
-                teste.Text = produtoNaPagina.id.ToString();
+                ok = ServiceWS.UpdateProduto(novoProduto, marcaNaPagina.id);
             }
-
-            bool ok = ServiceWS.InsertProduto(produtoNaPagina, marcaNaPagina);
-
+            else
+            {
+                ok = ServiceWS.InsertProduto(novoProduto, marcaNaPagina.id);
+            }
 
             if (ok)
             {
-                if (isCadastaro)
+                if (isCadastro)
                 {
                     Mensagem.Text = "Cadastro efetuado com sucesso";
                 }
@@ -65,7 +68,7 @@ namespace Pedidos.SqlServer.View
             }
             else
             {
-                if (isCadastaro)
+                if (isCadastro)
                 {
                     Mensagem.Text = "Ocorreu um erro no cadastro";
                 }

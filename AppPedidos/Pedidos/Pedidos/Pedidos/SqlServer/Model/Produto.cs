@@ -18,7 +18,7 @@ namespace Pedidos.SqlServer.Model
 
         public DateTime dataInclusao { get; set; }
 
-        public DateTime? dataAlteracao { get; set; }
+        public DateTime dataAlteracao { get; set; }
 
         public int idUsuarioInclusao { get; set; }
 

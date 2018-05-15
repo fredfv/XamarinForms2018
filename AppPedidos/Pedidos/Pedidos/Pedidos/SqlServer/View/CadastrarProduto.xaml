@@ -3,18 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Pedidos.SqlServer.View.CadastrarProduto">
     <ContentPage.Content>
-        <StackLayout Spacing="50" Padding="10" Margin="10">
+        <StackLayout Spacing="40" Padding="10" Margin="10">
 
             <StackLayout Orientation="Horizontal" HeightRequest="40">
                 <Label Text="Cadastrar Produto" FontSize="Large"/>
                 <Button Text="X" Clicked="FecharModal" HorizontalOptions="EndAndExpand"/>
             </StackLayout>
-            <StackLayout>
-                <Label x:Name="teste" />
-            </StackLayout>
-            <StackLayout Spacing="50">
+            <StackLayout Spacing="30">
                 <Entry x:Name="Nome" Text="{Binding nome}" Placeholder="Nome" />
-                <Entry x:Name="Codigo" Text="{Binding codigo}" Placeholder="Codigo" />
+                <Entry x:Name="Codigo" Text="{Binding codigo}" Placeholder="Codigo" Keyboard="Numeric"/>
 
                 <Button x:Name="BtnCadastro" Text="Cadastrar" Clicked="Cadastrar"/>
 

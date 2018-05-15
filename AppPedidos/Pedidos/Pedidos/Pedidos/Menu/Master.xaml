@@ -12,7 +12,6 @@
                     <Button x:Name="btnMarcas" Text="Marcas" Clicked="GoListaMarcas"/>
                     <Button x:Name="btnProdutos" Text="Produtos" Clicked="GoListaProdutos"/>
                     <Button x:Name="btnPedidos" Text="Pedidos" Clicked="GoListaPedidos"/>
-                    <Button x:Name="btnCadastrarMarca" Text="Cadastrar Marca" Clicked="GoCadastrarMarca"/>
                 </StackLayout>
                 <StackLayout VerticalOptions="EndAndExpand" Spacing="30">
                     <StackLayout>

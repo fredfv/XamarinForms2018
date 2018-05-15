@@ -14,7 +14,7 @@
             </StackLayout>
             <StackLayout Spacing="50">
                 <Entry x:Name="Nome" Text="{Binding nome}" Placeholder="Nome" />
-                <Entry x:Name="Codigo" Text="{Binding codigo}" Placeholder="Codigo" />
+                <Entry x:Name="Codigo" Text="{Binding codigo}" Placeholder="Codigo" Keyboard="Numeric"/>
 
                 <Button x:Name="BtnCadastro" Text="Cadastrar" Clicked="Cadastrar"/>
                 

@@ -39,7 +39,12 @@ namespace Pedidos.SqlServer.View
         private void GoDetalhe(object sender, SelectedItemChangedEventArgs args)
         {
             Produto produto = (Produto)args.SelectedItem;
-            Navigation.PushAsync(new DetalheProduto(produto));
+            Navigation.PushAsync(new CadastrarPedido(produto));
+        }
+
+        private void GoModalCadastrar(object sender, EventArgs args)
+        {
+            Navigation.PushModalAsync(new CadastrarProduto(marcaAtual));
         }
 
         private void AtualizarAction(object sender, EventArgs args)

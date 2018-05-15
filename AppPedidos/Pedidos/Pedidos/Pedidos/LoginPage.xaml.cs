@@ -20,7 +20,10 @@ namespace Pedidos
         public LoginPage()
 		{
 			InitializeComponent();
-		}
+            Login.Text = "5";
+            Senha.Text = "5";
+
+        }
 
         private void VerSenha(object sender, EventArgs args)
         {
