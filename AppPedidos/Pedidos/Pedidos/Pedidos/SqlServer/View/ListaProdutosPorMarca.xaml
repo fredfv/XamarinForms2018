@@ -2,6 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Pedidos.SqlServer.View.ListaProdutosPorMarca">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="refreshW.png" Clicked="AtualizarAction"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
             <Entry Placeholder="Pesquisar. . ."  PlaceholderColor="Gray" TextChanged="Buscar"/>

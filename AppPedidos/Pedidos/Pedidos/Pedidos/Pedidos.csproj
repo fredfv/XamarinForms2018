@@ -71,5 +71,8 @@
     <EmbeddedResource Update="SqlServer\View\CadastrarMarca.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="SqlServer\View\CadastrarProduto.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

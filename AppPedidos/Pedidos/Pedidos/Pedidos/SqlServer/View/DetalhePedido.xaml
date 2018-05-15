@@ -5,7 +5,7 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Margin="10" Padding="10">
-                <Label Text="Nome do Produto - " TextColor="DarkGreen" FontSize="20" FontAttributes="Italic"/>
+                <Label Text="Nome do Produto - " TextColor="DarkGreen" FontSize="24" FontAttributes="Italic"/>
                 <Label x:Name="NomeProduto" FontAttributes="Bold" FontSize="24"/>
 
                 <Label Text="Marca - " TextColor="DarkGreen" FontSize="20" FontAttributes="Italic"/>

@@ -22,7 +22,6 @@ namespace Pedidos.SqlServer.View
             BindingContext = marca;
 
             marcaAtual = marca;
-
         }
 
         private void GoDeletar(object sender, EventArgs args)

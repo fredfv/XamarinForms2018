@@ -13,24 +13,21 @@ namespace Pedidos.SqlServer.View
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ListaProdutosPorMarca : ContentPage
 	{
-
         private List<Produto> ListaInterna { get; set; }
         private List<Produto> ListaFiltrada { get; set; }
+        Marca marcaAtual { get; set; }
 
         public ListaProdutosPorMarca (Marca marca)
 		{
 			InitializeComponent ();
-
-            //ListaInterna = Service.Service.GetProdutos(marca.id);
-            ListaInterna = Service.ServiceWS.GetProdutos(marca.id);
-            Lista.ItemsSource = ListaInterna;
+            marcaAtual = marca;
+            Atualizar();
         }
 
-        private void GoDetalhe(object sender, SelectedItemChangedEventArgs args)
+        private void Atualizar()
         {
-            Produto produto = (Produto)args.SelectedItem;
-
-            Navigation.PushAsync(new DetalheProduto(produto));
+            ListaInterna = Service.ServiceWS.GetProdutos(marcaAtual.id);
+            Lista.ItemsSource = ListaInterna;
         }
 
         private void Buscar(object sender, TextChangedEventArgs args)
@@ -38,5 +35,17 @@ namespace Pedidos.SqlServer.View
             ListaFiltrada = ListaInterna.Where(a => a.nome.ToLower().Contains(args.NewTextValue.ToLower())).ToList();
             Lista.ItemsSource = ListaFiltrada;
         }
+
+        private void GoDetalhe(object sender, SelectedItemChangedEventArgs args)
+        {
+            Produto produto = (Produto)args.SelectedItem;
+            Navigation.PushAsync(new DetalheProduto(produto));
+        }
+
+        private void AtualizarAction(object sender, EventArgs args)
+        {
+            Atualizar();
+        }
+
     }
 }

@@ -8,7 +8,6 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Pedidos.SqlServer.Model;
 
-
 namespace Pedidos.SqlServer.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]

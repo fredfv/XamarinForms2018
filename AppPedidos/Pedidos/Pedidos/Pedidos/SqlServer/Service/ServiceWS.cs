@@ -134,6 +134,7 @@ namespace Pedidos.SqlServer.Service
 
             FormUrlEncodedContent param = new FormUrlEncodedContent(new[]
             {
+                //new KeyValuePair<string, string>("id", marca.id.ToString()),
                 new KeyValuePair<string, string>("nome", marca.nome),
                 new KeyValuePair<string, string>("codigo", marca.codigo.ToString()),
                 new KeyValuePair<string, string>("dataInclusao", DateTime.Now.ToString()),
@@ -225,6 +226,47 @@ namespace Pedidos.SqlServer.Service
             {
                 return null;
             }
+        }
+
+        public static bool InsertProduto(Produto produto, Marca marca)
+        {
+            var URL = EnderecoBase + "/produto/salvar";
+
+            FormUrlEncodedContent param = new FormUrlEncodedContent(new[]
+            {
+                //new KeyValuePair<string, string>("id", produto.id.ToString()),
+                new KeyValuePair<string, string>("nome", produto.nome),
+                new KeyValuePair<string, string>("codigo", produto.codigo.ToString()),
+                new KeyValuePair<string, string>("idMarca", marca.id.ToString()),
+
+                new KeyValuePair<string, string>("dataInclusao", DateTime.Now.ToString()),
+                new KeyValuePair<string, string>("ativo", "true")
+            });
+
+            HttpClient requisicao = new HttpClient();
+            HttpResponseMessage resposta = requisicao.PostAsync(URL, param).GetAwaiter().GetResult();
+
+            if (resposta.StatusCode == HttpStatusCode.OK)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public static bool DeleteProduto(Produto produto)
+        {
+            var URL = EnderecoBase + "/produto/excluir/" + produto.id;
+
+            HttpClient requisicao = new HttpClient();
+            HttpResponseMessage resposta = requisicao.GetAsync(URL).GetAwaiter().GetResult();
+
+            if (resposta.StatusCode == HttpStatusCode.OK)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         //----------------------------------------------------

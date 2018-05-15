@@ -4,8 +4,6 @@
              x:Class="Pedidos.LoginPage">
     <ContentPage.Content>
         <StackLayout Margin="10,60" Padding="25" Spacing="70">
-            <Label Text="Pedidos" FontSize="Large" FontAttributes="Bold"/>
-
             <StackLayout Spacing="30">
                 <Entry x:Name="Login" Placeholder="Login" PlaceholderColor="Gray"/>
                 <StackLayout Orientation="Horizontal">

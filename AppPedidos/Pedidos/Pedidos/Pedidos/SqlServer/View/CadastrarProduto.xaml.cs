@@ -12,22 +12,23 @@ using Pedidos.SqlServer.Service;
 namespace Pedidos.SqlServer.View
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class CadastrarMarca : ContentPage
+	public partial class CadastrarProduto : ContentPage
 	{
-
         bool isCadastaro { get; set; }
+        Produto produtoNaPagina { get; set; }
         Marca marcaNaPagina { get; set; }
 
-		public CadastrarMarca (Marca marca = null)
+        public CadastrarProduto (Marca marca, Produto produto = null)
 		{
 			InitializeComponent ();
-            BindingContext = marca;
+            BindingContext = produto;
+            marcaNaPagina = marca;
 
-            if (marca != null)
+            if (produto != null)
             {
                 BtnCadastro.Text = "Salvar";
                 isCadastaro = false;
-                marcaNaPagina = marca;
+                produtoNaPagina = produto;
             }
             else
             {
@@ -38,17 +39,18 @@ namespace Pedidos.SqlServer.View
 
         private void Cadastrar(object sender, EventArgs args)
         {
-            Marca novaMarca = new Marca();
-            novaMarca.nome = Nome.Text;
-            novaMarca.codigo = int.Parse(Codigo.Text);
+            Produto novoProduto = new Produto();
+            novoProduto.nome = Nome.Text;
+            novoProduto.codigo = int.Parse(Codigo.Text);
 
             if (!isCadastaro)
             {
-                novaMarca.id = marcaNaPagina.id;
-                teste.Text = marcaNaPagina.id.ToString();
+                novoProduto.id = produtoNaPagina.id;
+                teste.Text = produtoNaPagina.id.ToString();
             }
 
-            bool ok = ServiceWS.InsertMarca(novaMarca, Menu.Master.IdLogado);
+            bool ok = ServiceWS.InsertProduto(produtoNaPagina, marcaNaPagina);
+
 
             if (ok)
             {
@@ -78,6 +80,5 @@ namespace Pedidos.SqlServer.View
         {
             Navigation.PopModalAsync();
         }
-
     }
 }

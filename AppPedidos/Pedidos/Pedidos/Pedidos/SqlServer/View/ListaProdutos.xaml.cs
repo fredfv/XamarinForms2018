@@ -13,14 +13,12 @@ namespace Pedidos.SqlServer.View
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ListaProdutos : ContentPage
 	{
-
         private List<Marca> ListaInterna { get; set; }
         private List<Marca> ListaFiltrada { get; set; }
 
         public ListaProdutos()
         {
             InitializeComponent();
-            //ListaInterna = Service.Service.GetMarcas();
             ListaInterna = Service.ServiceWS.GetMarcas();
             Lista.ItemsSource = ListaInterna;
         }
