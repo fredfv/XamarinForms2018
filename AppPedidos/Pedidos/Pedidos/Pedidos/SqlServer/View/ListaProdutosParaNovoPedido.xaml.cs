@@ -11,15 +11,15 @@ using Pedidos.SqlServer.Model;
 namespace Pedidos.SqlServer.View
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ListaProdutosPorMarca : ContentPage
+	public partial class ListaProdutosParaNovoPedido : ContentPage
 	{
         private List<Produto> ListaInterna { get; set; }
         private List<Produto> ListaFiltrada { get; set; }
         Marca marcaAtual { get; set; }
 
-        public ListaProdutosPorMarca (Marca marca)
-		{
-			InitializeComponent ();
+        public ListaProdutosParaNovoPedido(Marca marca)
+        {
+            InitializeComponent();
             marcaAtual = marca;
             Atualizar();
         }
@@ -36,15 +36,10 @@ namespace Pedidos.SqlServer.View
             Lista.ItemsSource = ListaFiltrada;
         }
 
-        private void GoDetalhe(object sender, SelectedItemChangedEventArgs args)
+        private void GoDetalhe(object sender, ItemTappedEventArgs args)
         {
-            Produto produto = (Produto)args.SelectedItem;
-            Navigation.PushAsync(new DetalheProduto(produto));
-        }
-
-        private void GoModalCadastrar(object sender, EventArgs args)
-        {
-            Navigation.PushModalAsync(new CadastrarProduto(marcaAtual));
+            Produto produto = (Produto)args.Item;
+            Navigation.PushModalAsync(new CadastrarPedido(produto));
         }
 
         private void AtualizarAction(object sender, EventArgs args)

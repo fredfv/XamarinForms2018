@@ -11,23 +11,23 @@ using Pedidos.SqlServer.Service;
 
 namespace Pedidos.SqlServer.View
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class CadastrarPedido : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class EditarPedido : ContentPage
+    {
         private int IdProduto { get; set; }
 
-		public CadastrarPedido (Produto produto)
-		{
-			InitializeComponent ();
-            BindingContext = produto;
+        public EditarPedido(Pedido pedido)
+        {
+            InitializeComponent();
+            BindingContext = pedido;
 
-            List<Marca> marca = ServiceWS.GetMarcaPorId(produto.idMarca);
-            Marca.Text = marca[0].nome;
+            List<Produto> produto = ServiceWS.GetProdutoPorId(pedido.idProduto);
+            Marca.Text = produto[0].nomeMarca;
 
-            IdProduto = produto.id;
-		}
+            IdProduto = pedido.idProduto;
+        }
 
-        private void Cadastrar(object sender, EventArgs args)
+        private void Editar(object sender, EventArgs args)
         {
             if (ValidaPedido() == 1)
             {
@@ -47,14 +47,14 @@ namespace Pedidos.SqlServer.View
                     obs = Obs.Text
                 };
 
-                bool ok = ServiceWS.InsertPedido(novoPedido);
+                bool ok = ServiceWS.UpdatePedido(novoPedido, Pedidos.Menu.Master.IdLogado);
                 if (ok)
                 {
-                    Mensagem.Text = "Cadastro efetuado com sucesso";
+                    Mensagem.Text = "Pedido atualizado com sucesso";
                 }
                 else
                 {
-                    Mensagem.Text = "Ocorreu um erro no cadastro";
+                    Mensagem.Text = "Ocorreu um erro na edição do pedido";
                 }
             }
             else if (ValidaPedido() == 2)

@@ -368,14 +368,13 @@ namespace Pedidos.SqlServer.Service
             }
         }
 
-        public static bool InsertPedidos(Pedido pedido)
+        public static bool InsertPedido(Pedido pedido)
         {
             var URL = EnderecoBase + "/pedido/salvar";
 
             FormUrlEncodedContent param = new FormUrlEncodedContent(new[]
             {
                 new KeyValuePair<string, string>("idProduto", pedido.idProduto.ToString()),
-
                 new KeyValuePair<string, string>("perda", pedido.perda.ToString()),
                 new KeyValuePair<string, string>("troca", pedido.troca.ToString()),
                 new KeyValuePair<string, string>("quantidade", pedido.quantidade.ToString()),
@@ -395,17 +394,19 @@ namespace Pedidos.SqlServer.Service
             return false;
         }
 
-        public static bool UpdatePedidos(Pedido pedido, int idUsuarioInclusao)
+        public static bool UpdatePedido(Pedido pedido, int idUsuarioAlteracao)
         {
             var URL = EnderecoBase + "/pedido/salvar";
 
             FormUrlEncodedContent param = new FormUrlEncodedContent(new[]
             {
+                //new KeyValuePair<string, string>("id", pedido.id.ToString()),
+                new KeyValuePair<string, string>("idProduto", pedido.idProduto.ToString()),
                 new KeyValuePair<string, string>("perda", pedido.perda.ToString()),
-                new KeyValuePair<string, string>("codigo", pedido.troca.ToString()),
+                new KeyValuePair<string, string>("troca", pedido.troca.ToString()),
                 new KeyValuePair<string, string>("quantidade", pedido.quantidade.ToString()),
-                new KeyValuePair<string, string>("obs", pedido.obs),
-                new KeyValuePair<string, string>("idUsuarioAlteracao", idUsuarioInclusao.ToString())
+                new KeyValuePair<string, string>("obs", pedido.obs)
+                //new KeyValuePair<string, string>("idUsuarioAlteracao", idUsuarioAlteracao.ToString())
             });
 
             HttpClient requisicao = new HttpClient();
@@ -418,21 +419,5 @@ namespace Pedidos.SqlServer.Service
 
             return false;
         }
-
-        public static bool DeletePedidos(Pedido pedido)
-        {
-            var URL = EnderecoBase + "/pedido/excluir/" + pedido.id;
-
-            HttpClient requisicao = new HttpClient();
-            HttpResponseMessage resposta = requisicao.GetAsync(URL).GetAwaiter().GetResult();
-
-            if (resposta.StatusCode == HttpStatusCode.OK)
-            {
-                return true;
-            }
-
-            return false;
-        }
-
     }
 }

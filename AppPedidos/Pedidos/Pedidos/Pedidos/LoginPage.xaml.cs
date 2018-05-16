@@ -39,26 +39,36 @@ namespace Pedidos
 
             int login = int.Parse(Login.Text);
 
-            //usuarioLogado = Service.GetPessoaPorId(login);
-            usuarioLogado = ServiceWS.GetPessoaPorId(login);
-
-
-            if (usuarioLogado[0].cep == Senha.Text)
+            try
             {
-                App.Current.MainPage = new Pedidos.Menu.Master(usuarioLogado[0]);
+                usuarioLogado = ServiceWS.GetPessoaPorId(login);
+                if (usuarioLogado[0].cep == Senha.Text)
+                {
+                    App.Current.MainPage = new Pedidos.Menu.Master(usuarioLogado[0]);
+                }
+                else
+                {
+                    msg();
+                }
             }
-            else
+            catch (Exception)
             {
-                Carregando.IsRunning = false;
-
-                DisplayAlert("Erro ao logar", "Usuario ou senha errados!", "Okey");
-
-                Login.Text = "";
-                Senha.Text = "";
-
-                Login.IsEnabled = true;
-                Senha.IsEnabled = true;
+                msg();
             }
+        }
+
+
+        private void msg()
+        {
+            Carregando.IsRunning = false;
+
+            DisplayAlert("Erro ao logar", "Usuario ou senha errados!", "Okey");
+
+            Login.Text = "";
+            Senha.Text = "";
+
+            Login.IsEnabled = true;
+            Senha.IsEnabled = true;
         }
     }
 }

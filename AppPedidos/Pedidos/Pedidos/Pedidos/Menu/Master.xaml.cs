@@ -63,6 +63,13 @@ namespace Pedidos.Menu
             IsPresented = false;
         }
 
+        private void GoNovoPedido(object sender, EventArgs args)
+        {
+            Detail = new NavigationPage(new SqlServer.View.ListaProdutos("novo")) { BarBackgroundColor = Color.Black };
+            IsPresented = false;
+        }
+
+
         private void GoPerfil(object sender, EventArgs args)
         {
             Detail = new NavigationPage(new SqlServer.View.DetalhePessoa(usuario)) { BarBackgroundColor = Color.Black };

@@ -7,23 +7,48 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Pedidos.SqlServer.Model;
+using Pedidos.SqlServer.Service;
+
 
 namespace Pedidos.SqlServer.View
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class DetalhePedido : ContentPage
 	{
-		public DetalhePedido (Pedido pedido)
+
+        Pedido pedidoAtual { get; set; }
+
+        public DetalhePedido (Pedido pedido)
 		{
 			InitializeComponent ();
             BindingContext = pedido;
 
-            NomeProduto.Text = pedido.nomeProduto;
+            pedidoAtual = pedido;
 
-            List<Produto> produto = Service.ServiceWS.GetProdutoPorId(pedido.idProduto);
-
-            NomeMarca.Text = produto[0].nomeMarca;
+            Atualizar();
 
 		}
-	}
+
+        private void GoEditar(object sender, EventArgs args)
+        {
+            Navigation.PushModalAsync(new EditarPedido(pedidoAtual));
+        }
+
+        private void GoAtualizar(object sender, EventArgs args)
+        {
+            Atualizar();
+        }
+
+        private void Atualizar()
+        {
+            NomeProduto.Text = pedidoAtual.nomeProduto;
+
+            List<Produto> produto = Service.ServiceWS.GetProdutoPorId(pedidoAtual.idProduto);
+
+            NomeMarca.Text = produto[0].nomeMarca;
+        }
+
+
+
+    }
 }

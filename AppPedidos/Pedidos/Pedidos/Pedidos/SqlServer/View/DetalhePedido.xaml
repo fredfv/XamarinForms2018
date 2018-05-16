@@ -2,9 +2,16 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Pedidos.SqlServer.View.DetalhePedido">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="refreshW.png" Clicked="GoAtualizar"/>
+        <ToolbarItem Icon="editW.png" Clicked="GoEditar"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Margin="10" Padding="10">
+                <Label Text="ID - " TextColor="DarkGreen" FontSize="18" FontAttributes="Bold" />
+                <Label Text="{Binding id}" FontSize="22" FontAttributes="Bold"/>
+
                 <Label Text="Nome do Produto - " TextColor="DarkGreen" FontSize="24" FontAttributes="Italic"/>
                 <Label x:Name="NomeProduto" FontAttributes="Bold" FontSize="24"/>
 

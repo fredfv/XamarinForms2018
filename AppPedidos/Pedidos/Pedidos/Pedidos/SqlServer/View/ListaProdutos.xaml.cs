@@ -10,24 +10,36 @@ using Pedidos.SqlServer.Model;
 
 namespace Pedidos.SqlServer.View
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ListaProdutos : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class ListaProdutos : ContentPage
+    {
         private List<Marca> ListaInterna { get; set; }
         private List<Marca> ListaFiltrada { get; set; }
+        private bool isNovoPedido {get; set;}
 
-        public ListaProdutos()
+        public ListaProdutos(string isNovo = null)
         {
             InitializeComponent();
             ListaInterna = Service.ServiceWS.GetMarcas();
             Lista.ItemsSource = ListaInterna;
+
+            if (isNovo == "novo")
+            {
+                isNovoPedido = true;
+            }
         }
 
         private void GoDetalhe(object sender, SelectedItemChangedEventArgs args)
         {
             Marca marca = (Marca)args.SelectedItem;
-
-            Navigation.PushAsync(new ListaProdutosPorMarca(marca));
+            if (isNovoPedido)
+            {
+                Navigation.PushAsync(new ListaProdutosParaNovoPedido(marca));
+            }
+            else
+            {
+                Navigation.PushAsync(new ListaProdutosPorMarca(marca));
+            }
         }
 
         private void Buscar(object sender, TextChangedEventArgs args)
