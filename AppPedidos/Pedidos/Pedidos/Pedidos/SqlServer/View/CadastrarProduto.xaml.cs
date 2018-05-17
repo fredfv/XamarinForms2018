@@ -15,69 +15,124 @@ namespace Pedidos.SqlServer.View
 	public partial class CadastrarProduto : ContentPage
 	{
         bool isCadastro { get; set; }
-        Produto produtoNaPagina { get; set; }
-
-        Marca marcaNaPagina { get; set; }
         bool ok { get; set; }
+        Produto produtoNaPagina { get; set; }
+        ListaProdutosPorMarca listaParaAtualizar { get; set; }
+        DetalheProduto detalheParaAtualizar { get; set; }
+        Marca marcaNaPagina { get; set; }
 
-        public CadastrarProduto (Marca marca, Produto produto = null)
-		{
-			InitializeComponent ();
-            BindingContext = produto;
-            marcaNaPagina = marca;
-
-            if (produto != null)
-            {
-                BtnCadastro.Text = "Salvar";
-                isCadastro = false;
-                produtoNaPagina = produto;
-            }
-            else
-            {
-                BtnCadastro.Text = "Cadastrar";
-                isCadastro = true;
-            }
-        }
-
-        private void Cadastrar(object sender, EventArgs args)
+        //CADASTRAR
+        public CadastrarProduto(ListaProdutosPorMarca lista, Marca marca)
         {
-            Produto novoProduto = new Produto();
-            novoProduto.nome = Nome.Text;
-            novoProduto.codigo = int.Parse(Codigo.Text);
+            InitializeComponent();
 
-            if (!isCadastro)
-            {
-                novoProduto.id = produtoNaPagina.id;
-                ok = ServiceWS.UpdateProduto(novoProduto, marcaNaPagina.id);
-            }
-            else
-            {
-                ok = ServiceWS.InsertProduto(novoProduto, marcaNaPagina.id);
-            }
+            marcaNaPagina = marca;
+            listaParaAtualizar = lista;
 
-            if (ok)
+            Cabecalho.Text = "Cadastrar";
+            BtnCadastro.Text = "Enviar";
+            isCadastro = true;
+        }
+
+        //EDITAR
+        public CadastrarProduto(DetalheProduto detalhe, Produto produto)
+        {
+            InitializeComponent();
+            BindingContext = produto;
+
+            produtoNaPagina = produto;
+            detalheParaAtualizar = detalhe;
+
+            Cabecalho.Text = "Editar";
+            BtnCadastro.Text = "Salvar";
+            isCadastro = false;
+        }
+
+        private void EnviarDados(object sender, EventArgs args)
+        {
+            if (ValidaMarca() == 1)
             {
-                if (isCadastro)
+                Produto novoProduto = new Produto();
+                novoProduto.nome = Nome.Text;
+                novoProduto.codigo = int.Parse(Codigo.Text);
+
+                if (!isCadastro)
                 {
-                    Mensagem.Text = "Cadastro efetuado com sucesso";
+                    novoProduto.id = produtoNaPagina.id;
+                    ok = ServiceWS.UpdateProduto(novoProduto, produtoNaPagina.idMarca);
                 }
                 else
                 {
-                    Mensagem.Text = "Dados alterados com sucesso";
+                    ok = ServiceWS.InsertProduto(novoProduto, marcaNaPagina.id);
+                }
+
+                if (ok)
+                {
+                    if (isCadastro)
+                    {
+                        Mensagem.Text = "Cadastro efetuado com sucesso";
+                        listaParaAtualizar.Atualizar();
+                    }
+                    else
+                    {
+                        Mensagem.Text = "Dados alterados com sucesso";
+                        detalheParaAtualizar.Atualizar();
+                        listaParaAtualizar.Atualizar();
+                    }
+                }
+                else
+                {
+                    if (isCadastro)
+                    {
+                        Mensagem.Text = "Ocorreu um erro no cadastro";
+                    }
+                    else
+                    {
+                        Mensagem.Text = "Ocorreu um erro durante a alteração dos dados";
+                    }
+                }
+            }
+            else if (ValidaMarca() == 2)
+            {
+                DisplayAlert("Error", "Favor verificar o preenchimento dos campos", "Ok");
+            }
+            else if (ValidaMarca() == 3)
+            {
+                DisplayAlert("Error", "Dados inconsistentes", "Ok");
+            }
+
+
+        }
+
+        private int ValidaMarca()
+        {
+            /*
+             1 = ok
+             2 = campo vazio
+             3 = campo com valores errados
+             */
+            bool sNome = string.IsNullOrEmpty(Nome.Text);
+            bool sCodigo = string.IsNullOrEmpty(Codigo.Text);
+
+            if (!sNome && !sCodigo)
+            {
+                bool bCodigo = Codigo.Text.All(char.IsDigit);
+
+                if (bCodigo)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return 3;
                 }
             }
             else
             {
-                if (isCadastro)
-                {
-                    Mensagem.Text = "Ocorreu um erro no cadastro";
-                }
-                else
-                {
-                    Mensagem.Text = "Ocorreu um erro durante a alteração dos dados";
-                }
+                return 2;
             }
         }
+
 
         private void FecharModal(object sender, EventArgs args)
         {

@@ -15,7 +15,6 @@ namespace Pedidos.SqlServer.View
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class DetalhePedido : ContentPage
 	{
-
         Pedido pedidoAtual { get; set; }
 
         public DetalhePedido (Pedido pedido)
@@ -26,17 +25,11 @@ namespace Pedidos.SqlServer.View
             pedidoAtual = pedido;
 
             Atualizar();
-
 		}
 
         private void GoEditar(object sender, EventArgs args)
         {
             Navigation.PushModalAsync(new EditarPedido(pedidoAtual));
-        }
-
-        private void GoAtualizar(object sender, EventArgs args)
-        {
-            Atualizar();
         }
 
         private void Atualizar()
@@ -47,8 +40,5 @@ namespace Pedidos.SqlServer.View
 
             NomeMarca.Text = produto[0].nomeMarca;
         }
-
-
-
     }
 }

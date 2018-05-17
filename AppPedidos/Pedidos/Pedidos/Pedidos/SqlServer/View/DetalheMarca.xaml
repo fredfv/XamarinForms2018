@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Pedidos.SqlServer.View.DetalheMarca">
+             x:Class="Pedidos.SqlServer.View.DetalheMarca"
+             Title="Detalhe da Marca">
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="trashW.png" Clicked="GoDeletar"/>
         <ToolbarItem Icon="editW.png" Clicked="GoEditar"/>

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Pedidos.LoginPage">
     <ContentPage.Content>
-        <StackLayout Margin="10,60" Padding="25" Spacing="70">
+        <StackLayout Margin="10,80" Padding="25" Spacing="50">
             <StackLayout Spacing="30">
                 <Entry x:Name="Login" Placeholder="Login" PlaceholderColor="Gray"/>
                 <StackLayout Orientation="Horizontal">

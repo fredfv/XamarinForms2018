@@ -19,9 +19,7 @@ namespace Pedidos.SqlServer.View
         ListaMarcas listaParaAtualizar { get; set; }
         DetalheMarca detalheParaAtualizar { get; set; }
         
-        //------------------------
         //CADASTRAR
-        //------------------------
         public CadastrarMarca (ListaMarcas lista)
 		{
 			InitializeComponent ();
@@ -32,10 +30,8 @@ namespace Pedidos.SqlServer.View
 
             isCadastro = true;
         }
-        
-        //------------------------
+
         //EDITAR
-        //------------------------
         public CadastrarMarca(ListaMarcas lista, DetalheMarca detalhe)
         {
             InitializeComponent();
@@ -53,57 +49,92 @@ namespace Pedidos.SqlServer.View
 
         private void EnviarDados(object sender, EventArgs args)
         {
-            Marca novaMarca = new Marca();
-            novaMarca.nome = Nome.Text;
-            novaMarca.codigo = int.Parse(Codigo.Text);
-
-            if (!isCadastro)
+            if (ValidaMarca() == 1)
             {
-                novaMarca.id = marcaNaPagina.id;
-                teste.Text = marcaNaPagina.id.ToString();
-            }
+                Nome.IsEnabled = false;
+                Codigo.IsEnabled = false;
+                BtnEnviar.IsEnabled = false;
 
-            bool ok = ServiceWS.InsertMarca(novaMarca, Menu.Master.IdLogado);
-
-            if (ok)
-            {
-                if (isCadastro)
+                Marca novaMarca = new Marca
                 {
-                    Mensagem.Text = "Cadastro efetuado com sucesso";
-                    Nome.IsEnabled = false;
-                    Codigo.IsEnabled = false;
-                    BtnEnviar.IsEnabled = false;
+                    nome = Nome.Text,
+                    codigo = int.Parse(Codigo.Text)
+                };
+
+                if (!isCadastro)
+                {
+                    novaMarca.id = marcaNaPagina.id;
+                    teste.Text = marcaNaPagina.id.ToString();
+                }
+                bool ok = ServiceWS.InsertMarca(novaMarca, Menu.Master.IdLogado);
+
+                if (ok)
+                {
+                    if (isCadastro)
+                    {
+                        Mensagem.Text = "Cadastro efetuado com sucesso";
+                        listaParaAtualizar.Atualizar();
+                    }
+                    else
+                    {
+                        Mensagem.Text = "Dados alterados com sucesso";
+                        listaParaAtualizar.Atualizar();
+                        detalheParaAtualizar.Atualizar();
+                    }
                 }
                 else
                 {
-                    Mensagem.Text = "Dados alterados com sucesso";
+                    if (isCadastro)
+                    {
+                        Mensagem.Text = "Ocorreu um erro no cadastro";
+                    }
+                    else
+                    {
+                        Mensagem.Text = "Ocorreu um erro durante a alteração dos dados";
+                    }
+                }
+            }
+            else if (ValidaMarca() == 2)
+            {
+                DisplayAlert("Error", "Favor verificar o preenchimento dos campos", "Ok");
+            }
+            else if (ValidaMarca() == 3)
+            {
+                DisplayAlert("Error", "Dados inconsistentes", "Ok");
+            }
+        }
+
+        private int ValidaMarca()
+        {
+            /*
+             1 = ok
+             2 = campo vazio
+             3 = campo com valores errados
+             */
+            bool sNome = string.IsNullOrEmpty(Nome.Text);
+            bool sCodigo = string.IsNullOrEmpty(Codigo.Text);
+
+            if (!sNome && !sCodigo)
+            {
+                bool bCodigo = Codigo.Text.All(char.IsDigit);
+
+                if (bCodigo)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return 3;
                 }
             }
             else
             {
-                if (isCadastro)
-                {
-                    Mensagem.Text = "Ocorreu um erro no cadastro";
-                }
-                else
-                {
-                    Mensagem.Text = "Ocorreu um erro durante a alteração dos dados";
-                }
+                return 2;
             }
         }
 
         private void FecharModal(object sender, EventArgs args)
         {
-            if (isCadastro)
-            {
-                listaParaAtualizar.Atualizar();
-            }
-            else
-            {
-                listaParaAtualizar.Atualizar();
-                detalheParaAtualizar.Atualizar();
-            }
-
             Navigation.PopModalAsync();
         }
 

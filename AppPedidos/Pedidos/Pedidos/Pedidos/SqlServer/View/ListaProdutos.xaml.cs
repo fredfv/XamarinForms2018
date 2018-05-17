@@ -29,9 +29,15 @@ namespace Pedidos.SqlServer.View
             }
         }
 
-        private void GoDetalhe(object sender, SelectedItemChangedEventArgs args)
+        private void Buscar(object sender, TextChangedEventArgs args)
         {
-            Marca marca = (Marca)args.SelectedItem;
+            ListaFiltrada = ListaInterna.Where(a => a.nome.ToLower().Contains(args.NewTextValue.ToLower()) || a.codigo.ToString().Contains(args.NewTextValue.ToLower())).ToList();
+            Lista.ItemsSource = ListaFiltrada;
+        }
+
+        private void GoDetalhe(object sender, ItemTappedEventArgs args)
+        {
+            Marca marca = (Marca)args.Item;
             if (isNovoPedido)
             {
                 Navigation.PushAsync(new ListaProdutosParaNovoPedido(marca));
@@ -40,12 +46,6 @@ namespace Pedidos.SqlServer.View
             {
                 Navigation.PushAsync(new ListaProdutosPorMarca(marca));
             }
-        }
-
-        private void Buscar(object sender, TextChangedEventArgs args)
-        {
-            ListaFiltrada = ListaInterna.Where(a => a.nome.ToLower().Contains(args.NewTextValue.ToLower())).ToList();
-            Lista.ItemsSource = ListaFiltrada;
         }
     }
 }

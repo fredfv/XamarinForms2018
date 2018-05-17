@@ -27,17 +27,17 @@ namespace Pedidos.SqlServer.View
             Lista.ItemsSource = ListaInterna;
         }
 
-        private void GoDetalhe(object sender, SelectedItemChangedEventArgs args)
-        {
-            Pedido pedido = (Pedido)args.SelectedItem;
-
-            Navigation.PushAsync(new DetalhePedido(pedido));
-        }
-
         private void Buscar(object sender, DateChangedEventArgs args)
         {
             ListaInterna = Service.ServiceWS.GetPedidos(args.NewDate.ToString("dd/MM/yy"));
             Lista.ItemsSource = ListaInterna;
+        }
+
+        private void GoDetalhe(object sender, ItemTappedEventArgs args)
+        {
+            Pedido pedido = (Pedido)args.Item;
+
+            Navigation.PushAsync(new DetalhePedido(pedido));
         }
     }
 }

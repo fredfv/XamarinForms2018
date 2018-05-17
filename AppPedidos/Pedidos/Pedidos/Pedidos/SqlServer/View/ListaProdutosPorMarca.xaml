@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Pedidos.SqlServer.View.ListaProdutosPorMarca">
+             x:Class="Pedidos.SqlServer.View.ListaProdutosPorMarca"
+             Title="Produtos">
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="plusW.png" Clicked="GoModalCadastrar"/>
-        <ToolbarItem Icon="refreshW.png" Clicked="AtualizarAction"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-            <Entry Placeholder="Pesquisar. . ."  PlaceholderColor="Gray" TextChanged="Buscar"/>
-            <ListView x:Name="Lista" ItemSelected="GoDetalhe">
+            <Entry Placeholder="Pesquisar. . . Nome ou Código . . ."  PlaceholderColor="Gray" TextChanged="Buscar"/>
+            <ListView x:Name="Lista" ItemTapped="GoDetalhe">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextCell Text="{Binding nome}" Detail="{Binding codigo}"/>

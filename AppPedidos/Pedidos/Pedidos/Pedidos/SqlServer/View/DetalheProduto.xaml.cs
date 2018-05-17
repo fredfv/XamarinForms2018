@@ -16,39 +16,34 @@ namespace Pedidos.SqlServer.View
 	public partial class DetalheProduto : ContentPage
 	{
         Produto produtoAtual { get; set; }
+        ListaProdutosPorMarca listaParaAtualizar { get; set; }
 
-        public DetalheProduto (Produto produto)
+        public DetalheProduto (ListaProdutosPorMarca lista, Produto produto)
 		{
 			InitializeComponent ();
             BindingContext = produto;
 
+            listaParaAtualizar = lista;
             produtoAtual = produto;
 		}
 
-
         private void GoDeletar(object sender, EventArgs args)
         {
-            List<Marca> marcaAux = ServiceWS.GetMarcaPorId(produtoAtual.idMarca);
             ServiceWS.DeleteProduto(produtoAtual);
-            Navigation.PushAsync(new ListaProdutosPorMarca(marcaAux[0]));
+            Navigation.PopAsync();
+            listaParaAtualizar.Atualizar();
         }
 
         private void GoEditar(object sender, EventArgs args)
         {
-            List<Marca> marcaAux = ServiceWS.GetMarcaPorId(produtoAtual.idMarca);
-            Navigation.PushModalAsync(new CadastrarProduto(marcaAux[0], produtoAtual));
+            Navigation.PushModalAsync(new CadastrarProduto(this, produtoAtual));
         }
 
-        private void AtualizarAction(object sender, EventArgs args)
+        public void Atualizar()
         {
-            Atualizar();
+            List<Produto> produto = ServiceWS.GetProdutoPorId(produtoAtual.id);
+            BindingContext = produto[0];
+            produtoAtual = produto[0];
         }
-
-        private void Atualizar()
-        {
-            List<Produto> produtoAtualizado = ServiceWS.GetProdutoPorId(produtoAtual.id);
-            BindingContext = produtoAtualizado[0];
-        }
-
     }
 }

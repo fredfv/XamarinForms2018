@@ -41,10 +41,5 @@ namespace Pedidos.SqlServer.View
             Produto produto = (Produto)args.Item;
             Navigation.PushModalAsync(new CadastrarPedido(produto));
         }
-
-        private void AtualizarAction(object sender, EventArgs args)
-        {
-            Atualizar();
-        }
     }
 }

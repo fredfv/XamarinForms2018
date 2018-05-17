@@ -4,20 +4,16 @@
              x:Class="Pedidos.SqlServer.View.CadastrarProduto">
     <ContentPage.Content>
         <StackLayout Spacing="40" Padding="10" Margin="10">
-
             <StackLayout Orientation="Horizontal" HeightRequest="40">
-                <Label Text="Cadastrar Produto" FontSize="Large"/>
+                <Label x:Name="Cabecalho" Text="Cadastrar Produto" FontSize="Large"/>
                 <Button Text="X" Clicked="FecharModal" HorizontalOptions="EndAndExpand"/>
             </StackLayout>
             <StackLayout Spacing="30">
                 <Entry x:Name="Nome" Text="{Binding nome}" Placeholder="Nome" />
                 <Entry x:Name="Codigo" Text="{Binding codigo}" Placeholder="Codigo" Keyboard="Numeric"/>
-
-                <Button x:Name="BtnCadastro" Text="Cadastrar" Clicked="Cadastrar"/>
-
+                <Button x:Name="BtnCadastro" Text="Cadastrar" Clicked="EnviarDados"/>
                 <Label x:Name="Mensagem" HorizontalOptions="CenterAndExpand" TextColor="Red"/>
             </StackLayout>
-
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -26,12 +26,11 @@ namespace Pedidos.SqlServer.View
         {
             ListaInterna = Service.ServiceWS.GetMarcas();
             Lista.ItemsSource = ListaInterna;
-            barraBusca.Text = "";
         }
 
         private void Buscar(object sender, TextChangedEventArgs args)
         {
-            ListaFiltrada = ListaInterna.Where(a => a.nome.ToLower().Contains(args.NewTextValue.ToLower())).ToList();
+            ListaFiltrada = ListaInterna.Where(a => a.nome.ToLower().Contains(args.NewTextValue.ToLower()) || a.codigo.ToString().Contains(args.NewTextValue)).ToList();
             Lista.ItemsSource = ListaFiltrada;
         }
 
@@ -44,11 +43,6 @@ namespace Pedidos.SqlServer.View
         private void GoModalCadastrar(object sender, EventArgs args)
         {
             Navigation.PushModalAsync(new CadastrarMarca(this));
-        }
-
-        private void AtualizarAction(object sender, EventArgs args)
-        {
-            Atualizar();
         }
     }
 }

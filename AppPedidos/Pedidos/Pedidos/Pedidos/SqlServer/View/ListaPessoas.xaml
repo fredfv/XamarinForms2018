@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Pedidos.SqlServer.View.ListaPessoas">
+             x:Class="Pedidos.SqlServer.View.ListaPessoas"
+             Title="Pessoas">
     <ContentPage.Content>
         <StackLayout>
             <Entry Placeholder="Pesquisar. . ."  PlaceholderColor="Gray" TextChanged="Buscar"/>

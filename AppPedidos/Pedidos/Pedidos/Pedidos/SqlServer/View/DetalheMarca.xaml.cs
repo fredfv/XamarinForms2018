@@ -39,8 +39,9 @@ namespace Pedidos.SqlServer.View
 
         public void Atualizar()
         {
-            List<Marca> marcaAtualizada = ServiceWS.GetMarcaPorId(marcaAtual.id);
-            BindingContext = marcaAtualizada[0];
+            List<Marca> marca = ServiceWS.GetMarcaPorId(marcaAtual.id);
+            BindingContext = marca[0];
+            marcaAtual = marca[0];
         }
 	}
 }

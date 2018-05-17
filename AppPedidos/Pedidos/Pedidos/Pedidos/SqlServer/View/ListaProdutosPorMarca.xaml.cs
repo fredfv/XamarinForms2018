@@ -24,7 +24,7 @@ namespace Pedidos.SqlServer.View
             Atualizar();
         }
 
-        private void Atualizar()
+        public void Atualizar()
         {
             ListaInterna = Service.ServiceWS.GetProdutos(marcaAtual.id);
             Lista.ItemsSource = ListaInterna;
@@ -32,24 +32,19 @@ namespace Pedidos.SqlServer.View
 
         private void Buscar(object sender, TextChangedEventArgs args)
         {
-            ListaFiltrada = ListaInterna.Where(a => a.nome.ToLower().Contains(args.NewTextValue.ToLower())).ToList();
+            ListaFiltrada = ListaInterna.Where(a => a.nome.ToLower().Contains(args.NewTextValue.ToLower()) || a.codigo.ToString().Contains(args.NewTextValue)).ToList();
             Lista.ItemsSource = ListaFiltrada;
         }
 
-        private void GoDetalhe(object sender, SelectedItemChangedEventArgs args)
+        private void GoDetalhe(object sender, ItemTappedEventArgs args)
         {
-            Produto produto = (Produto)args.SelectedItem;
-            Navigation.PushAsync(new DetalheProduto(produto));
+            Produto produto = (Produto)args.Item;
+            Navigation.PushAsync(new DetalheProduto(this, produto));
         }
 
         private void GoModalCadastrar(object sender, EventArgs args)
         {
-            Navigation.PushModalAsync(new CadastrarProduto(marcaAtual));
-        }
-
-        private void AtualizarAction(object sender, EventArgs args)
-        {
-            Atualizar();
+            Navigation.PushModalAsync(new CadastrarProduto(this, marcaAtual));
         }
     }
 }
