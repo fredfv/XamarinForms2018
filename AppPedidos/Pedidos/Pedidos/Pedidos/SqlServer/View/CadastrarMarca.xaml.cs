@@ -14,29 +14,44 @@ namespace Pedidos.SqlServer.View
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class CadastrarMarca : ContentPage
 	{
-
         bool isCadastro { get; set; }
         Marca marcaNaPagina { get; set; }
-
-		public CadastrarMarca (Marca marca = null)
+        ListaMarcas listaParaAtualizar { get; set; }
+        DetalheMarca detalheParaAtualizar { get; set; }
+        
+        //------------------------
+        //CADASTRAR
+        //------------------------
+        public CadastrarMarca (ListaMarcas lista)
 		{
 			InitializeComponent ();
-            BindingContext = marca;
+            listaParaAtualizar = lista;
 
-            if (marca != null)
-            {
-                BtnCadastro.Text = "Salvar";
-                isCadastro = false;
-                marcaNaPagina = marca;
-            }
-            else
-            {
-                BtnCadastro.Text = "Cadastrar";
-                isCadastro = true;
-            }
+            Cabecalho.Text = "Cadastrar";
+            BtnEnviar.Text = "Enviar";
+
+            isCadastro = true;
+        }
+        
+        //------------------------
+        //EDITAR
+        //------------------------
+        public CadastrarMarca(ListaMarcas lista, DetalheMarca detalhe)
+        {
+            InitializeComponent();
+            BindingContext = detalhe.marcaAtual;
+
+            marcaNaPagina = detalhe.marcaAtual;
+            listaParaAtualizar = lista;
+            detalheParaAtualizar = detalhe;
+
+            Cabecalho.Text = "Editar";
+            BtnEnviar.Text = "Salvar";
+
+            isCadastro = false;
         }
 
-        private void Cadastrar(object sender, EventArgs args)
+        private void EnviarDados(object sender, EventArgs args)
         {
             Marca novaMarca = new Marca();
             novaMarca.nome = Nome.Text;
@@ -55,6 +70,9 @@ namespace Pedidos.SqlServer.View
                 if (isCadastro)
                 {
                     Mensagem.Text = "Cadastro efetuado com sucesso";
+                    Nome.IsEnabled = false;
+                    Codigo.IsEnabled = false;
+                    BtnEnviar.IsEnabled = false;
                 }
                 else
                 {
@@ -76,6 +94,16 @@ namespace Pedidos.SqlServer.View
 
         private void FecharModal(object sender, EventArgs args)
         {
+            if (isCadastro)
+            {
+                listaParaAtualizar.Atualizar();
+            }
+            else
+            {
+                listaParaAtualizar.Atualizar();
+                detalheParaAtualizar.Atualizar();
+            }
+
             Navigation.PopModalAsync();
         }
 

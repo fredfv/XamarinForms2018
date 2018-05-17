@@ -14,38 +14,33 @@ namespace Pedidos.SqlServer.View
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class DetalheMarca : ContentPage
 	{
-        Marca marcaAtual { get; set; }
+        public Marca marcaAtual { get; set; }
+        ListaMarcas listaParaAtualizar { get; set; }
 
-		public DetalheMarca (Marca marca)
+		public DetalheMarca (ListaMarcas lista, Marca marca)
 		{
 			InitializeComponent ();
             BindingContext = marca;
-
+            listaParaAtualizar = lista;
             marcaAtual = marca;
         }
 
         private void GoDeletar(object sender, EventArgs args)
         {
             ServiceWS.DeleteMarca(marcaAtual);
-            Navigation.PushAsync(new ListaMarcas());
+            Navigation.PopAsync();
+            listaParaAtualizar.Atualizar();
         }
 
         private void GoEditar(object sender, EventArgs args)
         {
-            Navigation.PushModalAsync(new CadastrarMarca(marcaAtual));
+            Navigation.PushModalAsync(new CadastrarMarca(listaParaAtualizar, this));
         }
 
-        private void GoAtualizar(object sender, EventArgs args)
-        {
-            Atualizar();
-        }
-
-        private void Atualizar()
+        public void Atualizar()
         {
             List<Marca> marcaAtualizada = ServiceWS.GetMarcaPorId(marcaAtual.id);
             BindingContext = marcaAtualizada[0];
         }
-
-
 	}
 }

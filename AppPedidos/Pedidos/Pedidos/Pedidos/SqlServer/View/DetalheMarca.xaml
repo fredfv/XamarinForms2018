@@ -4,7 +4,6 @@
              x:Class="Pedidos.SqlServer.View.DetalheMarca">
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="trashW.png" Clicked="GoDeletar"/>
-        <ToolbarItem Icon="refreshW.png" Clicked="GoAtualizar"/>
         <ToolbarItem Icon="editW.png" Clicked="GoEditar"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>

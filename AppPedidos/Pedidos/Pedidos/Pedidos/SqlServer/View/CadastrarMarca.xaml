@@ -6,7 +6,7 @@
         <StackLayout Spacing="50" Padding="10" Margin="10">
             
             <StackLayout Orientation="Horizontal" HeightRequest="40">
-                <Label Text="Cadastrar Marca" FontSize="Large"/>
+                <Label x:Name="Cabecalho" FontSize="Large"/>
                 <Button Text="X" Clicked="FecharModal" HorizontalOptions="EndAndExpand"/>
             </StackLayout>
             <StackLayout>
@@ -16,7 +16,7 @@
                 <Entry x:Name="Nome" Text="{Binding nome}" Placeholder="Nome" />
                 <Entry x:Name="Codigo" Text="{Binding codigo}" Placeholder="Codigo" Keyboard="Numeric"/>
 
-                <Button x:Name="BtnCadastro" Text="Cadastrar" Clicked="Cadastrar"/>
+                <Button x:Name="BtnEnviar" Text="Cadastrar" Clicked="EnviarDados"/>
                 
                 <Label x:Name="Mensagem" HorizontalOptions="CenterAndExpand" TextColor="Red"/>
             </StackLayout>

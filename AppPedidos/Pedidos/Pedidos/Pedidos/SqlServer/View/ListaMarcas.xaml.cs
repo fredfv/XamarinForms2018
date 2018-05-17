@@ -22,10 +22,11 @@ namespace Pedidos.SqlServer.View
             Atualizar();
         }
 
-        private void Atualizar()
+        public void Atualizar()
         {
             ListaInterna = Service.ServiceWS.GetMarcas();
             Lista.ItemsSource = ListaInterna;
+            barraBusca.Text = "";
         }
 
         private void Buscar(object sender, TextChangedEventArgs args)
@@ -34,15 +35,15 @@ namespace Pedidos.SqlServer.View
             Lista.ItemsSource = ListaFiltrada;
         }
 
-        private void GoDetalhe(object sender, SelectedItemChangedEventArgs args)
+        private void GoDetalhe(object sender, ItemTappedEventArgs args)
         {
-            Marca marca = (Marca)args.SelectedItem;
-            Navigation.PushAsync(new DetalheMarca(marca));
+            Marca marca = (Marca)args.Item;
+            Navigation.PushAsync(new DetalheMarca(this, marca));
         }
 
         private void GoModalCadastrar(object sender, EventArgs args)
         {
-            Navigation.PushModalAsync(new CadastrarMarca());
+            Navigation.PushModalAsync(new CadastrarMarca(this));
         }
 
         private void AtualizarAction(object sender, EventArgs args)
