@@ -4,13 +4,13 @@
              x:Class="App1_Mimica.View.Resultado">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Grupo 1" FontSize="20"/>
-            <Label Text=" 30 pontos" FontSize="64" HorizontalOptions="Center" />
+            <Label Text="{Binding Jogo.Grupo1.Nome}" FontSize="20"/>
+            <Label Text="{Binding Jogo.Grupo1.Pontuacao}" FontSize="30" HorizontalOptions="Center" />
 
-            <Label Text="Grupo 2" FontSize="20"/>
-            <Label Text=" 130 pontos" FontSize="64" HorizontalOptions="Center" />
+            <Label Text="{Binding Jogo.Grupo2.Nome}" FontSize="20"/>
+            <Label Text="{Binding Jogo.Grupo2.Pontuacao}" FontSize="30" HorizontalOptions="Center" />
 
-            <Button Text="Jogar outra vez" />
+            <Button Text="Jogar outra vez" Command="{Binding JogarNovamente}"/>
 
         </StackLayout>
     </ContentPage.Content>

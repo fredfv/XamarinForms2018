@@ -77,7 +77,8 @@ namespace Pedidos.SqlServer.View
                     {
                         Mensagem.Text = "Dados alterados com sucesso";
                         detalheParaAtualizar.Atualizar();
-                        listaParaAtualizar.Atualizar();
+                        //listaParaAtualizar.Atualizar();
+                        //((App.Current.MainPage as MasterDetailPage).Detail as ListaProdutosPorMarca).Atualizar();
                     }
                 }
                 else

@@ -4,15 +4,14 @@
              x:Class="App1_Mimica.View.Inicio">
     <ContentPage.Content>
         <StackLayout>
+            <Label Text="{Binding MsgError}" />
             <Label Text="Nome do Grupo 1 " />
             <Entry Placeholder="(Opcional)" Text="{Binding Jogo.Grupo1.Nome}" />
-            <Entry Placeholder="(Opcional)" />
-
             <Label Text="Nome do Grupo 2"/>
             <Entry Placeholder="(Opcional)" Text="{Binding Jogo.Grupo2.Nome}"  />
 
             <Label Text="Nível "/>
-            <Picker SelectedItem="{Binding Jogo.Nivel}">
+            <Picker SelectedItem="{Binding Jogo.Nivel}" SelectedIndex="{Binding NivelNumerico}">
                 <Picker.Items>
                     <x:String>Aleatório</x:String>
                     <x:String>Fácil</x:String>

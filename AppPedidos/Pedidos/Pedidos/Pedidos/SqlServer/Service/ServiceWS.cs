@@ -340,7 +340,7 @@ namespace Pedidos.SqlServer.Service
 
         public static List<Pedido> GetPedidos(string data)
         {
-            string dataParaEnvio = "?Data=" + data;
+            string dataParaEnvio = "?Data=" + "2018-05-18";
 
             var URL = EnderecoBase + "/pedido/obtertodas/" + dataParaEnvio;
             

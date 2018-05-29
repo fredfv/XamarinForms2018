@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App1_NossoChat.View.Mensagem">
+    <ContentPage.Content>
+        <StackLayout>
+            <ScrollView>
+                <StackLayout>
+                    <Frame OutlineColor="#5ED055" CornerRadius="0" HorizontalOptions="Start">
+                        <StackLayout>
+                            <Label Text="Frd" FontSize="10" TextColor="#5ED055"/>
+                            <Label Text="Oi" TextColor="#5ED055"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <StackLayout Padding="5" BackgroundColor="#5ED055">
+                        <Label Text="Meu texto" TextColor="White"/>
+                    </StackLayout>
+                    
+                </StackLayout>
+            </ScrollView>
+            <StackLayout Orientation="Horizontal">
+                <Frame OutlineColor="#5ED055" CornerRadius="0">
+                    <Entry Placeholder="Mensagem" BackgroundColor="White" TextColor="#5ED055" HorizontalOptions="FillAndExpand"/>
+                </Frame>
+            </StackLayout>
+            <Button Text="Enviar" BackgroundColor="#5ED055" TextColor="White"/> ]
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
