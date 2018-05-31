@@ -27,9 +27,11 @@ namespace App1_NossoChat.Service
 
             if (resposta.StatusCode == HttpStatusCode.OK)
             {
-                //Deserialisar
+                var conteudo = resposta.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+
+                return JsonConvert.DeserializeObject<Usuario>(conteudo);
             }
-            return usuario;
+            return null;
         }
 
         public static List<Chat> GetChats()
@@ -59,7 +61,7 @@ namespace App1_NossoChat.Service
             var URL = EnderecoBase + "/chat";
 
             FormUrlEncodedContent param = new FormUrlEncodedContent(new[] {
-                new KeyValuePair<string, string>("password", chat.nome)
+                new KeyValuePair<string, string>("nome", chat.nome)
             });
 
             HttpClient requisicao = new HttpClient();
@@ -78,7 +80,7 @@ namespace App1_NossoChat.Service
             var URL = EnderecoBase + "/chat/" + chat.id;
 
             FormUrlEncodedContent param = new FormUrlEncodedContent(new[] {
-                new KeyValuePair<string, string>("password", chat.nome)
+                new KeyValuePair<string, string>("nome", chat.nome)
             });
 
             HttpClient requisicao = new HttpClient();

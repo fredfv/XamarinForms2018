@@ -15,6 +15,8 @@ namespace App1_NossoChat.View
 		public PaginaInicial ()
 		{
 			InitializeComponent ();
+
+            BindingContext = new ViewModel.PaginaInicialViewModel();
 		}
 	}
 }

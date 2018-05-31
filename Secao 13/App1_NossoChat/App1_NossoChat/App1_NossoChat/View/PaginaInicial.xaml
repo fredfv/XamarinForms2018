@@ -10,8 +10,10 @@
             <StackLayout VerticalOptions="CenterAndExpand"
                          HorizontalOptions="CenterAndExpand">
                 <Entry Placeholder="Nome" Text="{Binding Nome}" BackgroundColor="White" TextColor="#5ED055"/>
-                <Entry Placeholder="Senha" Text="{Binding Senha}" BackgroundColor="White" TextColor="#5ED055"/>
-                <Button BackgroundColor="Transparent" TextColor="White" Text="Acessar/Cadastrar"/>
+                <Entry Placeholder="Senha" Text="{Binding Senha}" IsPassword="True" BackgroundColor="White" TextColor="#5ED055"/>
+                <Button BackgroundColor="Transparent" TextColor="White" Text="Acessar/Cadastrar" Command="{Binding AcessarCommand}"/>
+                <Label Text="{Binding Mensagem}" TextColor="White" />
+
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
