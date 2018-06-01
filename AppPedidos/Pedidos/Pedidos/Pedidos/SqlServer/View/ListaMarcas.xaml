@@ -4,18 +4,34 @@
              x:Class="Pedidos.SqlServer.View.ListaMarcas"
              Title="Marcas">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="plusW.png" Clicked="GoModalCadastrar"/>
+        <ToolbarItem Text="Adicionar Marca" Icon="plusW.png" Clicked="GoModalCadastrar"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout>
-            <Entry Placeholder="Pesquisar. . . Nome ou Código . . ."  PlaceholderColor="Gray" TextChanged="Buscar"/>
-            <ListView x:Name="Lista" ItemTapped="GoDetalhe">
+        <StackLayout Spacing="10">
+            <Frame >
+                <Entry Placeholder="Pesquisar. . . Nome ou Código . . ."  PlaceholderColor="Gray" TextChanged="Buscar"/>
+            </Frame>
+            <ListView x:Name="Lista" ItemTapped="GoDetalhe" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding nome}" Detail="{Binding codigo}"/>
+                        <ViewCell Height="80">
+                            <Frame>
+                                <StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Nome: " TextColor="LightGray" FontSize="Small"/>
+                                        <Label Text="{Binding nome}" FontAttributes="Bold" FontSize="Large"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Código: " TextColor="LightGray" FontSize="Small"/>
+                                        <Label Text="{Binding codigo}" TextColor="Gray" FontAttributes="Italic" FontSize="Small"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <ActivityIndicator HorizontalOptions="Fill"  VerticalOptions="Fill" HeightRequest="70" x:Name="Carregando" Color="Green" IsRunning="true" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

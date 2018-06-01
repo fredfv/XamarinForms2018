@@ -15,28 +15,37 @@ namespace Pedidos.SqlServer.View
     {
         private List<Marca> ListaInterna { get; set; }
         private List<Marca> ListaFiltrada { get; set; }
+        private bool podeBuscar { get; set; }
 
         public ListaMarcas()
         {
             InitializeComponent();
-            Atualizar();
+            AtualizarAsync();
         }
 
-        public void Atualizar()
+        public async void AtualizarAsync()
         {
-            ListaInterna = Service.ServiceWS.GetMarcas();
+            podeBuscar = false;
+            Carregando.IsVisible = true;
+            ListaInterna = await Service.ServiceWS.GetMarcasAsync();
             Lista.ItemsSource = ListaInterna;
+            Carregando.IsVisible = false;
+            podeBuscar = true;
         }
 
         private void Buscar(object sender, TextChangedEventArgs args)
         {
-            ListaFiltrada = ListaInterna.Where(a => a.nome.ToLower().Contains(args.NewTextValue.ToLower()) || a.codigo.ToString().Contains(args.NewTextValue)).ToList();
-            Lista.ItemsSource = ListaFiltrada;
+            if (podeBuscar)
+            {
+                ListaFiltrada = ListaInterna.Where(a => a.nome.ToLower().Contains(args.NewTextValue.ToLower()) || a.codigo.ToString().Contains(args.NewTextValue)).ToList();
+                Lista.ItemsSource = ListaFiltrada;
+            }
         }
 
         private void GoDetalhe(object sender, ItemTappedEventArgs args)
         {
             Marca marca = (Marca)args.Item;
+            (sender as ListView).SelectedItem = null;
             Navigation.PushAsync(new DetalheMarca(this, marca));
         }
 

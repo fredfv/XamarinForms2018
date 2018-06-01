@@ -25,16 +25,20 @@ namespace Pedidos.SqlServer.View
             marcaAtual = marca;
         }
 
-        private void GoDeletar(object sender, EventArgs args)
+        private async void GoDeletar(object sender, EventArgs args)
         {
-            ServiceWS.DeleteMarca(marcaAtual);
-            Navigation.PopAsync();
-            listaParaAtualizar.Atualizar();
+            Carregando.IsRunning = true;
+            bool ok = await ServiceWS.DeleteMarcaAsync(marcaAtual);
+            if (ok)
+            {
+                await Navigation.PopAsync();
+                listaParaAtualizar.AtualizarAsync();
+            }
         }
 
         private void GoEditar(object sender, EventArgs args)
         {
-            Navigation.PushModalAsync(new CadastrarMarca(listaParaAtualizar, this));
+            Navigation.PushModalAsync(new CadastrarMarca(this));
         }
 
         public void Atualizar()
@@ -42,6 +46,7 @@ namespace Pedidos.SqlServer.View
             List<Marca> marca = ServiceWS.GetMarcaPorId(marcaAtual.id);
             BindingContext = marca[0];
             marcaAtual = marca[0];
+            listaParaAtualizar.AtualizarAsync();
         }
 	}
 }

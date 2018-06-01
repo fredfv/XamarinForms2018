@@ -30,18 +30,20 @@ namespace Pedidos
             Senha.IsPassword = !Senha.IsPassword;
         }
 
-        private void Logar(object sender, EventArgs args)
+        private async void Logar(object sender, EventArgs args)
         {
+            btnLogar.Text = "Logando . . .";
+            area.IsEnabled = false;
             Carregando.IsRunning = true;
 
-            Login.IsEnabled = false;
-            Senha.IsEnabled = false;
 
             int login = int.Parse(Login.Text);
 
             try
             {
-                usuarioLogado = ServiceWS.GetPessoaPorId(login);
+                Carregando.IsRunning = true;
+                usuarioLogado = await ServiceWS.Login(login);
+
                 if (usuarioLogado[0].cep == Senha.Text)
                 {
                     App.Current.MainPage = new Pedidos.Menu.Master(usuarioLogado[0]);
@@ -67,8 +69,11 @@ namespace Pedidos
             Login.Text = "";
             Senha.Text = "";
 
-            Login.IsEnabled = true;
-            Senha.IsEnabled = true;
+            btnLogar.Text = "Logar";
+            area.IsEnabled = true;
+            Carregando.IsRunning = false;
+
+
         }
     }
 }

@@ -32,13 +32,12 @@ namespace Pedidos.SqlServer.View
         }
 
         //EDITAR
-        public CadastrarMarca(ListaMarcas lista, DetalheMarca detalhe)
+        public CadastrarMarca(DetalheMarca detalhe)
         {
             InitializeComponent();
             BindingContext = detalhe.marcaAtual;
 
             marcaNaPagina = detalhe.marcaAtual;
-            listaParaAtualizar = lista;
             detalheParaAtualizar = detalhe;
 
             Cabecalho.Text = "Editar";
@@ -73,12 +72,11 @@ namespace Pedidos.SqlServer.View
                     if (isCadastro)
                     {
                         Mensagem.Text = "Cadastro efetuado com sucesso";
-                        listaParaAtualizar.Atualizar();
+                        listaParaAtualizar.AtualizarAsync();
                     }
                     else
                     {
                         Mensagem.Text = "Dados alterados com sucesso";
-                        listaParaAtualizar.Atualizar();
                         detalheParaAtualizar.Atualizar();
                     }
                 }

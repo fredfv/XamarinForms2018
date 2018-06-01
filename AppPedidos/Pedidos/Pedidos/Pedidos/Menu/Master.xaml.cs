@@ -79,7 +79,6 @@ namespace Pedidos.Menu
         private void Sair(object sender, EventArgs args)
         {
             App.Current.MainPage = new LoginPage();
-
         }
     }
 }

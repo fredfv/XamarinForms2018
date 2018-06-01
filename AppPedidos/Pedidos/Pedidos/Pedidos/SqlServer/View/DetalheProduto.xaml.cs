@@ -44,6 +44,7 @@ namespace Pedidos.SqlServer.View
             List<Produto> produto = ServiceWS.GetProdutoPorId(produtoAtual.id);
             BindingContext = produto[0];
             produtoAtual = produto[0];
+            listaParaAtualizar.Atualizar();
         }
     }
 }

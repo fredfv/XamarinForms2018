@@ -4,18 +4,16 @@
              x:Class="Pedidos.LoginPage">
     <ContentPage.Content>
         <StackLayout Margin="10,80" Padding="25" Spacing="50">
-            <StackLayout Spacing="30">
+            <StackLayout x:Name="area" Spacing="30">
                 <Entry x:Name="Login" Placeholder="Login" PlaceholderColor="Gray"/>
                 <StackLayout Orientation="Horizontal">
                     <Entry HorizontalOptions="FillAndExpand" x:Name="Senha" Placeholder="Senha" PlaceholderColor="Gray" IsPassword="true"/>
                     <Button HorizontalOptions="End" Text="Ver" Clicked="VerSenha"/>
                 </StackLayout>
-              </StackLayout>
-
-            <StackLayout>
-                <Button BackgroundColor="Black" Text="Logar" TextColor="White" Clicked="Logar"/>
+                <StackLayout>
+                    <Button x:Name="btnLogar" BackgroundColor="Black" Text="Logar" TextColor="White" Clicked="Logar"/>
+                </StackLayout>
             </StackLayout>
-
             <StackLayout>
                 <ActivityIndicator HorizontalOptions="Fill"  VerticalOptions="Fill" HeightRequest="50" x:Name="Carregando" Color="Green" IsRunning="false" />
             </StackLayout>
