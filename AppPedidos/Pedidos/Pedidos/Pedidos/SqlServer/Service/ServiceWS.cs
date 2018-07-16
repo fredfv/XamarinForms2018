@@ -12,7 +12,7 @@ namespace Pedidos.SqlServer.Service
 {
     class ServiceWS
     {
-        private static string EnderecoBase = "http://192.168.1.34/api";
+        public static string EnderecoBase = "http://192.168.15.76/api";
 
         //----------------------------------------------------
         //PESSOAS

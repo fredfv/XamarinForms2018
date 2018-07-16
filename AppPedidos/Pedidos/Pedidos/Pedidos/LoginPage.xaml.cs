@@ -22,7 +22,7 @@ namespace Pedidos
 			InitializeComponent();
             Login.Text = "5";
             Senha.Text = "5";
-
+            btnLogar.Text = ServiceWS.EnderecoBase;
         }
 
         private void VerSenha(object sender, EventArgs args)

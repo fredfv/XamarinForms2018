@@ -7,7 +7,7 @@ namespace Pedidos.SqlServer.Model
     public class Pessoa
     {
         public int idPessoa { get; set; }
-
+        
         public string nome { get; set; }
         public string cpf { get; set; }
 
