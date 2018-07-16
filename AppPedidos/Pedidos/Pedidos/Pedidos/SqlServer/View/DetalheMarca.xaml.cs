@@ -28,13 +28,28 @@ namespace Pedidos.SqlServer.View
         private async void GoDeletar(object sender, EventArgs args)
         {
             Carregando.IsRunning = true;
-            bool ok = await ServiceWS.DeleteMarcaAsync(marcaAtual);
-            if (ok)
+            bool podeDeletar = false;
+
+            var resultado = await DisplayAlert("Deletar", "Deseja deletar?", "NÃO", "SIM");
+            podeDeletar = resultado ? false : true ;
+
+            if (podeDeletar)
             {
-                await Navigation.PopAsync();
-                listaParaAtualizar.AtualizarAsync();
+                bool ok = await ServiceWS.DeleteMarcaAsync(marcaAtual);
+                if (ok)
+                {
+                    await Navigation.PopAsync();
+                    listaParaAtualizar.AtualizarAsync();
+                }
+            }
+            else
+            {
+                Carregando.IsRunning = false;
             }
         }
+        
+
+
 
         private void GoEditar(object sender, EventArgs args)
         {
