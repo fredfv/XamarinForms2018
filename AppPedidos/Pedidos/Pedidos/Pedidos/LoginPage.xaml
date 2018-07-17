@@ -5,18 +5,27 @@
     <ContentPage.Content>
         <StackLayout Margin="10,80" Padding="25" Spacing="50">
             <StackLayout x:Name="area" Spacing="30">
-                <Entry x:Name="Login" Placeholder="Login" PlaceholderColor="Gray"/>
-                <StackLayout Orientation="Horizontal">
-                    <Entry HorizontalOptions="FillAndExpand" x:Name="Senha" Placeholder="Senha" PlaceholderColor="Gray" IsPassword="true"/>
-                    <Button HorizontalOptions="End" Text="Ver" Clicked="VerSenha"/>
-                </StackLayout>
+                
+                <Frame>
+                    <Entry x:Name="Login" Placeholder="Login" PlaceholderColor="Gray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                </Frame>
+
+                <Frame>
+                    <StackLayout Orientation="Horizontal">
+                        <Entry HorizontalOptions="FillAndExpand" x:Name="Senha" Placeholder="Senha" PlaceholderColor="Gray" IsPassword="true"/>
+                        <Button HorizontalOptions="End" Text="Ver" Clicked="VerSenha"/>
+                    </StackLayout>
+                </Frame>                
+                
                 <StackLayout>
                     <Button x:Name="btnLogar" BackgroundColor="Black" Text="Logar" TextColor="White" Clicked="Logar"/>
                 </StackLayout>
             </StackLayout>
+            
             <StackLayout>
                 <ActivityIndicator HorizontalOptions="Fill"  VerticalOptions="Fill" HeightRequest="50" x:Name="Carregando" Color="Green" IsRunning="false" />
             </StackLayout>
+        
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

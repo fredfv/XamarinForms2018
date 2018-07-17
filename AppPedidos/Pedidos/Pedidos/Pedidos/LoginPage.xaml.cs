@@ -16,6 +16,7 @@ namespace Pedidos
 	{
 
         private List<Pessoa> usuarioLogado { get; set; }
+        private int login { get; set; }
 
         public LoginPage()
 		{
@@ -32,33 +33,47 @@ namespace Pedidos
 
         private async void Logar(object sender, EventArgs args)
         {
-            btnLogar.Text = "LOGANDO . . .";
-            area.IsEnabled = false;
-            Carregando.IsRunning = true;
-
-
-            int login = int.Parse(Login.Text);
-
-            try
+            if (VerificarConexao.TemInternet())
             {
+                btnLogar.Text = "LOGANDO . . .";
+                area.IsEnabled = false;
                 Carregando.IsRunning = true;
-                usuarioLogado = await ServiceWS.Login(login);
 
-                if (usuarioLogado[0].cep == Senha.Text)
+                try
                 {
-                    App.Current.MainPage = new Pedidos.Menu.Master(usuarioLogado[0]);
+                    login = int.Parse(Login.Text);
                 }
-                else
+                catch
+                {
+                    msg();
+                    return;
+                }
+
+                try
+                {
+                    Carregando.IsRunning = true;
+                    usuarioLogado = await ServiceWS.Login(login);
+
+                    if (usuarioLogado[0].cep == Senha.Text)
+                    {
+                        App.Current.MainPage = new Pedidos.Menu.Master(usuarioLogado[0]);
+                    }
+                    else
+                    {
+                        msg();
+                    }
+                }
+                catch (Exception)
                 {
                     msg();
                 }
+
             }
-            catch (Exception)
+            else
             {
-                msg();
+                await DisplayAlert("Error", "Sem conexão com a Internet", "Ok!");
             }
         }
-
 
         private void msg()
         {
@@ -72,8 +87,6 @@ namespace Pedidos
             btnLogar.Text = "Logar";
             area.IsEnabled = true;
             Carregando.IsRunning = false;
-
-
         }
     }
 }

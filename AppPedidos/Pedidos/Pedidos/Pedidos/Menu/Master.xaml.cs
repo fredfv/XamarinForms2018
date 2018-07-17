@@ -31,8 +31,7 @@ namespace Pedidos.Menu
             if (usuario.rg.ToString().Contains("1"))
             {
                 Tipo.Text = "- Promotor";
-                btnMarcas.IsVisible = false;
-                btnPessoas.IsVisible = false;
+                SlAdm.IsVisible = false;
             }
             else
             {

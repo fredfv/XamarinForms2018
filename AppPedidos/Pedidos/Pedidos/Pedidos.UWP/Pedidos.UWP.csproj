@@ -108,8 +108,14 @@
   <ItemGroup>
     <Content Include="edit.png" />
     <Content Include="editW.png" />
+    <Content Include="marcas.png" />
+    <Content Include="novopedido.png" />
+    <Content Include="pedidos.png" />
+    <Content Include="pessoa.png" />
+    <Content Include="pessoas.png" />
     <Content Include="plus.png" />
     <Content Include="plusW.png" />
+    <Content Include="produtos.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-100.png" />
     <Content Include="Assets\LockScreenLogo.scale-125.png" />
@@ -144,6 +150,7 @@
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
     <Content Include="refresh.png" />
     <Content Include="refreshW.png" />
+    <Content Include="sair.png" />
     <Content Include="trash.png" />
     <Content Include="trashW.png" />
   </ItemGroup>

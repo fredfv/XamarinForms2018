@@ -159,4 +159,25 @@
   <ItemGroup>
     <BundleResource Include="Resources\trash.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\novopedido.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pedidos.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pessoa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pessoas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\produtos.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\sair.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\marcas.png" />
+  </ItemGroup>
 </Project>

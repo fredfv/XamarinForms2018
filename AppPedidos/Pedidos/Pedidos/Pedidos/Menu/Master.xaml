@@ -5,22 +5,50 @@
     <MasterDetailPage.Master>
         <ContentPage Title="Pedidos">
             <StackLayout>
-                <StackLayout Spacing="25">
+                <StackLayout Spacing="10" Padding="10">
                     <!--ABRINDO A LISTA DE CADA OBJETO-->
-                    <Button x:Name="btnPessoas" Text="Pessoas" Clicked="GoListaPessoas"/>
-                    <Button x:Name="btnMarcas" Text="Marcas" Clicked="GoListaMarcas"/>
-                    <Button x:Name="btnProdutos" Text="Produtos" Clicked="GoListaProdutos"/>
-                    <Button x:Name="btnPedidos" Text="Pedidos" Clicked="GoListaPedidos"/>
-                    <Button x:Name="btnNovoPedido" Text="Novo Pedido" Clicked="GoNovoPedido"/>
-                </StackLayout>
-                <StackLayout VerticalOptions="EndAndExpand" Spacing="30">
-                    <StackLayout>
-                        <Button Text="Perfil" Clicked="GoPerfil"/>
-                        <Label FontAttributes="Italic" x:Name="Nome"/>
-                        <Label FontAttributes="Italic" TextColor="Gray" x:Name="Tipo"/>
+                    <StackLayout x:Name="SlAdm">
+                        <StackLayout Orientation="Horizontal" Spacing="30" HorizontalOptions="StartAndExpand">
+                            <Image Source="pessoas.png" HeightRequest="30" WidthRequest="30"/>
+                            <Button Text="Pessoas" Clicked="GoListaPessoas" BackgroundColor="Transparent"/>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal" Spacing="30" HorizontalOptions="StartAndExpand">
+                            <Image Source="marcas.png" HeightRequest="30" WidthRequest="30"/>
+                            <Button Text="Marcas" Clicked="GoListaMarcas" BackgroundColor="Transparent"/>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal" Spacing="30" HorizontalOptions="StartAndExpand">
+                            <Image Source="produtos.png" HeightRequest="30" WidthRequest="30"/>
+                            <Button Text="Produtos" Clicked="GoListaProdutos" BackgroundColor="Transparent"/>
+                        </StackLayout>
                     </StackLayout>
-                    <StackLayout >
-                        <Button BackgroundColor="Transparent" TextColor="Red" Text="Deslogar" Clicked="Sair"/>
+
+                    <StackLayout Orientation="Horizontal" Spacing="30" HorizontalOptions="StartAndExpand">
+                        <Image Source="pedidos.png" HeightRequest="30" WidthRequest="30"/>
+                        <Button Text="Pedidos" Clicked="GoListaPedidos" BackgroundColor="Transparent"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" Spacing="30" HorizontalOptions="StartAndExpand">
+                        <Image Source="novopedido.png" HeightRequest="30" WidthRequest="30"/>
+                        <Button Text="Novo Pedido" Clicked="GoNovoPedido" BackgroundColor="Transparent"/>
+                    </StackLayout>
+
+                </StackLayout>
+                <StackLayout VerticalOptions="EndAndExpand" Spacing="30" Padding="10">
+                    <StackLayout>
+                        <StackLayout Orientation="Horizontal" Spacing="30" HorizontalOptions="StartAndExpand">
+                            <Image Source="pessoa.png" HeightRequest="30" WidthRequest="30"/>
+                            <Button Text="Perfil" Clicked="GoPerfil" BackgroundColor="Transparent"/>
+                        </StackLayout>
+
+                        <Label FontAttributes="Italic" x:Name="Nome"/>
+                        <Label FontAttributes="Bold" TextColor="Gray" x:Name="Tipo"/>
+                        
+                        <StackLayout Orientation="Horizontal" Spacing="30" HorizontalOptions="StartAndExpand">
+                            <Image Source="sair.png" HeightRequest="30" WidthRequest="30"/>
+                            <Button BackgroundColor="Transparent" TextColor="Red" Text="Deslogar" Clicked="Sair"/>
+                        </StackLayout>
                     </StackLayout>
                 </StackLayout>
             </StackLayout>
