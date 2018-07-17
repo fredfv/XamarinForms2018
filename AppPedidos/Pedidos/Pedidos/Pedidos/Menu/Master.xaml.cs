@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Pedidos.SqlServer.Model;
+using Pedidos.SqlServer.Service;
 
 namespace Pedidos.Menu
 {
@@ -41,44 +42,90 @@ namespace Pedidos.Menu
 
         private void GoListaPessoas(object sender, EventArgs args)
         {
-            Detail = new NavigationPage(new SqlServer.View.ListaPessoas()) { BarBackgroundColor = Color.Black };
-            IsPresented = false;
+            if (VerificarConexao.TemInternet())
+            {
+                Detail = new NavigationPage(new SqlServer.View.ListaPessoas()) { BarBackgroundColor = Color.Black };
+                IsPresented = false;
+            }
+            else
+            {
+                SemConexao();
+            }
         }
 
         private void GoListaMarcas(object sender, EventArgs args)
         {
-            Detail = new NavigationPage(new SqlServer.View.ListaMarcas()) { BarBackgroundColor = Color.Black };
-            IsPresented = false;
+            if (VerificarConexao.TemInternet())
+            {
+                Detail = new NavigationPage(new SqlServer.View.ListaMarcas()) { BarBackgroundColor = Color.Black };
+                IsPresented = false;
+            }
+            else
+            {
+                SemConexao();
+            }
         }
 
         private void GoListaProdutos(object sender, EventArgs args)
         {
-            Detail = new NavigationPage(new SqlServer.View.ListaProdutos()) { BarBackgroundColor = Color.Black };
-            IsPresented = false;
+            if (VerificarConexao.TemInternet())
+            {
+                Detail = new NavigationPage(new SqlServer.View.ListaProdutos()) { BarBackgroundColor = Color.Black };
+                IsPresented = false;
+            }
+            else
+            {
+                SemConexao();
+            }
         }
 
         private void GoListaPedidos(object sender, EventArgs args)
         {
-            Detail = new NavigationPage(new SqlServer.View.ListaPedidos()) { BarBackgroundColor = Color.Black };
-            IsPresented = false;
+            if (VerificarConexao.TemInternet())
+            {
+                Detail = new NavigationPage(new SqlServer.View.ListaPedidos()) { BarBackgroundColor = Color.Black };
+                IsPresented = false;
+            }
+            else
+            {
+                SemConexao();
+            }
         }
 
         private void GoNovoPedido(object sender, EventArgs args)
         {
-            Detail = new NavigationPage(new SqlServer.View.ListaProdutos("novo")) { BarBackgroundColor = Color.Black };
-            IsPresented = false;
+            if (VerificarConexao.TemInternet())
+            {
+                Detail = new NavigationPage(new SqlServer.View.ListaProdutos("novo")) { BarBackgroundColor = Color.Black };
+                IsPresented = false;
+            }
+            else
+            {
+                SemConexao();
+            }
         }
-
 
         private void GoPerfil(object sender, EventArgs args)
         {
-            Detail = new NavigationPage(new SqlServer.View.DetalhePessoa(usuario)) { BarBackgroundColor = Color.Black };
-            IsPresented = false;
+            if (VerificarConexao.TemInternet())
+            {
+                Detail = new NavigationPage(new SqlServer.View.DetalhePessoa(usuario)) { BarBackgroundColor = Color.Black };
+                IsPresented = false;
+            }
+            else
+            {
+                SemConexao();
+            }
         }
 
         private void Sair(object sender, EventArgs args)
         {
             App.Current.MainPage = new LoginPage();
+        }
+
+        private void SemConexao()
+        {
+            DisplayAlert("Error", "Não há conexão com a Internet", "Ok");
         }
     }
 }

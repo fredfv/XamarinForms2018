@@ -48,57 +48,64 @@ namespace Pedidos.SqlServer.View
 
         private void EnviarDados(object sender, EventArgs args)
         {
-            if (ValidaMarca() == 1)
+            if (VerificarConexao.TemInternet())
             {
-                Nome.IsEnabled = false;
-                Codigo.IsEnabled = false;
-                BtnEnviar.IsEnabled = false;
-
-                Marca novaMarca = new Marca
+                if (ValidaMarca() == 1)
                 {
-                    nome = Nome.Text,
-                    codigo = int.Parse(Codigo.Text)
-                };
+                    Nome.IsEnabled = false;
+                    Codigo.IsEnabled = false;
+                    BtnEnviar.IsEnabled = false;
 
-                if (!isCadastro)
-                {
-                    novaMarca.id = marcaNaPagina.id;
-                    teste.Text = marcaNaPagina.id.ToString();
-                }
-                bool ok = ServiceWS.InsertMarca(novaMarca, Menu.Master.IdLogado);
-
-                if (ok)
-                {
-                    if (isCadastro)
+                    Marca novaMarca = new Marca
                     {
-                        Mensagem.Text = "Cadastro efetuado com sucesso";
-                        listaParaAtualizar.AtualizarAsync();
+                        nome = Nome.Text,
+                        codigo = int.Parse(Codigo.Text)
+                    };
+
+                    if (!isCadastro)
+                    {
+                        novaMarca.id = marcaNaPagina.id;
+                        teste.Text = marcaNaPagina.id.ToString();
+                    }
+                    bool ok = ServiceWS.InsertMarca(novaMarca, Menu.Master.IdLogado);
+
+                    if (ok)
+                    {
+                        if (isCadastro)
+                        {
+                            Mensagem.Text = "Cadastro efetuado com sucesso";
+                            listaParaAtualizar.AtualizarAsync();
+                        }
+                        else
+                        {
+                            Mensagem.Text = "Dados alterados com sucesso";
+                            detalheParaAtualizar.Atualizar();
+                        }
                     }
                     else
                     {
-                        Mensagem.Text = "Dados alterados com sucesso";
-                        detalheParaAtualizar.Atualizar();
+                        if (isCadastro)
+                        {
+                            Mensagem.Text = "Ocorreu um erro no cadastro";
+                        }
+                        else
+                        {
+                            Mensagem.Text = "Ocorreu um erro durante a alteração dos dados";
+                        }
                     }
                 }
-                else
+                else if (ValidaMarca() == 2)
                 {
-                    if (isCadastro)
-                    {
-                        Mensagem.Text = "Ocorreu um erro no cadastro";
-                    }
-                    else
-                    {
-                        Mensagem.Text = "Ocorreu um erro durante a alteração dos dados";
-                    }
+                    DisplayAlert("Error", "Favor verificar o preenchimento dos campos", "Ok");
+                }
+                else if (ValidaMarca() == 3)
+                {
+                    DisplayAlert("Error", "Dados inconsistentes", "Ok");
                 }
             }
-            else if (ValidaMarca() == 2)
+            else
             {
-                DisplayAlert("Error", "Favor verificar o preenchimento dos campos", "Ok");
-            }
-            else if (ValidaMarca() == 3)
-            {
-                DisplayAlert("Error", "Dados inconsistentes", "Ok");
+                SemConexao();   
             }
         }
 
@@ -136,5 +143,9 @@ namespace Pedidos.SqlServer.View
             Navigation.PopModalAsync();
         }
 
+        private void SemConexao()
+        {
+            DisplayAlert("Error", "Não há conexão com a Internet", "Ok");
+        }
     }
 }
