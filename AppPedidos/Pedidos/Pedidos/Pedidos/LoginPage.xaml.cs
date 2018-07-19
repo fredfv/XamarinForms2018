@@ -17,9 +17,11 @@ namespace Pedidos
 
         private List<Pessoa> usuarioLogado { get; set; }
         private int login { get; set; }
+        private bool ver { get; set; }
 
         public LoginPage()
-		{
+        {
+            ver = false;
 			InitializeComponent();
             Login.Text = "5";
             Senha.Text = "5";
@@ -28,7 +30,10 @@ namespace Pedidos
 
         private void VerSenha(object sender, EventArgs args)
         {
+            ver = !ver;
             Senha.IsPassword = !Senha.IsPassword;
+
+            VerPass.Source = ver ? "verOff" : "verOn";
         }
 
         private async void Logar(object sender, EventArgs args)
@@ -38,6 +43,7 @@ namespace Pedidos
                 btnLogar.Text = "LOGANDO . . .";
                 area.IsEnabled = false;
                 Carregando.IsRunning = true;
+                VerPass.IsEnabled = false;
 
                 try
                 {
@@ -67,7 +73,6 @@ namespace Pedidos
                 {
                     msg();
                 }
-
             }
             else
             {
@@ -84,6 +89,7 @@ namespace Pedidos
             Login.Text = "";
             Senha.Text = "";
 
+            VerPass.IsEnabled = true;
             btnLogar.Text = "Logar";
             area.IsEnabled = true;
             Carregando.IsRunning = false;

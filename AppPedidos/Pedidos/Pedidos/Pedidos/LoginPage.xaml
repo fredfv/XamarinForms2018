@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Pedidos.LoginPage">
+             x:Class="Pedidos.LoginPage"
+             >
     <ContentPage.Content>
         <StackLayout Margin="10,80" Padding="25" Spacing="50">
             <StackLayout x:Name="area" Spacing="30">
@@ -13,7 +14,16 @@
                 <Frame>
                     <StackLayout Orientation="Horizontal">
                         <Entry HorizontalOptions="FillAndExpand" x:Name="Senha" Placeholder="Senha" PlaceholderColor="Gray" IsPassword="true"/>
-                        <Button HorizontalOptions="End" Text="Ver" Clicked="VerSenha"/>
+                        <!--<Button HorizontalOptions="End" Text="Ver" Clicked="VerSenha"/>-->
+                        <Image HorizontalOptions="End" x:Name="VerPass" Source="verOn.png" HeightRequest="40" WidthRequest="40">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="VerSenha"
+                                    NumberOfTapsRequired="1"
+                                    />
+                            </Image.GestureRecognizers> 
+                        </Image>
+
                     </StackLayout>
                 </Frame>                
                 

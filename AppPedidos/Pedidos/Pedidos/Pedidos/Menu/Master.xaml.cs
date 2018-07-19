@@ -35,7 +35,7 @@ namespace Pedidos.Menu
             }
             else
             {
-                Tipo.Text = "- Adm";
+                Tipo.Text = "- Administrador";
             }
         }
 
@@ -56,7 +56,7 @@ namespace Pedidos.Menu
         {
             if (VerificarConexao.TemInternet())
             {
-                Detail = new NavigationPage(new SqlServer.View.ListaMarcas()) { BarBackgroundColor = Color.Black };
+                Detail = new NavigationPage(new SqlServer.View.ListaMarcas(1)) { BarBackgroundColor = Color.Black };
                 IsPresented = false;
             }
             else
@@ -69,7 +69,7 @@ namespace Pedidos.Menu
         {
             if (VerificarConexao.TemInternet())
             {
-                Detail = new NavigationPage(new SqlServer.View.ListaProdutos()) { BarBackgroundColor = Color.Black };
+                Detail = new NavigationPage(new SqlServer.View.ListaMarcas(2)) { BarBackgroundColor = Color.Black };
                 IsPresented = false;
             }
             else
@@ -95,7 +95,7 @@ namespace Pedidos.Menu
         {
             if (VerificarConexao.TemInternet())
             {
-                Detail = new NavigationPage(new SqlServer.View.ListaProdutos("novo")) { BarBackgroundColor = Color.Black };
+                Detail = new NavigationPage(new SqlServer.View.ListaMarcas(3)) { BarBackgroundColor = Color.Black };
                 IsPresented = false;
             }
             else

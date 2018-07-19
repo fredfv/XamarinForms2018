@@ -16,11 +16,28 @@ namespace Pedidos.SqlServer.View
         private List<Marca> ListaInterna { get; set; }
         private List<Marca> ListaFiltrada { get; set; }
         private bool podeBuscar { get; set; }
+        private int tipoAcao { get; set; }
 
-        public ListaMarcas()
+        //acao
+        // 1 - lista simples de marcas
+        // 2 - lista de marcas para exibir produto
+        // 3 - lista de marcas para exibir pedido
+
+        public ListaMarcas(int acao)
         {
             InitializeComponent();
             AtualizarAsync();
+            tipoAcao = acao;
+
+            switch (tipoAcao)
+            {
+                case 2:
+                    OcultarAdicionar();
+                    break;
+                case 3:
+                    OcultarAdicionar();
+                    break;
+            }
         }
 
         public async void AtualizarAsync()
@@ -45,13 +62,34 @@ namespace Pedidos.SqlServer.View
         private void GoDetalhe(object sender, ItemTappedEventArgs args)
         {
             Marca marca = (Marca)args.Item;
-            (sender as ListView).SelectedItem = null;
-            Navigation.PushAsync(new DetalheMarca(this, marca));
+            switch (tipoAcao)
+            {
+                case 2:
+                    (sender as ListView).SelectedItem = null;
+                    Navigation.PushAsync(new ListaProdutosPorMarca(marca));
+                    break;
+                case 3:
+                    (sender as ListView).SelectedItem = null;
+                    Navigation.PushAsync(new ListaProdutosParaNovoPedido(marca));
+                    break;
+                default:
+                    (sender as ListView).SelectedItem = null;
+                    Navigation.PushAsync(new DetalheMarca(this, marca));
+                    break;
+            }
         }
 
         private void GoModalCadastrar(object sender, EventArgs args)
         {
-            Navigation.PushModalAsync(new CadastrarMarca(this));
+            if (tipoAcao == 1)
+            {
+                Navigation.PushModalAsync(new CadastrarMarca(this));
+            }
+        }
+
+        private void OcultarAdicionar()
+        {
+            btnAdicionar.Icon = "plus.png";
         }
     }
 }

@@ -4,7 +4,7 @@
              x:Class="Pedidos.SqlServer.View.ListaMarcas"
              Title="Marcas">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Adicionar Marca" Icon="plusW.png" Clicked="GoModalCadastrar"/>
+        <ToolbarItem x:Name="btnAdicionar" Text="Adicionar Marca" Icon="plusW.png" Clicked="GoModalCadastrar"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout Spacing="10">

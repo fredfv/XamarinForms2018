@@ -15,6 +15,12 @@ namespace Pedidos.SqlServer.Model
         public bool ativo { get; set; }
 
         public DateTime dataInclusao { get; set; }
-        public int idUsuarioInclusao { get; set; }
+
+        //nao retorna a data alteracao//
+
+        //public DateTime dataAlteracao { get; set; }
+
+        //public int idUsuarioInclusao { get; set; }
+        //public int idUsuarioAlteracao { get; set; }
     }
 }

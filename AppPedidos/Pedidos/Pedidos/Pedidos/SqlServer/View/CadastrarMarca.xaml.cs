@@ -62,12 +62,18 @@ namespace Pedidos.SqlServer.View
                         codigo = int.Parse(Codigo.Text)
                     };
 
+                    bool ok = true;
                     if (!isCadastro)
                     {
                         novaMarca.id = marcaNaPagina.id;
-                        teste.Text = marcaNaPagina.id.ToString();
+                        //teste.Text = marcaNaPagina.id.ToString();
+                       ok = ServiceWS.UpdateMarca(novaMarca, Menu.Master.IdLogado);
                     }
-                    bool ok = ServiceWS.InsertMarca(novaMarca, Menu.Master.IdLogado);
+                    else
+                    {
+                        ok = ServiceWS.InsertMarca(novaMarca, Menu.Master.IdLogado);
+                    }
+                  
 
                     if (ok)
                     {

@@ -36,9 +36,6 @@
     <Compile Update="SqlServer\View\ListaPessoas.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
-    <Compile Update="SqlServer\View\ListaProdutos.xaml.cs">
-      <DependentUpon>%(Filename)</DependentUpon>
-    </Compile>
     <Compile Update="SqlServer\View\ListaProdutosPorMarca.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>

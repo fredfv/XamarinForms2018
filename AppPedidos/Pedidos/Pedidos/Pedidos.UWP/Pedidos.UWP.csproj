@@ -153,6 +153,8 @@
     <Content Include="sair.png" />
     <Content Include="trash.png" />
     <Content Include="trashW.png" />
+    <Content Include="verOff.png" />
+    <Content Include="verOn.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

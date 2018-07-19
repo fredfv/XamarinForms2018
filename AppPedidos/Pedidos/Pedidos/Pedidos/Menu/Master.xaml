@@ -5,7 +5,7 @@
     <MasterDetailPage.Master>
         <ContentPage Title="Pedidos">
             <StackLayout>
-                <StackLayout Spacing="10" Padding="10">
+                <StackLayout Spacing="10" Padding="17">
                     <!--ABRINDO A LISTA DE CADA OBJETO-->
                     <StackLayout x:Name="SlAdm">
                         <StackLayout Orientation="Horizontal" Spacing="30" HorizontalOptions="StartAndExpand">
@@ -35,7 +35,7 @@
                     </StackLayout>
 
                 </StackLayout>
-                <StackLayout VerticalOptions="EndAndExpand" Spacing="30" Padding="10">
+                <StackLayout VerticalOptions="EndAndExpand" Spacing="30" Padding="17">
                     <StackLayout>
                         <StackLayout Orientation="Horizontal" Spacing="30" HorizontalOptions="StartAndExpand">
                             <Image Source="pessoa.png" HeightRequest="30" WidthRequest="30"/>

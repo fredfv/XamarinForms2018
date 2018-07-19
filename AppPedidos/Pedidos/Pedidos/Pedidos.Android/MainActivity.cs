@@ -22,6 +22,11 @@ namespace Pedidos.Droid
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
         }
+
+        //protected override void OnSaveInstanceState(Bundle outState)
+        //{
+        //    base.OnSaveInstanceState(outState);
+        //}
     }
 }
 

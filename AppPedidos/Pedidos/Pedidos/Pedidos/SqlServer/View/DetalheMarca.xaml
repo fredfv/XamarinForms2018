@@ -20,6 +20,7 @@
 
                         <Label Text="Data Inclusão - " TextColor="DarkGreen" FontSize="18" FontAttributes="Italic"/>
                         <Label Text="{Binding dataInclusao}" FontSize="22"/>
+
                     </StackLayout>  
                 </Frame>
                 <ActivityIndicator HorizontalOptions="Fill"  VerticalOptions="Fill" HeightRequest="90" x:Name="Carregando" Color="Green" IsRunning="false" />

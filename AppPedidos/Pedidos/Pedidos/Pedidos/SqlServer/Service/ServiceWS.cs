@@ -208,15 +208,16 @@ namespace Pedidos.SqlServer.Service
             return false;
         }
 
-        public static bool UpdateMarca(Marca marca, int idUsuarioInclusao)
+        public static bool UpdateMarca(Marca marca, int idUsuarioAlteracao)
         {
             var URL = EnderecoBase + "/marca/salvar";
 
             FormUrlEncodedContent param = new FormUrlEncodedContent(new[]
             {
-                //new KeyValuePair<string, string>("id", marca.id.ToString()),
+                new KeyValuePair<string, string>("id", marca.id.ToString()),
                 new KeyValuePair<string, string>("nome", marca.nome),
                 new KeyValuePair<string, string>("codigo", marca.codigo.ToString()),
+                new KeyValuePair<string, string>("idUsuarioInclusao", idUsuarioAlteracao.ToString())
             });
 
             HttpClient requisicao = new HttpClient();

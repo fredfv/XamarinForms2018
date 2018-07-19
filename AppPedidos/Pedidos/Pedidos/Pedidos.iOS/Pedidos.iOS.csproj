@@ -180,4 +180,10 @@
   <ItemGroup>
     <BundleResource Include="Resources\marcas.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\verOff.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\verOn.png" />
+  </ItemGroup>
 </Project>

@@ -47,9 +47,6 @@ namespace Pedidos.SqlServer.View
                 Carregando.IsRunning = false;
             }
         }
-        
-
-
 
         private void GoEditar(object sender, EventArgs args)
         {
