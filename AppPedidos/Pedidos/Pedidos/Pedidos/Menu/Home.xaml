@@ -6,7 +6,7 @@
              >
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Pagina Inicial"
+            <Label Text="Bem vindo ao Pedidos!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
         </StackLayout>

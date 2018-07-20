@@ -186,4 +186,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\verOn.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Logo.png" />
+  </ItemGroup>
 </Project>

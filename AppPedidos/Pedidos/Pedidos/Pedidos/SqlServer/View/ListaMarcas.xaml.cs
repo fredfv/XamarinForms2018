@@ -90,6 +90,7 @@ namespace Pedidos.SqlServer.View
         private void OcultarAdicionar()
         {
             btnAdicionar.Icon = "plus.png";
+            btnAdicionar.Text = "";
         }
     }
 }

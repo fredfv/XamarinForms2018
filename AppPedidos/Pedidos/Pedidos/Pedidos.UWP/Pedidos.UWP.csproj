@@ -108,6 +108,7 @@
   <ItemGroup>
     <Content Include="edit.png" />
     <Content Include="editW.png" />
+    <Content Include="Logo.png" />
     <Content Include="marcas.png" />
     <Content Include="novopedido.png" />
     <Content Include="pedidos.png" />

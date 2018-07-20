@@ -6,7 +6,7 @@ using System.Net.Http;
 using Pedidos.SqlServer.Model;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
-
+using Xamarin.Forms;
 
 namespace Pedidos.SqlServer.Service
 {
@@ -14,9 +14,32 @@ namespace Pedidos.SqlServer.Service
     {
         public static string EnderecoBase = "http://192.168.15.76/api";
 
+        // ---  VER ISSO DEPOIS --- COMO LIMITAR O TEMPO DA REQUEST NO BANCO!
+        //private int TempoParaRequisicao = 30;
+        //private bool PararRequisicao = false;
+
+        ////TIMER - 
+        //private void IniciarTemporizador()
+        //{
+        //    Device.StartTimer(TimeSpan.FromSeconds(1), () => {
+        //        TempoParaRequisicao--;
+        //        if (TempoParaRequisicao < 0)
+        //        {
+        //            PararRequisicao = true;
+        //            return PararRequisicao;
+        //        }
+        //        else
+        //        {
+        //            PararRequisicao = false;
+        //            return PararRequisicao;
+        //        }
+        //    });
+        //}
+
         //----------------------------------------------------
         //PESSOAS
         //----------------------------------------------------
+
         public static List<Pessoa> GetPessoaPorId(int id)
         {
             var URL = EnderecoBase+"/pessoa/obterporid/{0}";
@@ -131,34 +154,6 @@ namespace Pedidos.SqlServer.Service
             }
         }
 
-        //excluir depois de mudar no produtos
-        public static List<Marca> GetMarcas()
-        {
-            var URL = EnderecoBase + "/marca/obtertodas";
-
-            HttpClient requisicao = new HttpClient();
-            HttpResponseMessage resposta = requisicao.GetAsync(URL).GetAwaiter().GetResult();
-
-            if (resposta.StatusCode == HttpStatusCode.OK)
-            {
-                string conteudo = resposta.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-
-                if (conteudo.Length > 2)
-                {
-                    List<Marca> marcas = JsonConvert.DeserializeObject<List<Marca>>(conteudo);
-                    return marcas;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            else
-            {
-                return null;
-            }
-        }
-
         public async static Task<List<Marca>> GetMarcasAsync()
         {
             var URL = EnderecoBase + "/marca/obtertodas";
@@ -230,23 +225,7 @@ namespace Pedidos.SqlServer.Service
 
             return false;
         }
-
-        public static bool DeleteMarca(Marca marca)
-        {
-            var URL = EnderecoBase + "/marca/excluir/" + marca.id;
-
-            HttpClient requisicao = new HttpClient();
-            HttpResponseMessage resposta = requisicao.GetAsync(URL).GetAwaiter().GetResult();
-
-            if (resposta.StatusCode == HttpStatusCode.OK)
-            {
-                return true;
-            }
-
-            return false;
-
-        }
-
+               
         public async static Task<bool> DeleteMarcaAsync(Marca marca)
         {
             var URL = EnderecoBase + "/marca/excluir/" + marca.id;

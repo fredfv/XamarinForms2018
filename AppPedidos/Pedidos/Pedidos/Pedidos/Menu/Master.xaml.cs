@@ -39,6 +39,7 @@ namespace Pedidos.Menu
             }
         }
 
+        //LISTA PESSOAS
         private void GoListaPessoas(object sender, EventArgs args)
         {
             if (VerificarConexao.TemInternet())
@@ -52,6 +53,7 @@ namespace Pedidos.Menu
             }
         }
 
+        //LISTA MARCAS
         private void GoListaMarcas(object sender, EventArgs args)
         {
             if (VerificarConexao.TemInternet())
@@ -65,6 +67,7 @@ namespace Pedidos.Menu
             }
         }
 
+        //LISTA PRODUTOS
         private void GoListaProdutos(object sender, EventArgs args)
         {
             if (VerificarConexao.TemInternet())
@@ -78,6 +81,7 @@ namespace Pedidos.Menu
             }
         }
 
+        //LISTA PEDIDOS
         private void GoListaPedidos(object sender, EventArgs args)
         {
             if (VerificarConexao.TemInternet())
@@ -91,6 +95,7 @@ namespace Pedidos.Menu
             }
         }
 
+        //NOVO PEDIDO
         private void GoNovoPedido(object sender, EventArgs args)
         {
             if (VerificarConexao.TemInternet())
@@ -104,6 +109,7 @@ namespace Pedidos.Menu
             }
         }
 
+        //VER PERFIL
         private void GoPerfil(object sender, EventArgs args)
         {
             if (VerificarConexao.TemInternet())
