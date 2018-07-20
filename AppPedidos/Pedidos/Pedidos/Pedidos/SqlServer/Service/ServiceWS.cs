@@ -160,7 +160,7 @@ namespace Pedidos.SqlServer.Service
 
             HttpClient requisicao = new HttpClient();
             HttpResponseMessage resposta = await requisicao.GetAsync(URL);
-
+          
             if (resposta.StatusCode == HttpStatusCode.OK)
             {
                 string conteudo = resposta.Content.ReadAsStringAsync().GetAwaiter().GetResult();
