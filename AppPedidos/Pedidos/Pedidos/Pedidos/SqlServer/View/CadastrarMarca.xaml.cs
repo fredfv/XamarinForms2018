@@ -18,7 +18,8 @@ namespace Pedidos.SqlServer.View
         Marca marcaNaPagina { get; set; }
         ListaMarcas listaParaAtualizar { get; set; }
         DetalheMarca detalheParaAtualizar { get; set; }
-        
+        private string nomeMarcaOriginal { get; set; }
+
         //CADASTRAR
         public CadastrarMarca (ListaMarcas lista)
 		{
@@ -35,6 +36,7 @@ namespace Pedidos.SqlServer.View
         public CadastrarMarca(DetalheMarca detalhe)
         {
             InitializeComponent();
+            nomeMarcaOriginal = detalhe.marcaAtual.nome;
             BindingContext = detalhe.marcaAtual;
 
             marcaNaPagina = detalhe.marcaAtual;
@@ -46,73 +48,97 @@ namespace Pedidos.SqlServer.View
             isCadastro = false;
         }
 
-        private void EnviarDados(object sender, EventArgs args)
+        private async void EnviarDados(object sender, EventArgs args)
         {
-            if (VerificarConexao.TemInternet())
+            bool podeAtualizar = false;
+            Carregando.IsVisible = true;
+            if (!isCadastro)
             {
-                if (ValidaMarca() == 1)
-                {
-                    Nome.IsEnabled = false;
-                    Codigo.IsEnabled = false;
-                    BtnEnviar.IsEnabled = false;
-
-                    Marca novaMarca = new Marca
-                    {
-                        nome = Nome.Text,
-                        codigo = int.Parse(Codigo.Text)
-                    };
-
-                    bool ok = true;
-                    if (!isCadastro)
-                    {
-                        novaMarca.id = marcaNaPagina.id;
-                        //teste.Text = marcaNaPagina.id.ToString();
-                       ok = ServiceWS.UpdateMarca(novaMarca, Menu.Master.IdLogado);
-                    }
-                    else
-                    {
-                        ok = ServiceWS.InsertMarca(novaMarca, Menu.Master.IdLogado);
-                    }
-                  
-
-                    if (ok)
-                    {
-                        if (isCadastro)
-                        {
-                            Mensagem.Text = "Cadastro efetuado com sucesso";
-                            listaParaAtualizar.AtualizarAsync();
-                        }
-                        else
-                        {
-                            Mensagem.Text = "Dados alterados com sucesso";
-                            detalheParaAtualizar.Atualizar();
-                        }
-                    }
-                    else
-                    {
-                        if (isCadastro)
-                        {
-                            Mensagem.Text = "Ocorreu um erro no cadastro";
-                        }
-                        else
-                        {
-                            Mensagem.Text = "Ocorreu um erro durante a alteração dos dados";
-                        }
-                    }
-                }
-                else if (ValidaMarca() == 2)
-                {
-                    DisplayAlert("Error", "Favor verificar o preenchimento dos campos", "Ok");
-                }
-                else if (ValidaMarca() == 3)
-                {
-                    DisplayAlert("Error", "Dados inconsistentes", "Ok");
-                }
+                var resultado = await DisplayAlert("Atualizar?", "Deseja atualizar os dados de:\n" + nomeMarcaOriginal + "?", "NÂO", "SIM");
+                podeAtualizar = resultado ? false : true;
             }
             else
             {
-                SemConexao();   
+                podeAtualizar = true;
             }
+
+            if (podeAtualizar)
+            {
+                if (VerificarConexao.TemInternet())
+                {
+                    if (ValidaMarca() == 1)
+                    {
+                        Nome.IsEnabled = false;
+                        Codigo.IsEnabled = false;
+                        BtnEnviar.IsEnabled = false;
+
+                        Marca novaMarca = new Marca
+                        {
+                            nome = Nome.Text,
+                            codigo = int.Parse(Codigo.Text)
+                        };
+
+                        if (!isCadastro)
+                        {
+                            novaMarca.id = marcaNaPagina.id;
+                            try
+                            {
+                                bool ok = await ServiceWS.UpdateMarcaAsync(novaMarca, Menu.Master.IdLogado);
+                                if (ok)
+                                {
+                                    detalheParaAtualizar.AtualizarAsync();
+                                    await Navigation.PopModalAsync();
+                                }
+                                else
+                                {
+                                    await DisplayAlert("Error", "Ocorreu um erro durante a alteração dos dados", "Ok");
+                                    await Navigation.PopModalAsync();
+                                }
+                            }
+                            catch
+                            {
+                                await DisplayAlert("Error", "Ocorreu um erro durante a alteração dos dados", "Ok");
+                                await Navigation.PopModalAsync();
+                            }
+                        }
+                        else
+                        {
+                            try
+                            {
+                                bool ok = await ServiceWS.InsertMarcaAsync(novaMarca, Menu.Master.IdLogado);
+                                if (ok)
+                                {
+                                    listaParaAtualizar.AtualizarAsync();
+                                    await Navigation.PopModalAsync();
+                                }
+                                else
+                                {
+                                    await DisplayAlert("Error", "Ocorreu um erro no cadastro", "Ok");
+                                    await Navigation.PopModalAsync();
+                                }
+                            }
+                            catch
+                            {
+                                await DisplayAlert("Error", "Ocorreu um erro no cadastro", "Ok");
+                                await Navigation.PopModalAsync();
+                            }
+                        }
+                    }
+                    else if (ValidaMarca() == 2)
+                    {
+                        await DisplayAlert("Error", "Favor verificar o preenchimento dos campos", "Ok");
+                    }
+                    else if (ValidaMarca() == 3)
+                    {
+                        await DisplayAlert("Error", "Dados inconsistentes", "Ok");
+                    }
+                }
+                else
+                {
+                    SemConexao();
+                }
+            }
+            Carregando.IsVisible = false;
         }
 
         private int ValidaMarca()

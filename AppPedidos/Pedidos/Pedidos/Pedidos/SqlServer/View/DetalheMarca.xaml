@@ -10,20 +10,19 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Margin="10" Padding="10">
+                <ActivityIndicator HorizontalOptions="Fill" IsVisible="False" VerticalOptions="Fill" HeightRequest="50" x:Name="Carregando" Color="Green" IsRunning="true" />
                 <Frame>
                     <StackLayout>
-                        <Label Text="Nome - " TextColor="DarkGreen" FontSize="20" FontAttributes="Italic"/>
+                        <Label Text="Nome - " TextColor="LightGray" FontSize="20" FontAttributes="Italic"/>
                         <Label Text="{Binding nome}" FontAttributes="Bold" FontSize="24"/>
 
-                        <Label Text="Codigo - " TextColor="DarkGreen" FontSize="18" FontAttributes="Italic" />
+                        <Label Text="Codigo - " TextColor="LightGray" FontSize="18" FontAttributes="Italic" />
                         <Label Text="{Binding codigo}" FontSize="22"/>
 
-                        <Label Text="Data Inclusão - " TextColor="DarkGreen" FontSize="18" FontAttributes="Italic"/>
+                        <Label Text="Data Inclusão - " TextColor="LightGray" FontSize="18" FontAttributes="Italic"/>
                         <Label Text="{Binding dataInclusao}" FontSize="22"/>
-
                     </StackLayout>  
                 </Frame>
-                <ActivityIndicator HorizontalOptions="Fill"  VerticalOptions="Fill" HeightRequest="90" x:Name="Carregando" Color="Green" IsRunning="false" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

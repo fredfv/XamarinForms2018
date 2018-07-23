@@ -11,6 +11,7 @@
             <Frame >
                 <Entry Placeholder="Pesquisar. . . Nome ou Código . . ."  PlaceholderColor="Gray" TextChanged="Buscar"/>
             </Frame>
+            <ActivityIndicator HorizontalOptions="Fill"  VerticalOptions="Fill" HeightRequest="50" x:Name="Carregando" Color="Green" IsRunning="true" />
             <ListView x:Name="Lista" ItemTapped="GoDetalhe" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -31,7 +32,6 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <ActivityIndicator HorizontalOptions="Fill"  VerticalOptions="Fill" HeightRequest="70" x:Name="Carregando" Color="Green" IsRunning="true" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -12,34 +12,14 @@ namespace Pedidos.SqlServer.Service
 {
     class ServiceWS
     {
+        //----------------------------------------------------
+        //API - URL
+        //----------------------------------------------------
         public static string EnderecoBase = "http://192.168.15.76/api";
-
-        // ---  VER ISSO DEPOIS --- COMO LIMITAR O TEMPO DA REQUEST NO BANCO!
-        //private int TempoParaRequisicao = 30;
-        //private bool PararRequisicao = false;
-
-        ////TIMER - 
-        //private void IniciarTemporizador()
-        //{
-        //    Device.StartTimer(TimeSpan.FromSeconds(1), () => {
-        //        TempoParaRequisicao--;
-        //        if (TempoParaRequisicao < 0)
-        //        {
-        //            PararRequisicao = true;
-        //            return PararRequisicao;
-        //        }
-        //        else
-        //        {
-        //            PararRequisicao = false;
-        //            return PararRequisicao;
-        //        }
-        //    });
-        //}
 
         //----------------------------------------------------
         //PESSOAS
         //----------------------------------------------------
-
         public static List<Pessoa> GetPessoaPorId(int id)
         {
             var URL = EnderecoBase+"/pessoa/obterporid/{0}";
@@ -126,13 +106,13 @@ namespace Pedidos.SqlServer.Service
         //----------------------------------------------------
         //MARCAS
         //----------------------------------------------------
-        public static List<Marca> GetMarcaPorId(int id)
+        public async static Task<List<Marca>> GetMarcaPorIdAsync(int id)
         {
             var URL = EnderecoBase + "/marca/obterporid/{0}";
             string NewURL = string.Format(URL, id);
 
             HttpClient requisicao = new HttpClient();
-            HttpResponseMessage resposta = requisicao.GetAsync(NewURL).GetAwaiter().GetResult();
+            HttpResponseMessage resposta = await requisicao.GetAsync(NewURL);
 
             if (resposta.StatusCode == HttpStatusCode.OK)
             {
@@ -160,7 +140,7 @@ namespace Pedidos.SqlServer.Service
 
             HttpClient requisicao = new HttpClient();
             HttpResponseMessage resposta = await requisicao.GetAsync(URL);
-          
+
             if (resposta.StatusCode == HttpStatusCode.OK)
             {
                 string conteudo = resposta.Content.ReadAsStringAsync().GetAwaiter().GetResult();
@@ -180,8 +160,8 @@ namespace Pedidos.SqlServer.Service
                 return null;
             }
         }
-
-        public static bool InsertMarca(Marca marca, int idUsuarioInclusao)
+        
+        public async static Task<bool> InsertMarcaAsync(Marca marca, int idUsuarioInclusao)
         {
             var URL = EnderecoBase + "/marca/salvar";
 
@@ -193,7 +173,30 @@ namespace Pedidos.SqlServer.Service
             });
 
             HttpClient requisicao = new HttpClient();
-            HttpResponseMessage resposta = requisicao.PostAsync(URL, param).GetAwaiter().GetResult();
+            HttpResponseMessage resposta = await requisicao.PostAsync(URL, param);
+
+            if (resposta.StatusCode == HttpStatusCode.OK)
+            {
+                return true;
+            }
+           
+            return false;
+        }
+
+        public async static Task<bool> UpdateMarcaAsync(Marca marca, int idUsuarioAlteracao)
+        {
+            var URL = EnderecoBase + "/marca/salvar";
+
+            FormUrlEncodedContent param = new FormUrlEncodedContent(new[]
+            {
+                new KeyValuePair<string, string>("id", marca.id.ToString()),
+                new KeyValuePair<string, string>("nome", marca.nome),
+                new KeyValuePair<string, string>("codigo", marca.codigo.ToString()),
+                new KeyValuePair<string, string>("idUsuarioInclusao", idUsuarioAlteracao.ToString())
+            });
+
+            HttpClient requisicao = new HttpClient();
+            HttpResponseMessage resposta = await requisicao.PostAsync(URL, param);
 
             if (resposta.StatusCode == HttpStatusCode.OK)
             {
@@ -438,6 +441,32 @@ namespace Pedidos.SqlServer.Service
 
             HttpClient requisicao = new HttpClient();
             HttpResponseMessage resposta = requisicao.PostAsync(URL, param).GetAwaiter().GetResult();
+
+            if (resposta.StatusCode == HttpStatusCode.OK)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public async static Task<bool> InsertPedidoAsync(Pedido pedido)
+        {
+            var URL = EnderecoBase + "/pedido/salvar";
+
+            FormUrlEncodedContent param = new FormUrlEncodedContent(new[]
+            {
+                new KeyValuePair<string, string>("idProduto", pedido.idProduto.ToString()),
+                new KeyValuePair<string, string>("perda", pedido.perda.ToString()),
+                new KeyValuePair<string, string>("troca", pedido.troca.ToString()),
+                new KeyValuePair<string, string>("quantidade", pedido.quantidade.ToString()),
+                new KeyValuePair<string, string>("obs", pedido.obs),
+                //new KeyValuePair<string, string>("dataInclusao", DateTime.Now),
+                //new KeyValuePair<string, string>("idUsuarioInclusao", pedido.idUsuarioInclusao.ToString())
+            });
+
+            HttpClient requisicao = new HttpClient();
+            HttpResponseMessage resposta = await requisicao.PostAsync(URL, param);
 
             if (resposta.StatusCode == HttpStatusCode.OK)
             {

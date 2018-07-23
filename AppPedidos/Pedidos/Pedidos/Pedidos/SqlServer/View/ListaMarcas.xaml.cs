@@ -22,13 +22,12 @@ namespace Pedidos.SqlServer.View
         // 1 - lista simples de marcas
         // 2 - lista de marcas para exibir produto
         // 3 - lista de marcas para exibir pedido
-
         public ListaMarcas(int acao)
         {
             InitializeComponent();
-            AtualizarAsync();
-            tipoAcao = acao;
+            OnAppearing();
 
+            tipoAcao = acao;
             switch (tipoAcao)
             {
                 case 2:
@@ -40,11 +39,24 @@ namespace Pedidos.SqlServer.View
             }
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            AtualizarAsync();
+        }
+
         public async void AtualizarAsync()
         {
             podeBuscar = false;
             Carregando.IsVisible = true;
-            ListaInterna = await Service.ServiceWS.GetMarcasAsync();
+            try
+            {
+                ListaInterna = await Service.ServiceWS.GetMarcasAsync();
+            }
+            catch
+            {
+                await DisplayAlert("Error", "Erro ao carregar Marcas", "Ok");
+            }
             Lista.ItemsSource = ListaInterna;
             Carregando.IsVisible = false;
             podeBuscar = true;

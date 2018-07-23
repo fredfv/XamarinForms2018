@@ -20,15 +20,20 @@ namespace Pedidos.SqlServer.View
 		{
 			InitializeComponent ();
             BindingContext = produto;
-
-            List<Marca> marca = ServiceWS.GetMarcaPorId(produto.idMarca);
-            Marca.Text = marca[0].nome;
-
-            IdProduto = produto.id;
+            AtualizarAsync(produto);
 		}
 
-        private void Cadastrar(object sender, EventArgs args)
+        private async void AtualizarAsync(Produto prod)
         {
+            List<Marca> marca = await ServiceWS.GetMarcaPorIdAsync(prod.idMarca);
+            Marca.Text = marca[0].nome;
+            IdProduto = prod.id;
+            Carregando.IsVisible = false;
+        }
+
+        private async void Cadastrar(object sender, EventArgs args)
+        {
+            Carregando.IsVisible = true;
             if (ValidaPedido() == 1)
             {
                 Perda.IsEnabled = false;
@@ -47,24 +52,26 @@ namespace Pedidos.SqlServer.View
                     obs = Obs.Text
                 };
 
-                bool ok = ServiceWS.InsertPedido(novoPedido);
+                bool ok = await ServiceWS.InsertPedidoAsync(novoPedido);
                 if (ok)
                 {
-                    Mensagem.Text = "Cadastro efetuado com sucesso";
+                    await DisplayAlert("Error", "Cadastro efetuado com sucesso", "Ok");
+                    await Navigation.PopModalAsync();
                 }
                 else
                 {
-                    Mensagem.Text = "Ocorreu um erro no cadastro";
+                    await DisplayAlert("Error", "Ocorreu um erro no cadastro", "Ok");
                 }
             }
             else if (ValidaPedido() == 2)
             {
-                DisplayAlert("Error", "Favor verificar o preenchimento dos campos", "Ok");
+                await DisplayAlert("Error", "Favor verificar o preenchimento dos campos", "Ok");
             }
             else if (ValidaPedido() == 3)
             {
-                DisplayAlert("Error", "Dados inconsistentes", "Ok");
+                await DisplayAlert("Error", "Dados inconsistentes", "Ok");
             }
+            Carregando.IsVisible = false;
         }
 
         private int ValidaPedido()

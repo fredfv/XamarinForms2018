@@ -7,6 +7,7 @@ namespace Pedidos.SqlServer.Service
         public static bool TemInternet()
         {
             return CrossConnectivity.Current.IsConnected ? true : false;
+            //return true;
         }
     }
 }

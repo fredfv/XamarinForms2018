@@ -27,24 +27,32 @@ namespace Pedidos.SqlServer.View
 
         private async void GoDeletar(object sender, EventArgs args)
         {
-            Carregando.IsRunning = true;
+            Carregando.IsVisible = true;
             bool podeDeletar = false;
 
-            var resultado = await DisplayAlert("Deletar", "Deseja deletar?", "NÃO", "SIM");
+            var resultado = await DisplayAlert("EXCLUIR?", "Confirmar exclusão de:\n" + marcaAtual.nome + " ?", "NÃO", "SIM");
             podeDeletar = resultado ? false : true ;
 
             if (podeDeletar)
             {
-                bool ok = await ServiceWS.DeleteMarcaAsync(marcaAtual);
-                if (ok)
+                try
                 {
-                    await Navigation.PopAsync();
-                    listaParaAtualizar.AtualizarAsync();
+                    bool ok = await ServiceWS.DeleteMarcaAsync(marcaAtual);
+                    if (ok)
+                    {
+                        await Navigation.PopAsync();
+                        listaParaAtualizar.AtualizarAsync();
+                    }
+                }
+                catch
+                {
+                    await DisplayAlert("Error", "Erro ao excluir marca", "Ok");
+                    Carregando.IsVisible = false;
                 }
             }
             else
             {
-                Carregando.IsRunning = false;
+                Carregando.IsVisible = false;
             }
         }
 
@@ -53,12 +61,20 @@ namespace Pedidos.SqlServer.View
             Navigation.PushModalAsync(new CadastrarMarca(this));
         }
 
-        public void Atualizar()
+        public async void AtualizarAsync()
         {
-            List<Marca> marca = ServiceWS.GetMarcaPorId(marcaAtual.id);
-            BindingContext = marca[0];
-            marcaAtual = marca[0];
-            listaParaAtualizar.AtualizarAsync();
+            try
+            {
+                List<Marca> marca = await ServiceWS.GetMarcaPorIdAsync(marcaAtual.id);
+                BindingContext = marca[0];
+                marcaAtual = marca[0];
+                listaParaAtualizar.AtualizarAsync();
+            }
+            catch
+            {
+                await DisplayAlert("Error", "Erro ao carregar pagina", "Ok");
+            }
+       
         }
 	}
 }
