@@ -6,7 +6,7 @@
         <StackLayout>
             <StackLayout>
                 <StackLayout Orientation="Horizontal" HeightRequest="50" x:Name="SlTitulo">
-                    <Label Text="Cadastrar Pedido" FontSize="23" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" Margin="30, 10"/>
+                    <Label x:Name="Cabecalho" FontSize="23" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" Margin="30, 10"/>
                     <Button Text="X" FontSize="20" Clicked="FecharModal" HorizontalOptions="EndAndExpand" VerticalOptions="Center" FontAttributes="Bold" WidthRequest="40" HeightRequest="40" BackgroundColor="White" TextColor="Black"/>
                 </StackLayout>
                 
@@ -20,13 +20,12 @@
                         <StackLayout Spacing="10">
                             <StackLayout Orientation="Horizontal">
                                 <Label Text="Nome" TextColor="LightGray" FontSize="Medium"/>
-                                <Label Text="{Binding nome}" TextColor="Black" FontAttributes="Bold" FontSize="Large"/>
+                                <Label x:Name="NomeProduto" TextColor="Black" FontAttributes="Bold" FontSize="Large"/>
                             </StackLayout>
                             <StackLayout Orientation="Horizontal">
                                 <Label Text="Marca" TextColor="LightGray" FontSize="Small"/>
-                                <Label x:Name="Marca" FontAttributes="Italic" TextColor="Gray" FontSize="Medium"/>
+                                <Label x:Name="MarcaProduto" FontAttributes="Italic" TextColor="Gray" FontSize="Medium"/>
                             </StackLayout>
-                            
                         </StackLayout>
                     </Frame>
                     <Frame>
@@ -46,7 +45,7 @@
                      </Frame>
                 </StackLayout>
             </ScrollView>
-            <Button x:Name="BtnCadastro" BackgroundColor="Green" Text="Cadastrar" Clicked="Cadastrar"/>
+            <Button x:Name="BtnCadastro" BackgroundColor="Green" Clicked="EnviarDados"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

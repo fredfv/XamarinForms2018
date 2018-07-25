@@ -92,7 +92,7 @@ namespace Pedidos.SqlServer.View
             {
                 case 2:
                     (sender as ListView).SelectedItem = null;
-                    Navigation.PushModalAsync(new CadastrarPedido(produto));
+                    Navigation.PushModalAsync(new CadastrarPedido(produto, this));
                     break;
                 default:
                     (sender as ListView).SelectedItem = null;

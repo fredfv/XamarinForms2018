@@ -17,8 +17,10 @@ namespace Pedidos.SqlServer.View
 	public partial class DetalhePedido : ContentPage
 	{
         Pedido pedidoAtual { get; set; }
+        List<Produto> produto { get; set; }
+        ListaPedidos listaParaAtualizar { get; set; }
 
-        public DetalhePedido (Pedido pedido)
+        public DetalhePedido (ListaPedidos lista, Pedido pedido)
 		{
 			InitializeComponent ();
             if (Master.Permissao != 1)
@@ -26,22 +28,36 @@ namespace Pedidos.SqlServer.View
                 ToolbarItems.RemoveAt(0);
             }
             BindingContext = pedido;
+            listaParaAtualizar = lista;
             pedidoAtual = pedido;
-            Atualizar();
+            PegarMarca();
 		}
 
         private void GoEditar(object sender, EventArgs args)
         {
-            Navigation.PushModalAsync(new EditarPedido(pedidoAtual));
+            Navigation.PushModalAsync(new CadastrarPedido(pedidoAtual, produto[0], this));
         }
 
-        private async void Atualizar()
+        public async void PegarMarca()
         {
-            NomeProduto.Text = pedidoAtual.nomeProduto;
-
-            List<Produto> produto = await ServiceWS.GetProdutoPorIdAsync(pedidoAtual.idProduto);
-
+            produto = await ServiceWS.GetProdutoPorIdAsync(pedidoAtual.idProduto);
             NomeMarca.Text = produto[0].nomeMarca;
+        }
+
+        public async void AtualizarAsync()
+        {
+            try
+            {
+                List<Pedido> pedido = await ServiceWS.GetPedidoPorIdAsync(pedidoAtual.id);
+                BindingContext = pedido[0];
+                pedidoAtual = pedido[0];
+                listaParaAtualizar.AtualizarAsync();
+            }
+            catch
+            {
+                await DisplayAlert("Error", "Erro ao carregar pagina", "Ok");
+            }
+
         }
     }
 }

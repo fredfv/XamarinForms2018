@@ -4,12 +4,31 @@
              x:Class="Pedidos.SqlServer.View.ListaPedidos"
              Title="Pedidos">
     <ContentPage.Content>
-        <StackLayout>
-            <DatePicker HeightRequest="50" x:Name="calendario" Format="dd/MM/yy" MinimumDate="01/05/2018" DateSelected="Buscar"/>
-            <ListView x:Name="Lista" ItemTapped="GoDetalhe">
+        <StackLayout Spacing="10">
+            <Frame>
+                <DatePicker HeightRequest="50" x:Name="calendario" Format="dd/MM/yy" MinimumDate="01/05/2018" DateSelected="Buscar"/>
+            </Frame>
+            <ActivityIndicator HorizontalOptions="Fill"  VerticalOptions="Fill" HeightRequest="50" x:Name="Carregando" Color="Green" IsRunning="true" />
+            <Frame x:Name="ErrorLista" IsVisible="False">
+                <Label Text="Error ao se conectar com a base de dados, verifique sua conexão com a internet, caso persista o error entrar em contato com Administrador do sistema." FontSize="Large" FontAttributes="Italic" TextColor="Gray"/>
+            </Frame>
+            <ListView x:Name="Lista" ItemTapped="GoDetalhe" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding idProduto}" Detail="{Binding quantidade}"/>
+                        <ViewCell Height="80">
+                            <Frame>
+                                <StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Nome: " TextColor="LightGray" FontSize="Small"/>
+                                        <Label Text="{Binding nomeProduto}" FontAttributes="Bold" FontSize="Large"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Quantidade: " TextColor="LightGray" FontSize="Small"/>
+                                        <Label Text="{Binding quantidade}" TextColor="Gray" FontAttributes="Italic" FontSize="Small"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

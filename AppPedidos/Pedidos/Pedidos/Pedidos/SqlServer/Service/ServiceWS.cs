@@ -374,7 +374,7 @@ namespace Pedidos.SqlServer.Service
         //----------------------------------------------------
         //PEDIDOS
         //----------------------------------------------------
-        public static List<Pedido> GetPedidoPorId(int id)
+        public async static Task<List<Pedido>> GetPedidoPorIdAsync(int id)
         {
             var URL = EnderecoBase + "/pedido/obterporid/{0}";
             string NewURL = string.Format(URL, id);
@@ -384,7 +384,7 @@ namespace Pedidos.SqlServer.Service
 
             if (resposta.StatusCode == HttpStatusCode.OK)
             {
-                string conteudo = resposta.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                string conteudo = await resposta.Content.ReadAsStringAsync();
 
                 if (conteudo.Length > 2)
                 {
@@ -402,19 +402,17 @@ namespace Pedidos.SqlServer.Service
             }
         }
 
-        public static List<Pedido> GetPedidos(string data)
+        public async static Task<List<Pedido>> GetPedidosAsync(string data)
         {
             string dataParaEnvio = "?Data=" + data;
-
-            var URL = EnderecoBase + "/pedido/obtertodas/" + dataParaEnvio;
-            
+            var URL = EnderecoBase + "/pedido/obtertodas" + dataParaEnvio;
 
             HttpClient requisicao = new HttpClient();
             HttpResponseMessage resposta = requisicao.GetAsync(URL).GetAwaiter().GetResult();
 
             if (resposta.StatusCode == HttpStatusCode.OK)
             {
-                string conteudo = resposta.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                string conteudo = await resposta.Content.ReadAsStringAsync();
 
                 if (conteudo.Length > 2)
                 {
@@ -442,9 +440,8 @@ namespace Pedidos.SqlServer.Service
                 new KeyValuePair<string, string>("perda", pedido.perda.ToString()),
                 new KeyValuePair<string, string>("troca", pedido.troca.ToString()),
                 new KeyValuePair<string, string>("quantidade", pedido.quantidade.ToString()),
-                new KeyValuePair<string, string>("obs", pedido.obs)
-                //new KeyValuePair<string, string>("dataInclusao", DateTime.Now),
-                //new KeyValuePair<string, string>("idUsuarioInclusao", Menu.Master.IdLogado.ToString())
+                new KeyValuePair<string, string>("obs", pedido.obs),
+                new KeyValuePair<string, string>("idUsuarioInclusao", Menu.Master.IdLogado.ToString())
             });
 
             HttpClient requisicao = new HttpClient();
@@ -458,23 +455,23 @@ namespace Pedidos.SqlServer.Service
             return false;
         }
 
-        public static bool UpdatePedido(Pedido pedido, int idUsuarioAlteracao)
+        public async static Task<bool> UpdatePedidoAsync(Pedido pedido)
         {
             var URL = EnderecoBase + "/pedido/salvar";
 
             FormUrlEncodedContent param = new FormUrlEncodedContent(new[]
             {
-                //new KeyValuePair<string, string>("id", pedido.id.ToString()),
+                new KeyValuePair<string, string>("id", pedido.id.ToString()),
                 new KeyValuePair<string, string>("idProduto", pedido.idProduto.ToString()),
                 new KeyValuePair<string, string>("perda", pedido.perda.ToString()),
                 new KeyValuePair<string, string>("troca", pedido.troca.ToString()),
                 new KeyValuePair<string, string>("quantidade", pedido.quantidade.ToString()),
-                new KeyValuePair<string, string>("obs", pedido.obs)
-                //new KeyValuePair<string, string>("idUsuarioAlteracao", idUsuarioAlteracao.ToString())
+                new KeyValuePair<string, string>("obs", pedido.obs),
+                new KeyValuePair<string, string>("IdUsuarioInclusao", Menu.Master.IdLogado.ToString())
             });
 
             HttpClient requisicao = new HttpClient();
-            HttpResponseMessage resposta = requisicao.PostAsync(URL, param).GetAwaiter().GetResult();
+            HttpResponseMessage resposta = await requisicao.PostAsync(URL, param);
 
             if (resposta.StatusCode == HttpStatusCode.OK)
             {

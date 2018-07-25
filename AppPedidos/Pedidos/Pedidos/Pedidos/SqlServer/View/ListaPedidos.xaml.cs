@@ -14,30 +14,66 @@ namespace Pedidos.SqlServer.View
 	public partial class ListaPedidos : ContentPage
 	{
         private List<Pedido> ListaInterna { get; set; }
-        //private List<Pedido> ListaFiltrada { get; set; }
+        private bool podeBuscar { get; set; }
 
         public ListaPedidos()
         {
             InitializeComponent();
-
-            DateTime dataDeHoje = DateTime.Now;
-            calendario.MaximumDate = DateTime.Now;
-
-            ListaInterna = Service.ServiceWS.GetPedidos(dataDeHoje.ToString("dd/MM/yy"));
-            Lista.ItemsSource = ListaInterna;
         }
 
-        private void Buscar(object sender, DateChangedEventArgs args)
+        protected override void OnAppearing()
         {
-            ListaInterna = Service.ServiceWS.GetPedidos(args.NewDate.ToString("dd/MM/yy"));
-            Lista.ItemsSource = ListaInterna;
+            base.OnAppearing();
+            AtualizarAsync();
+        }
+
+        public async void AtualizarAsync()
+        {
+            podeBuscar = false;
+            Carregando.IsVisible = true;
+
+            try
+            {
+                DateTime dataDeHoje = DateTime.Now;
+                calendario.MaximumDate = DateTime.Now;
+                ListaInterna = await Service.ServiceWS.GetPedidosAsync(dataDeHoje.ToString("dd/MM/yy"));
+                podeBuscar = true;
+                Lista.ItemsSource = ListaInterna;
+            }
+            catch
+            {
+                await DisplayAlert("Error", "Erro ao carregar pedidos", "Ok");
+                podeBuscar = false;
+                ErrorLista.IsVisible = true;
+            }
+            Carregando.IsVisible = false;
+
+        }
+
+        private async void Buscar(object sender, DateChangedEventArgs args)
+        {
+            if (podeBuscar)
+            {
+                try
+                {
+                    ListaInterna = await Service.ServiceWS.GetPedidosAsync(args.NewDate.ToString("dd/MM/yy"));
+                    Lista.ItemsSource = ListaInterna;
+                }
+                catch
+                {
+                    await DisplayAlert("Error", "Erro ao carregar pedidos", "Ok");
+                    podeBuscar = false;
+                    ErrorLista.IsVisible = true;
+                }
+            }
         }
 
         private void GoDetalhe(object sender, ItemTappedEventArgs args)
         {
             Pedido pedido = (Pedido)args.Item;
 
-            Navigation.PushAsync(new DetalhePedido(pedido));
+            (sender as ListView).SelectedItem = null;
+            Navigation.PushAsync(new DetalhePedido(this, pedido));
         }
     }
 }

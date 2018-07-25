@@ -12,17 +12,62 @@ using Pedidos.Menu;
 
 namespace Pedidos.SqlServer.View
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class CadastrarPedido : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class CadastrarPedido : ContentPage
+    {
+        private bool isCadastro { get; set; }
         private int IdProduto { get; set; }
+        private int IdPedido { get; set; }
+        
+        private int perdaOriginal { get; set; }
+        private int trocaOriginal { get; set; }
+        private int quantidadeOriginal {get; set; }
+        private string obsOriginal {get; set; }
 
-		public CadastrarPedido (Produto produto)
+        ListaProdutos listaParaAtualizar { get; set; }
+        DetalhePedido detalheParaAtualizar { get; set; }
+
+        //CADASTRAR
+		public CadastrarPedido (Produto produto, ListaProdutos lista)
 		{
 			InitializeComponent ();
-            BindingContext = produto;
-            AtualizarAsync(produto);
+            listaParaAtualizar = lista;
+            BtnCadastro.Text = "Cadastrar";
+            Cabecalho.Text = "Gerar novo pedido";
+
+            MarcaProduto.Text = produto.nomeMarca;
+            NomeProduto.Text = produto.nome;
+            IdProduto = produto.id;
+
+            Carregando.IsVisible = false;
+            isCadastro = true;
 		}
+
+        //EDITAR
+        public CadastrarPedido(Pedido pedido, Produto produto, DetalhePedido detalhe)
+        {
+            InitializeComponent();
+            detalheParaAtualizar = detalhe;
+            IdPedido = pedido.id;
+            IdProduto = produto.id;
+
+            BtnCadastro.Text = "Editar";
+            Cabecalho.Text = "Editar pedido";
+
+            NomeProduto.Text = pedido.nomeProduto;
+            MarcaProduto.Text = produto.nomeMarca;
+            Perda.Text = pedido.perda.ToString();
+            perdaOriginal = pedido.perda;
+            Troca.Text = pedido.troca.ToString();
+            trocaOriginal = pedido.troca;
+            Quantidade.Text = pedido.quantidade.ToString();
+            quantidadeOriginal = pedido.quantidade;
+            Obs.Text = pedido.obs;
+            obsOriginal = pedido.obs;
+
+            Carregando.IsVisible = false;
+            isCadastro = false;
+        }
 
         protected override void OnAppearing()
         {
@@ -30,54 +75,130 @@ namespace Pedidos.SqlServer.View
             SlTitulo.BackgroundColor = Master.CorPermissao;
         }
 
-        private async void AtualizarAsync(Produto prod)
+        private bool checarAlteracao()
         {
-            List<Marca> marca = await ServiceWS.GetMarcaPorIdAsync(prod.idMarca);
-            Marca.Text = marca[0].nome;
-            IdProduto = prod.id;
-            Carregando.IsVisible = false;
+            int alterado = 0;
+
+            if (int.Parse(Perda.Text) == perdaOriginal)
+                alterado++;
+            if (int.Parse(Troca.Text) == trocaOriginal)
+                alterado++;
+            if (int.Parse(Quantidade.Text) == quantidadeOriginal)
+                alterado++;
+            if (Obs.Text == obsOriginal)
+                alterado++;
+
+
+            if (alterado == 4)
+                return false;
+            else
+                return true;
         }
 
-        private async void Cadastrar(object sender, EventArgs args)
+        private async void EnviarDados(object sender, EventArgs args)
         {
+            bool podeAtualizar = false;
             Carregando.IsVisible = true;
-            if (ValidaPedido() == 1)
+
+            if (checarAlteracao())
             {
-                Perda.IsEnabled = false;
-                Troca.IsEnabled = false;
-                Quantidade.IsEnabled = false;
-                Obs.IsEnabled = false;
-                BtnCadastro.IsEnabled = false;
-
-                Pedido novoPedido = new Pedido()
+                if (!isCadastro)
                 {
-                    idUsuarioInclusao = Menu.Master.IdLogado,
-                    idProduto = IdProduto,
-                    perda = int.Parse(Perda.Text),
-                    troca = int.Parse(Troca.Text),
-                    quantidade = int.Parse(Quantidade.Text),
-                    obs = Obs.Text
-                };
-
-                bool ok = await ServiceWS.InsertPedidoAsync(novoPedido);
-                if (ok)
-                {
-                    await DisplayAlert("Cadastrado", "Cadastro efetuado com sucesso", "Ok");
-                    await Navigation.PopModalAsync();
+                    var resultado = await DisplayAlert("Atualizar?", "Deseja atualizar o Pedido?", "NÂO", "SIM");
+                    podeAtualizar = resultado ? false : true;
                 }
                 else
                 {
-                    await DisplayAlert("Error", "Ocorreu um erro no cadastro", "Ok");
-                    await Navigation.PopModalAsync();
+                    podeAtualizar = true;
                 }
             }
-            else if (ValidaPedido() == 2)
+            else
             {
-                await DisplayAlert("Error", "Favor verificar o preenchimento dos campos", "Ok");
+                await DisplayAlert("Error", "Não ocorreu nenhuma alteração de dados", "Ok");
             }
-            else if (ValidaPedido() == 3)
+
+            if (podeAtualizar)
             {
-                await DisplayAlert("Error", "Dados inconsistentes", "Ok");
+                if (VerificarConexao.TemInternet())
+                {
+                    if (ValidaPedido() == 1)
+                    {
+                        Perda.IsEnabled = false;
+                        Troca.IsEnabled = false;
+                        Quantidade.IsEnabled = false;
+                        Obs.IsEnabled = false;
+                        BtnCadastro.IsEnabled = false;
+
+                        Pedido novoPedido = new Pedido()
+                        {
+                            idProduto = IdProduto,
+                            perda = int.Parse(Perda.Text),
+                            troca = int.Parse(Troca.Text),
+                            quantidade = int.Parse(Quantidade.Text),
+                            obs = Obs.Text
+                        };
+
+                        if (!isCadastro)
+                        {
+                            novoPedido.id = IdPedido;
+                            try
+                            {
+                                bool ok = await ServiceWS.UpdatePedidoAsync(novoPedido);
+                                if (ok)
+                                {
+                                    detalheParaAtualizar.AtualizarAsync();
+                                    await Navigation.PopModalAsync();
+                                }
+                                else
+                                {
+                                    await DisplayAlert("Error", "Ocorreu um erro durante a alteração dos dados", "Ok");
+                                    await Navigation.PopModalAsync();
+                                }
+                            }
+                            catch
+                            {
+                                await DisplayAlert("Error", "Ocorreu um erro durante a alteração dos dados", "Ok");
+                                await Navigation.PopModalAsync();
+                            }
+                        }
+                        else
+                        {
+                            try
+                            {
+                                bool ok = await ServiceWS.InsertPedidoAsync(novoPedido);
+                                if (ok)
+                                {
+                                    listaParaAtualizar.AtualizarAsync();
+                                    await Navigation.PopModalAsync();
+                                }
+                                else
+                                {
+                                    await DisplayAlert("Error", "Ocorreu um erro no cadastro", "Ok");
+                                    await Navigation.PopModalAsync();
+                                }
+                            }
+                            catch
+                            {
+                                await DisplayAlert("Error", "Ocorreu um erro no cadastro", "Ok");
+                                await Navigation.PopModalAsync();
+                            }
+                        }
+
+                    }
+                    else if (ValidaPedido() == 2)
+                    {
+                        await DisplayAlert("Error", "Favor verificar o preenchimento dos campos", "Ok");
+                    }
+                    else if (ValidaPedido() == 3)
+                    {
+                        await DisplayAlert("Error", "Dados inconsistentes", "Ok");
+                    }
+                }
+                else
+                {
+                    SemConexao();
+                }
+                Carregando.IsVisible = false;
             }
             Carregando.IsVisible = false;
         }
@@ -117,6 +238,11 @@ namespace Pedidos.SqlServer.View
         private void FecharModal(object sender, EventArgs args)
         {
             Navigation.PopModalAsync();
+        }
+
+        private void SemConexao()
+        {
+            DisplayAlert("Error", "Não há conexão com a Internet", "Ok");
         }
     }
 }
