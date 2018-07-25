@@ -13,7 +13,6 @@ namespace Pedidos.SqlServer.View
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ListaPessoas : ContentPage
 	{
-
         private List<Pessoa> ListaInterna { get; set; }
         private List<Pessoa> ListaFiltrada { get; set; }
 
@@ -28,7 +27,6 @@ namespace Pedidos.SqlServer.View
         private void GoDetalhe(object sender, SelectedItemChangedEventArgs args)
         {
             Pessoa pessoa = (Pessoa)args.SelectedItem;
-
             Navigation.PushAsync(new DetalhePessoa(pessoa));
         }
 

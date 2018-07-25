@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Pedidos.SqlServer.Model;
 using Pedidos.SqlServer.Service;
+using Pedidos.Menu;
 
 namespace Pedidos.SqlServer.View
 {
@@ -20,6 +21,11 @@ namespace Pedidos.SqlServer.View
 		public DetalheMarca (ListaMarcas lista, Marca marca)
 		{
 			InitializeComponent ();
+            if (Master.Permissao != 1)
+            {
+                ToolbarItems.RemoveAt(0);
+                ToolbarItems.RemoveAt(0);
+            }
             BindingContext = marca;
             listaParaAtualizar = lista;
             marcaAtual = marca;

@@ -8,19 +8,14 @@
             <StackLayout Padding="25">
                 <Image Source="Logo.png" HorizontalOptions="FillAndExpand" />
             </StackLayout>
-
             <StackLayout Margin="13, -10" Padding="25" Spacing="50">
-
                 <StackLayout x:Name="area" Spacing="10">
-
                     <Frame>
                         <Entry x:Name="Login" Placeholder="Login" PlaceholderColor="Gray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
                     </Frame>
-
                     <Frame>
                         <StackLayout Orientation="Horizontal">
                             <Entry HorizontalOptions="FillAndExpand" x:Name="Senha" Placeholder="Senha" PlaceholderColor="Gray" IsPassword="true"/>
-                            <!--<Button HorizontalOptions="End" Text="Ver" Clicked="VerSenha"/>-->
                             <Image HorizontalOptions="End" x:Name="VerPass" Source="verOn.png" HeightRequest="30" WidthRequest="30">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer
@@ -29,15 +24,12 @@
                                     />
                                 </Image.GestureRecognizers>
                             </Image>
-
                         </StackLayout>
                     </Frame>
-
                     <StackLayout>
                         <Button x:Name="btnLogar" BackgroundColor="Black" Text="Logar" TextColor="White" Clicked="Logar"/>
                     </StackLayout>
                 </StackLayout>
-
                 <StackLayout>
                     <ActivityIndicator HorizontalOptions="Fill"  VerticalOptions="Fill" HeightRequest="50" x:Name="Carregando" Color="Green" IsRunning="false" />
                 </StackLayout>

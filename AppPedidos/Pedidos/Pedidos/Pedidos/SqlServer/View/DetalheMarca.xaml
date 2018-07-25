@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Pedidos.SqlServer.View.DetalheMarca"
-             Title="Detalhe da Marca">
+             Title="Detalhes da Marca">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Excluir" Icon="trashW.png" Clicked="GoDeletar"/>
         <ToolbarItem Text="Editar" Icon="editW.png" Clicked="GoEditar"/>

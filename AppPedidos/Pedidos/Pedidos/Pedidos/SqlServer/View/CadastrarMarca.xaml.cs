@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Pedidos.SqlServer.Model;
 using Pedidos.SqlServer.Service;
+using Pedidos.Menu;
 
 namespace Pedidos.SqlServer.View
 {
@@ -19,6 +20,7 @@ namespace Pedidos.SqlServer.View
         ListaMarcas listaParaAtualizar { get; set; }
         DetalheMarca detalheParaAtualizar { get; set; }
         private string nomeMarcaOriginal { get; set; }
+        private int codigoMarcaOriginal { get; set; }
 
         //CADASTRAR
         public CadastrarMarca (ListaMarcas lista)
@@ -37,6 +39,7 @@ namespace Pedidos.SqlServer.View
         {
             InitializeComponent();
             nomeMarcaOriginal = detalhe.marcaAtual.nome;
+            codigoMarcaOriginal = detalhe.marcaAtual.codigo;
             BindingContext = detalhe.marcaAtual;
 
             marcaNaPagina = detalhe.marcaAtual;
@@ -48,18 +51,47 @@ namespace Pedidos.SqlServer.View
             isCadastro = false;
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            SlTitulo.BackgroundColor = Master.CorPermissao;
+        }
+
+        private bool checarAlteracao()
+        {
+            int alterado = 0;
+
+            if(Nome.Text == nomeMarcaOriginal)
+                alterado++;
+            if (int.Parse(Codigo.Text) == codigoMarcaOriginal)
+                alterado++;
+
+            if (alterado == 2)
+                return false;
+            else
+                return true;
+        }
+
         private async void EnviarDados(object sender, EventArgs args)
         {
             bool podeAtualizar = false;
             Carregando.IsVisible = true;
-            if (!isCadastro)
+
+            if (checarAlteracao())
             {
-                var resultado = await DisplayAlert("Atualizar?", "Deseja atualizar os dados de:\n" + nomeMarcaOriginal + "?", "NÂO", "SIM");
-                podeAtualizar = resultado ? false : true;
+                if (!isCadastro)
+                {
+                    var resultado = await DisplayAlert("Atualizar?", "Deseja atualizar os dados de:\n" + nomeMarcaOriginal + "?", "NÂO", "SIM");
+                    podeAtualizar = resultado ? false : true;
+                }
+                else
+                {
+                    podeAtualizar = true;
+                }
             }
             else
             {
-                podeAtualizar = true;
+                await DisplayAlert("Error", "Não ocorreu nenhuma alteração de dados", "Ok");
             }
 
             if (podeAtualizar)

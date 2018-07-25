@@ -1,53 +1,55 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Pedidos.Menu.Master">
+             x:Class="Pedidos.Menu.Master"
+             >
     <MasterDetailPage.Master>
         <ContentPage Title="Pedidos">
             <StackLayout>
-                <StackLayout Spacing="10" Padding="17">
-                    <!--ABRINDO A LISTA DE CADA OBJETO-->
-                    <StackLayout x:Name="SlAdm">
-                        <StackLayout Orientation="Horizontal" Spacing="30" HorizontalOptions="StartAndExpand">
-                            <Image Source="pessoas.png" HeightRequest="30" WidthRequest="30"/>
-                            <Button Text="Pessoas" Clicked="GoListaPessoas" BackgroundColor="Transparent"/>
-                        </StackLayout>
-
-                        <StackLayout Orientation="Horizontal" Spacing="30" HorizontalOptions="StartAndExpand">
-                            <Image Source="marcas.png" HeightRequest="30" WidthRequest="30"/>
-                            <Button Text="Marcas" Clicked="GoListaMarcas" BackgroundColor="Transparent"/>
-                        </StackLayout>
-
-                        <StackLayout Orientation="Horizontal" Spacing="30" HorizontalOptions="StartAndExpand">
-                            <Image Source="produtos.png" HeightRequest="30" WidthRequest="30"/>
-                            <Button Text="Produtos" Clicked="GoListaProdutos" BackgroundColor="Transparent"/>
-                        </StackLayout>
-                    </StackLayout>
-
-                    <StackLayout Orientation="Horizontal" Spacing="30" HorizontalOptions="StartAndExpand">
-                        <Image Source="pedidos.png" HeightRequest="30" WidthRequest="30"/>
-                        <Button Text="Pedidos" Clicked="GoListaPedidos" BackgroundColor="Transparent"/>
-                    </StackLayout>
-
-                    <StackLayout Orientation="Horizontal" Spacing="30" HorizontalOptions="StartAndExpand">
-                        <Image Source="novopedido.png" HeightRequest="30" WidthRequest="30"/>
-                        <Button Text="Novo Pedido" Clicked="GoNovoPedido" BackgroundColor="Transparent"/>
-                    </StackLayout>
-
+                <StackLayout x:Name="SlTitulo" VerticalOptions="Start" Padding="10">
+                    <Label FontAttributes="Italic" TextColor="LightGray" x:Name="lblTipoUsuario" FontSize="10" HorizontalOptions="Start"/>
+                    <Label FontAttributes="Bold" TextColor="White" x:Name="lblNomeUsuario" FontSize="25" HorizontalOptions="Center" LineBreakMode="TailTruncation"/>
                 </StackLayout>
-                <StackLayout VerticalOptions="EndAndExpand" Spacing="30" Padding="17">
-                    <StackLayout>
-                        <StackLayout Orientation="Horizontal" Spacing="30" HorizontalOptions="StartAndExpand">
-                            <Image Source="pessoa.png" HeightRequest="30" WidthRequest="30"/>
-                            <Button Text="Perfil" Clicked="GoPerfil" BackgroundColor="Transparent"/>
+                <StackLayout VerticalOptions="FillAndExpand">
+                    <StackLayout Spacing="10" Padding="17">
+                        <StackLayout x:Name="isAdm">
+                            <StackLayout Orientation="Horizontal" Spacing="30" HorizontalOptions="StartAndExpand">
+                                <Image Source="pessoas.png" HeightRequest="30" WidthRequest="30"/>
+                                <Button Text="Pessoas" Clicked="GoListaPessoas" BackgroundColor="Transparent"/>
+                            </StackLayout>
                         </StackLayout>
+                        <StackLayout x:Name="isSuper">
+                            <StackLayout Orientation="Horizontal" Spacing="30" HorizontalOptions="StartAndExpand">
+                                <Image Source="marcas.png" HeightRequest="30" WidthRequest="30"/>
+                                <Button Text="Marcas" Clicked="GoListaMarcas" BackgroundColor="Transparent"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" Spacing="30" HorizontalOptions="StartAndExpand">
+                                <Image Source="produtos.png" HeightRequest="30" WidthRequest="30"/>
+                                <Button Text="Produtos" Clicked="GoListaProdutos" BackgroundColor="Transparent"/>
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout x:Name="isPromotor">
+                            <StackLayout Orientation="Horizontal" Spacing="30" HorizontalOptions="StartAndExpand">
+                                <Image Source="pedidos.png" HeightRequest="30" WidthRequest="30"/>
+                                <Button Text="Pedidos" Clicked="GoListaPedidos" BackgroundColor="Transparent"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" Spacing="30" HorizontalOptions="StartAndExpand">
+                                <Image Source="novopedido.png" HeightRequest="30" WidthRequest="30"/>
+                                <Button Text="Novo Pedido" Clicked="GoNovoPedido" BackgroundColor="Transparent"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout VerticalOptions="EndAndExpand" Spacing="30" Padding="17">
+                        <StackLayout>
+                            <StackLayout Orientation="Horizontal" Spacing="30" HorizontalOptions="StartAndExpand">
+                                <Image Source="pessoa.png" HeightRequest="30" WidthRequest="30"/>
+                                <Button Text="Perfil" Clicked="GoPerfil" BackgroundColor="Transparent"/>
+                            </StackLayout>
 
-                        <Label FontAttributes="Italic" x:Name="Nome"/>
-                        <Label FontAttributes="Bold" TextColor="Gray" x:Name="Tipo"/>
-                        
-                        <StackLayout Orientation="Horizontal" Spacing="30" HorizontalOptions="StartAndExpand">
-                            <Image Source="sair.png" HeightRequest="30" WidthRequest="30"/>
-                            <Button BackgroundColor="Transparent" TextColor="Red" Text="Deslogar" Clicked="Sair"/>
+                            <StackLayout Orientation="Horizontal" Spacing="30" HorizontalOptions="StartAndExpand">
+                                <Image Source="sair.png" HeightRequest="30" WidthRequest="30"/>
+                                <Button BackgroundColor="Transparent" TextColor="Red" Text="SAIR" Clicked="Sair"/>
+                            </StackLayout>
                         </StackLayout>
                     </StackLayout>
                 </StackLayout>

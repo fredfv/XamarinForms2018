@@ -4,26 +4,31 @@
              x:Class="Pedidos.SqlServer.View.DetalheProduto"
              Title="Detalhes do Produto">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="trashW.png" Clicked="GoDeletar"/>
-        <ToolbarItem Icon="editW.png" Clicked="GoEditar"/>
+        <ToolbarItem Text="Excluir" Icon="trashW.png" Clicked="GoDeletar"/>
+        <ToolbarItem Text="Editar" Icon="editW.png" Clicked="GoEditar"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Margin="10" Padding="10">
-                <Label Text="Nome - " TextColor="DarkGreen" FontSize="20" FontAttributes="Italic"/>
-                <Label Text="{Binding nome}" FontAttributes="Bold" FontSize="24"/>
+                <ActivityIndicator HorizontalOptions="Fill" IsVisible="False" VerticalOptions="Fill" HeightRequest="50" x:Name="Carregando" Color="Green" IsRunning="true" />
+                <Frame>
+                    <StackLayout>
+                        <Label Text="Nome - " TextColor="LightGray" FontSize="20" FontAttributes="Italic"/>
+                        <Label Text="{Binding nome}" FontAttributes="Bold" FontSize="24"/>
 
-                <Label Text="Marca - " TextColor="DarkGreen" FontSize="20" FontAttributes="Italic"/>
-                <Label Text="{Binding nomeMarca}" FontSize="24"/>
+                        <Label Text="Marca - " TextColor="LightGray" FontSize="20" FontAttributes="Italic"/>
+                        <Label Text="{Binding nomeMarca}" FontSize="24"/>
 
-                <Label Text="Codigo - " TextColor="DarkGreen" FontSize="18" FontAttributes="Italic" />
-                <Label Text="{Binding codigo}" FontSize="22"/>
+                        <Label Text="Codigo - " TextColor="LightGray" FontSize="18" FontAttributes="Italic" />
+                        <Label Text="{Binding codigo}" FontSize="22"/>
 
-                <Label Text="Data Inclusão - " TextColor="DarkGreen" FontSize="18" FontAttributes="Italic"/>
-                <Label Text="{Binding dataInclusao}" FontSize="22"/>
+                        <Label Text="Data Inclusão - " TextColor="LightGray" FontSize="18" FontAttributes="Italic"/>
+                        <Label Text="{Binding dataInclusao}" FontSize="22"/>
 
-                <Label Text="Data Alteração - " TextColor="DarkGreen" FontSize="18" FontAttributes="Italic"/>
-                <Label Text="{Binding dataAlteracao}" FontSize="22"/>
+                        <Label Text="Data Alteração - " TextColor="LightGray" FontSize="18" FontAttributes="Italic"/>
+                        <Label Text="{Binding dataAlteracao}" FontSize="22"/>
+                    </StackLayout>
+                </Frame>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

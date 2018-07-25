@@ -10,7 +10,7 @@ namespace Pedidos.SqlServer.Model
 
         public string nome { get; set; }
 
-        public int? codigo { get; set; }
+        public int codigo { get; set; }
 
         public int idMarca { get; set; }
 

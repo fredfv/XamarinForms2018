@@ -16,6 +16,7 @@ namespace Pedidos
 	{
 
         private List<Pessoa> usuarioLogado { get; set; }
+        private Usuario usuarioParaLogar { get; set; }
         private int login { get; set; }
         private bool ver { get; set; }
 
@@ -23,8 +24,8 @@ namespace Pedidos
         {
             ver = false;
 			InitializeComponent();
-            Login.Text = "5";
-            Senha.Text = "5";
+            Login.Text = "adm";
+            Senha.Text = "123456";
             btnLogar.Text = "LOGAR";
         }
 
@@ -32,7 +33,6 @@ namespace Pedidos
         {
             ver = !ver;
             Senha.IsPassword = !Senha.IsPassword;
-
             VerPass.Source = ver ? "verOff" : "verOn";
         }
 
@@ -47,36 +47,29 @@ namespace Pedidos
 
                 try
                 {
-                    login = int.Parse(Login.Text);
-                }
-                catch
-                {
-                    msg();
-                    return;
-                }
-
-                try
-                {
                     Carregando.IsRunning = true;
-                    usuarioLogado = await ServiceWS.Login(login);
 
-                    if (usuarioLogado[0].cep == Senha.Text)
+                    usuarioParaLogar = await ServiceWS.Logar(Login.Text, Senha.Text);
+
+                    usuarioLogado = await ServiceWS.GetPessoaPorIdAsync(usuarioParaLogar.IdPessoa);
+
+                    if (usuarioParaLogar.Login == Login.Text)
                     {
-                        App.Current.MainPage = new Pedidos.Menu.Master(usuarioLogado[0]);
+                        App.Current.MainPage = new Pedidos.Menu.Master(usuarioLogado[0], usuarioParaLogar);
                     }
                     else
                     {
                         msg();
                     }
                 }
-                catch (Exception)
+                catch
                 {
-                    msg();
+                    msgInternet();
                 }
             }
             else
             {
-                await DisplayAlert("Error", "Sem conexão com a Internet", "Ok!");
+                await DisplayAlert("Error", "Sem conexão com a Internet", "Ok");
             }
         }
 
@@ -84,10 +77,22 @@ namespace Pedidos
         {
             Carregando.IsRunning = false;
 
-            DisplayAlert("Erro ao logar", "Usuario ou senha errados!", "Okey");
+            DisplayAlert("Erro ao logar", "Usuario ou senha errados!", "Ok");
 
             Login.Text = "";
             Senha.Text = "";
+
+            VerPass.IsEnabled = true;
+            btnLogar.Text = "Logar";
+            area.IsEnabled = true;
+            Carregando.IsRunning = false;
+        }
+
+        private void msgInternet()
+        {
+            Carregando.IsRunning = false;
+
+            DisplayAlert("Error", "Sem conexão com a Internet", "Ok");
 
             VerPass.IsEnabled = true;
             btnLogar.Text = "Logar";

@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Pedidos.SqlServer.Model;
 using Pedidos.SqlServer.Service;
+using Pedidos.Menu;
 
 namespace Pedidos.SqlServer.View
 {
@@ -15,14 +16,15 @@ namespace Pedidos.SqlServer.View
 	public partial class CadastrarProduto : ContentPage
 	{
         bool isCadastro { get; set; }
-        bool ok { get; set; }
         Produto produtoNaPagina { get; set; }
-        ListaProdutosPorMarca listaParaAtualizar { get; set; }
-        DetalheProduto detalheParaAtualizar { get; set; }
         Marca marcaNaPagina { get; set; }
+        ListaProdutos listaParaAtualizar { get; set; }
+        DetalheProduto detalheParaAtualizar { get; set; }
+        private string nomeProdutoOriginal { get; set; }
+        private int codigoProdutoOriginal { get; set; }
 
         //CADASTRAR
-        public CadastrarProduto(ListaProdutosPorMarca lista, Marca marca)
+        public CadastrarProduto(ListaProdutos lista, Marca marca)
         {
             InitializeComponent();
 
@@ -30,7 +32,8 @@ namespace Pedidos.SqlServer.View
             listaParaAtualizar = lista;
 
             Cabecalho.Text = "Cadastrar";
-            BtnCadastro.Text = "Enviar";
+            BtnEnviar.Text = "Enviar";
+
             isCadastro = true;
         }
 
@@ -38,72 +41,146 @@ namespace Pedidos.SqlServer.View
         public CadastrarProduto(DetalheProduto detalhe, Produto produto)
         {
             InitializeComponent();
-            BindingContext = produto;
+
+            nomeProdutoOriginal = detalhe.produtoAtual.nome;
+            codigoProdutoOriginal = detalhe.produtoAtual.codigo;
 
             produtoNaPagina = produto;
+            
+            BindingContext = detalhe.produtoAtual;
+
             detalheParaAtualizar = detalhe;
 
             Cabecalho.Text = "Editar";
-            BtnCadastro.Text = "Salvar";
+            BtnEnviar.Text = "Salvar";
+
             isCadastro = false;
         }
 
-        private void EnviarDados(object sender, EventArgs args)
+        protected override void OnAppearing()
         {
-            if (ValidaMarca() == 1)
-            {
-                Produto novoProduto = new Produto();
-                novoProduto.nome = Nome.Text;
-                novoProduto.codigo = int.Parse(Codigo.Text);
-
-                if (!isCadastro)
-                {
-                    novoProduto.id = produtoNaPagina.id;
-                    ok = ServiceWS.UpdateProduto(novoProduto, produtoNaPagina.idMarca);
-                }
-                else
-                {
-                    ok = ServiceWS.InsertProduto(novoProduto, marcaNaPagina.id);
-                }
-
-                if (ok)
-                {
-                    if (isCadastro)
-                    {
-                        Mensagem.Text = "Cadastro efetuado com sucesso";
-                        listaParaAtualizar.Atualizar();
-                    }
-                    else
-                    {
-                        Mensagem.Text = "Dados alterados com sucesso";
-                        detalheParaAtualizar.Atualizar();
-                    }
-                }
-                else
-                {
-                    if (isCadastro)
-                    {
-                        Mensagem.Text = "Ocorreu um erro no cadastro";
-                    }
-                    else
-                    {
-                        Mensagem.Text = "Ocorreu um erro durante a alteração dos dados";
-                    }
-                }
-            }
-            else if (ValidaMarca() == 2)
-            {
-                DisplayAlert("Error", "Favor verificar o preenchimento dos campos", "Ok");
-            }
-            else if (ValidaMarca() == 3)
-            {
-                DisplayAlert("Error", "Dados inconsistentes", "Ok");
-            }
-
-
+            base.OnAppearing();
+            SlTitulo.BackgroundColor = Master.CorPermissao;
         }
 
-        private int ValidaMarca()
+
+        private bool checarAlteracao()
+        {
+            int alterado = 0;
+
+            if (Nome.Text == nomeProdutoOriginal)
+                alterado++;
+            if (int.Parse(Codigo.Text) == codigoProdutoOriginal)
+                alterado++;
+
+            if (alterado == 2)
+                return false;
+            else
+                return true;
+        }
+
+        private async void EnviarDados(object sender, EventArgs args)
+        {
+            bool podeAtualizar = false;
+            Carregando.IsVisible = true;
+
+            if (checarAlteracao())
+            {
+                if (!isCadastro)
+                {
+                    var resultado = await DisplayAlert("Atualizar?", "Deseja atualizar os dados de:\n" + nomeProdutoOriginal + "?", "NÂO", "SIM");
+                    podeAtualizar = resultado ? false : true;
+                }
+                else
+                {
+                    podeAtualizar = true;
+                }
+            }
+            else
+            {
+                await DisplayAlert("Error", "Não ocorreu nenhuma alteração de dados", "Ok");
+            }
+
+            if (podeAtualizar)
+            {
+                if (VerificarConexao.TemInternet())
+                {
+                    if (ValidaProduto() == 1)
+                    {
+                        Nome.IsEnabled = false;
+                        Codigo.IsEnabled = false;
+                        BtnEnviar.IsEnabled = false;
+
+                        Produto novoProduto = new Produto
+                        {
+                            nome = Nome.Text,
+                            codigo = int.Parse(Codigo.Text)
+                        };
+
+                        if (!isCadastro)
+                        {
+                            novoProduto.id = produtoNaPagina.id;
+                            try
+                            {
+                                bool ok = await ServiceWS.UpdateProdutoAsync(novoProduto, produtoNaPagina.idMarca);
+                                if (ok)
+                                {
+                                    detalheParaAtualizar.AtualizarAsync();
+                                    await Navigation.PopModalAsync();
+                                }
+                                else
+                                {
+                                    await DisplayAlert("Error", "Ocorreu um erro durante a alteração dos dados", "Ok");
+                                    await Navigation.PopModalAsync();
+                                }
+                            }
+                            catch
+                            {
+                                await DisplayAlert("Error", "Ocorreu um erro durante a alteração dos dados", "Ok");
+                                await Navigation.PopModalAsync();
+                            }
+                        }
+                        else
+                        {
+                            try
+                            {
+                                bool ok = await ServiceWS.InsertProdutoAsync(novoProduto, marcaNaPagina.id);
+                                if (ok)
+                                {
+                                    listaParaAtualizar.AtualizarAsync();
+                                    await Navigation.PopModalAsync();
+                                }
+                                else
+                                {
+                                    await DisplayAlert("Error", "Ocorreu um erro no cadastro", "Ok");
+                                    await Navigation.PopModalAsync();
+                                }
+                            }
+                            catch
+                            {
+                                await DisplayAlert("Error", "Ocorreu um erro no cadastro", "Ok");
+                                await Navigation.PopModalAsync();
+                            }
+                        }
+                    }
+                    else if (ValidaProduto() == 2)
+                    {
+                        await DisplayAlert("Error", "Favor verificar o preenchimento dos campos", "Ok");
+                    }
+                    else if (ValidaProduto() == 3)
+                    {
+                        await DisplayAlert("Error", "Dados inconsistentes", "Ok");
+                    }
+                }
+                else
+                {
+                    SemConexao();
+                }
+            }
+            Carregando.IsVisible = false;
+        }
+
+        private int ValidaProduto()
         {
             /*
              1 = ok
@@ -132,10 +209,14 @@ namespace Pedidos.SqlServer.View
             }
         }
 
-
         private void FecharModal(object sender, EventArgs args)
         {
             Navigation.PopModalAsync();
+        }
+
+        private void SemConexao()
+        {
+            DisplayAlert("Error", "Não há conexão com a Internet", "Ok");
         }
     }
 }

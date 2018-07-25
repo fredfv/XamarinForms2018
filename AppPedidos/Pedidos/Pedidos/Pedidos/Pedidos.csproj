@@ -36,9 +36,6 @@
     <Compile Update="SqlServer\View\ListaPessoas.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
-    <Compile Update="SqlServer\View\ListaProdutosPorMarca.xaml.cs">
-      <DependentUpon>%(Filename)</DependentUpon>
-    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -78,7 +75,7 @@
     <EmbeddedResource Update="SqlServer\View\EditarPedido.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="SqlServer\View\ListaProdutosParaNovoPedido.xaml">
+    <EmbeddedResource Update="SqlServer\View\ListaProdutos.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

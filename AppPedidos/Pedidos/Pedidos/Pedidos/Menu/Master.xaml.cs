@@ -11,32 +11,65 @@ using Pedidos.SqlServer.Service;
 
 namespace Pedidos.Menu
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class Master : MasterDetailPage
-	{
-
-        //0 adm 1 promotor
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class Master : MasterDetailPage
+    {
         public static int IdLogado { get; set; }
-        private Pessoa usuario { get; set; }
+        //1 adm
+        //2 supervisor
+        //3 promotor
+        public static int Permissao { get; set; }
+        public static Color CorPermissao{get; set;}
 
-		public Master (Pessoa usuarioLogado)
+        private Pessoa pessoa { get; set; }
+        private Usuario usuario { get; set; }
+
+        public Master (Pessoa pessoaLogada, Usuario usuarioLogado)
 		{
 			InitializeComponent ();
-            Detail = new NavigationPage(new Home()) { BarBackgroundColor=Color.Black };
+            TratarPermisao(pessoaLogada, usuarioLogado);
+
+            Detail = new NavigationPage(new Home()) { BarBackgroundColor = CorPermissao };
+
+            pessoa = pessoaLogada;
             usuario = usuarioLogado;
-            IdLogado = usuarioLogado.idPessoa;
+            IdLogado = pessoaLogada.idPessoa;
+        }
 
-            Nome.Text = usuarioLogado.nome;
+        //TRATAR USUARIO
+        private void TratarPermisao(Pessoa p, Usuario u)
+        {
+            switch (u.Funcao)
+            {
+                case "ADMIN":
+                    isAdm.IsVisible = true;
+                    isSuper.IsVisible = true;
+                    isPromotor.IsVisible = true;
+                    Permissao = 1;
+                    CorPermissao = Color.Black;
+                    break;
+                case "SUPERVISOR":
+                    isAdm.IsVisible = false;
+                    isSuper.IsVisible = true;
+                    isPromotor.IsVisible = true;
+                    Permissao = 2;
+                    CorPermissao = Color.DarkGreen;
+                    break;
+                case "PROMOTOR":
+                    isAdm.IsVisible = false;
+                    isSuper.IsVisible = false;
+                    isPromotor.IsVisible = true;
+                    Permissao = 3;
+                    CorPermissao = Color.DarkBlue;
+                    break;
+                default:
+                    App.Current.MainPage = new LoginPage();
+                    break;
+            }
 
-            if (usuario.rg.ToString().Contains("1"))
-            {
-                Tipo.Text = "- Promotor";
-                SlAdm.IsVisible = false;
-            }
-            else
-            {
-                Tipo.Text = "- Administrador";
-            }
+            lblNomeUsuario.Text = p.nome;
+            lblTipoUsuario.Text = u.Funcao;
+            SlTitulo.BackgroundColor = CorPermissao;
         }
 
         //LISTA PESSOAS
@@ -44,7 +77,7 @@ namespace Pedidos.Menu
         {
             if (VerificarConexao.TemInternet())
             {
-                Detail = new NavigationPage(new SqlServer.View.ListaPessoas()) { BarBackgroundColor = Color.Black };
+                Detail = new NavigationPage(new SqlServer.View.ListaPessoas()) { BarBackgroundColor = CorPermissao };
                 IsPresented = false;
             }
             else
@@ -58,7 +91,7 @@ namespace Pedidos.Menu
         {
             if (VerificarConexao.TemInternet())
             {
-                Detail = new NavigationPage(new SqlServer.View.ListaMarcas(1)) { BarBackgroundColor = Color.Black };
+                Detail = new NavigationPage(new SqlServer.View.ListaMarcas(1)) { BarBackgroundColor = CorPermissao };
                 IsPresented = false;
             }
             else
@@ -72,7 +105,7 @@ namespace Pedidos.Menu
         {
             if (VerificarConexao.TemInternet())
             {
-                Detail = new NavigationPage(new SqlServer.View.ListaMarcas(2)) { BarBackgroundColor = Color.Black };
+                Detail = new NavigationPage(new SqlServer.View.ListaMarcas(2)) { BarBackgroundColor = CorPermissao };
                 IsPresented = false;
             }
             else
@@ -86,7 +119,7 @@ namespace Pedidos.Menu
         {
             if (VerificarConexao.TemInternet())
             {
-                Detail = new NavigationPage(new SqlServer.View.ListaPedidos()) { BarBackgroundColor = Color.Black };
+                Detail = new NavigationPage(new SqlServer.View.ListaPedidos()) { BarBackgroundColor = CorPermissao };
                 IsPresented = false;
             }
             else
@@ -100,7 +133,7 @@ namespace Pedidos.Menu
         {
             if (VerificarConexao.TemInternet())
             {
-                Detail = new NavigationPage(new SqlServer.View.ListaMarcas(3)) { BarBackgroundColor = Color.Black };
+                Detail = new NavigationPage(new SqlServer.View.ListaMarcas(3)) { BarBackgroundColor = CorPermissao };
                 IsPresented = false;
             }
             else
@@ -114,7 +147,7 @@ namespace Pedidos.Menu
         {
             if (VerificarConexao.TemInternet())
             {
-                Detail = new NavigationPage(new SqlServer.View.DetalhePessoa(usuario)) { BarBackgroundColor = Color.Black };
+                Detail = new NavigationPage(new SqlServer.View.DetalhePessoa(pessoa)) { BarBackgroundColor = CorPermissao };
                 IsPresented = false;
             }
             else

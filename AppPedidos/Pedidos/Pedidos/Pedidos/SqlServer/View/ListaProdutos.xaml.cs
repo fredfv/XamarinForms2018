@@ -11,21 +11,22 @@ using Pedidos.Menu;
 
 namespace Pedidos.SqlServer.View
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ListaMarcas : ContentPage
-    {
-        private List<Marca> ListaInterna { get; set; }
-        private List<Marca> ListaFiltrada { get; set; }
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class ListaProdutos : ContentPage
+	{
+        private List<Produto> ListaInterna { get; set; }
+        private List<Produto> ListaFiltrada { get; set; }
         private bool podeBuscar { get; set; }
         private int tipoAcao { get; set; }
+        private Marca marcaAtual { get; set; }
 
         //acao
-        // 1 - lista simples de marcas
-        // 2 - lista de marcas para exibir produto
-        // 3 - lista de marcas para exibir pedido
-        public ListaMarcas(int acao)
+        // 1 - lista simples de produtos
+        // 2 - lista de produtos para exibir novo pedido
+        public ListaProdutos(int acao, Marca marca)
         {
             InitializeComponent();
+            marcaAtual = marca;
 
             tipoAcao = acao;
             switch (tipoAcao)
@@ -37,9 +38,6 @@ namespace Pedidos.SqlServer.View
                     }
                     break;
                 case 2:
-                    OcultarAdicionar();
-                    break;
-                case 3:
                     OcultarAdicionar();
                     break;
             }
@@ -65,13 +63,13 @@ namespace Pedidos.SqlServer.View
             Carregando.IsVisible = true;
             try
             {
-                ListaInterna = await Service.ServiceWS.GetMarcasAsync();
+                ListaInterna = await Service.ServiceWS.GetProdutosAsync(marcaAtual.id);
                 podeBuscar = true;
                 Lista.ItemsSource = ListaInterna;
             }
             catch
             {
-                await DisplayAlert("Error", "Erro ao carregar Marcas", "Ok");
+                await DisplayAlert("Error", "Erro ao carregar Produtos", "Ok");
                 podeBuscar = false;
                 ErrorLista.IsVisible = true;
             }
@@ -89,20 +87,16 @@ namespace Pedidos.SqlServer.View
 
         private void GoDetalhe(object sender, ItemTappedEventArgs args)
         {
-            Marca marca = (Marca)args.Item;
+            Produto produto = (Produto)args.Item;
             switch (tipoAcao)
             {
                 case 2:
                     (sender as ListView).SelectedItem = null;
-                    Navigation.PushAsync(new ListaProdutos(1, marca) { Title = "Produtos de: "+marca.nome});
-                    break;
-                case 3:
-                    (sender as ListView).SelectedItem = null;
-                    Navigation.PushAsync(new ListaProdutos(2, marca) { Title = "Produtos de: "+marca.nome});
+                    Navigation.PushModalAsync(new CadastrarPedido(produto));
                     break;
                 default:
                     (sender as ListView).SelectedItem = null;
-                    Navigation.PushAsync(new DetalheMarca(this, marca));
+                    Navigation.PushAsync(new DetalheProduto(this, produto));
                     break;
             }
         }
@@ -111,7 +105,7 @@ namespace Pedidos.SqlServer.View
         {
             if (tipoAcao == 1)
             {
-                Navigation.PushModalAsync(new CadastrarMarca(this));
+                Navigation.PushModalAsync(new CadastrarProduto(this, marcaAtual));
             }
         }
 

@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Pedidos.SqlServer.Model;
 using Pedidos.SqlServer.Service;
+using Pedidos.Menu;
 
 
 namespace Pedidos.SqlServer.View
@@ -20,10 +21,12 @@ namespace Pedidos.SqlServer.View
         public DetalhePedido (Pedido pedido)
 		{
 			InitializeComponent ();
+            if (Master.Permissao != 1)
+            {
+                ToolbarItems.RemoveAt(0);
+            }
             BindingContext = pedido;
-
             pedidoAtual = pedido;
-
             Atualizar();
 		}
 
@@ -32,11 +35,11 @@ namespace Pedidos.SqlServer.View
             Navigation.PushModalAsync(new EditarPedido(pedidoAtual));
         }
 
-        private void Atualizar()
+        private async void Atualizar()
         {
             NomeProduto.Text = pedidoAtual.nomeProduto;
 
-            List<Produto> produto = Service.ServiceWS.GetProdutoPorId(pedidoAtual.idProduto);
+            List<Produto> produto = await ServiceWS.GetProdutoPorIdAsync(pedidoAtual.idProduto);
 
             NomeMarca.Text = produto[0].nomeMarca;
         }

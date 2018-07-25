@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Pedidos.SqlServer.View.ListaMarcas"
-             Title="Marcas">
+             x:Class="Pedidos.SqlServer.View.ListaProdutos"
+             >
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="btnAdicionar" Text="Adicionar Marca" Icon="plusW.png" Clicked="GoModalCadastrar"/>
+        <ToolbarItem x:Name="btnAdicionar" Text="Adicionar Produto" Icon="plusW.png" Clicked="GoModalCadastrar"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout Spacing="10">

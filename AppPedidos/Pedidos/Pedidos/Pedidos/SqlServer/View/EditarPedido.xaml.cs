@@ -15,19 +15,25 @@ namespace Pedidos.SqlServer.View
     public partial class EditarPedido : ContentPage
     {
         private int IdProduto { get; set; }
+        List<Produto> produto { get; set; }
 
         public EditarPedido(Pedido pedido)
         {
             InitializeComponent();
             BindingContext = pedido;
 
-            List<Produto> produto = ServiceWS.GetProdutoPorId(pedido.idProduto);
-            Marca.Text = produto[0].nomeMarca;
+            AtualizarAsync(pedido);
 
+        }
+
+        private async void AtualizarAsync(Pedido pedido)
+        {
+            produto = await ServiceWS.GetProdutoPorIdAsync(pedido.idProduto);
+            Marca.Text = produto[0].nomeMarca;
             IdProduto = pedido.idProduto;
         }
 
-        private void Editar(object sender, EventArgs args)
+        private async void Editar(object sender, EventArgs args)
         {
             if (ValidaPedido() == 1)
             {
@@ -39,7 +45,7 @@ namespace Pedidos.SqlServer.View
 
                 Pedido novoPedido = new Pedido()
                 {
-                    idUsuarioInclusao = Pedidos.Menu.Master.IdLogado,
+                    idUsuarioInclusao = Menu.Master.IdLogado,
                     idProduto = IdProduto,
                     perda = int.Parse(Perda.Text),
                     troca = int.Parse(Troca.Text),
@@ -47,23 +53,23 @@ namespace Pedidos.SqlServer.View
                     obs = Obs.Text
                 };
 
-                bool ok = ServiceWS.UpdatePedido(novoPedido, Pedidos.Menu.Master.IdLogado);
+                bool ok = ServiceWS.UpdatePedido(novoPedido, Menu.Master.IdLogado);
                 if (ok)
                 {
-                    Mensagem.Text = "Pedido atualizado com sucesso";
+                    await DisplayAlert("Sucesso!", "Pedido atualizado com sucesso", "Ok");
                 }
                 else
                 {
-                    Mensagem.Text = "Ocorreu um erro na edição do pedido";
+                    await DisplayAlert("Error", "Ocorreu um erro na edição do pedido", "Ok");
                 }
             }
             else if (ValidaPedido() == 2)
             {
-                DisplayAlert("Error", "Favor verificar o preenchimento dos campos", "Ok");
+                await DisplayAlert("Error", "Favor verificar o preenchimento dos campos", "Ok");
             }
             else if (ValidaPedido() == 3)
             {
-                DisplayAlert("Error", "Dados inconsistentes", "Ok");
+                await DisplayAlert("Error", "Dados inconsistentes", "Ok");
             }
         }
 

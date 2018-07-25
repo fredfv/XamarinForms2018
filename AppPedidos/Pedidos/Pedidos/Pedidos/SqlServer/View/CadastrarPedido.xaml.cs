@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Pedidos.SqlServer.Model;
 using Pedidos.SqlServer.Service;
+using Pedidos.Menu;
 
 namespace Pedidos.SqlServer.View
 {
@@ -22,6 +23,12 @@ namespace Pedidos.SqlServer.View
             BindingContext = produto;
             AtualizarAsync(produto);
 		}
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            SlTitulo.BackgroundColor = Master.CorPermissao;
+        }
 
         private async void AtualizarAsync(Produto prod)
         {
@@ -44,7 +51,7 @@ namespace Pedidos.SqlServer.View
 
                 Pedido novoPedido = new Pedido()
                 {
-                    idUsuarioInclusao = Pedidos.Menu.Master.IdLogado,
+                    idUsuarioInclusao = Menu.Master.IdLogado,
                     idProduto = IdProduto,
                     perda = int.Parse(Perda.Text),
                     troca = int.Parse(Troca.Text),
@@ -55,12 +62,13 @@ namespace Pedidos.SqlServer.View
                 bool ok = await ServiceWS.InsertPedidoAsync(novoPedido);
                 if (ok)
                 {
-                    await DisplayAlert("Error", "Cadastro efetuado com sucesso", "Ok");
+                    await DisplayAlert("Cadastrado", "Cadastro efetuado com sucesso", "Ok");
                     await Navigation.PopModalAsync();
                 }
                 else
                 {
                     await DisplayAlert("Error", "Ocorreu um erro no cadastro", "Ok");
+                    await Navigation.PopModalAsync();
                 }
             }
             else if (ValidaPedido() == 2)
