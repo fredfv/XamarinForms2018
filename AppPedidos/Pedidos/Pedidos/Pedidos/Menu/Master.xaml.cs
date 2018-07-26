@@ -156,6 +156,7 @@ namespace Pedidos.Menu
             }
         }
 
+        //SAIR
         private void Sair(object sender, EventArgs args)
         {
             App.Current.MainPage = new LoginPage();

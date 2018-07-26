@@ -79,15 +79,5 @@ namespace Pedidos
             area.IsEnabled = true;
             Carregando.IsRunning = false;
         }
-
-        private void msgInternet()
-        {
-            Carregando.IsRunning = false;
-            DisplayAlert("Error", "Sem conexão com a Internet", "Ok");
-            VerPass.IsEnabled = true;
-            btnLogar.Text = "Logar";
-            area.IsEnabled = true;
-            Carregando.IsRunning = false;
-        }
     }
 }
