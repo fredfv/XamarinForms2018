@@ -63,7 +63,7 @@ namespace Pedidos.SqlServer.View
 
         private void GoEditar(object sender, EventArgs args)
         {
-            Navigation.PushModalAsync(new CadastrarProduto(this, produtoAtual));
+            Navigation.PushModalAsync(new CadastrarProduto(this));
         }
 
         public async void AtualizarAsync()

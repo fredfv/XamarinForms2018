@@ -18,12 +18,6 @@ namespace Pedidos.SqlServer.View
         private bool isCadastro { get; set; }
         private int IdProduto { get; set; }
         private int IdPedido { get; set; }
-        
-        private int perdaOriginal { get; set; }
-        private int trocaOriginal { get; set; }
-        private int quantidadeOriginal {get; set; }
-        private string obsOriginal {get; set; }
-
         ListaProdutos listaParaAtualizar { get; set; }
         DetalhePedido detalheParaAtualizar { get; set; }
 
@@ -53,13 +47,9 @@ namespace Pedidos.SqlServer.View
             NomeProduto.Text = pedido.nomeProduto;
             MarcaProduto.Text = produto.nomeMarca;
             Perda.Text = pedido.perda.ToString();
-            perdaOriginal = pedido.perda;
             Troca.Text = pedido.troca.ToString();
-            trocaOriginal = pedido.troca;
             Quantidade.Text = pedido.quantidade.ToString();
-            quantidadeOriginal = pedido.quantidade;
             Obs.Text = pedido.obs;
-            obsOriginal = pedido.obs;
             Carregando.IsVisible = false;
             isCadastro = false;
         }
@@ -70,52 +60,20 @@ namespace Pedidos.SqlServer.View
             SlTitulo.BackgroundColor = Master.CorPermissao;
         }
 
-        private bool checarAlteracao()
-        {
-            int alterado = 0;
-
-            if (int.Parse(Perda.Text) == perdaOriginal)
-                alterado++;
-            if (int.Parse(Troca.Text) == trocaOriginal)
-                alterado++;
-            if (int.Parse(Quantidade.Text) == quantidadeOriginal)
-                alterado++;
-            if (Obs.Text == obsOriginal)
-                alterado++;
-
-            if (alterado == 4)
-                return false;
-            else
-                return true;
-        }
-
         private async void EnviarDados(object sender, EventArgs args)
         {
-            bool podeAtualizar = false;
+            bool podeAtualizar;
             Carregando.IsVisible = true;
 
             if (!isCadastro)
             {
-                if (checarAlteracao())
-                {
-                    if (!isCadastro)
-                    {
-                        var resultado = await DisplayAlert("Atualizar?", "Deseja atualizar o Pedido?", "NÂO", "SIM");
-                        podeAtualizar = resultado ? false : true;
-                    }
-                    else
-                    {
-                        podeAtualizar = true;
-                    }
-                }
-                else
-                {
-                    await DisplayAlert("Error", "Não ocorreu nenhuma alteração de dados", "Ok");
-                }
+                var resultado = await DisplayAlert("Atualizar?", "Deseja atualizar o Pedido?", "NÂO", "SIM");
+                podeAtualizar = resultado ? false : true;
             }
             else
             {
-                podeAtualizar = true;
+                var resultado = await DisplayAlert("Cadastrar?", "Deseja gerar novo pedido?", "NÂO", "SIM");
+                podeAtualizar = resultado ? false : true;
             }
 
             if (podeAtualizar)

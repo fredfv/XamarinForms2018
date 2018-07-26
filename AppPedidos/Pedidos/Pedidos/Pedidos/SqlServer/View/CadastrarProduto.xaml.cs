@@ -20,8 +20,7 @@ namespace Pedidos.SqlServer.View
         Marca marcaNaPagina { get; set; }
         ListaProdutos listaParaAtualizar { get; set; }
         DetalheProduto detalheParaAtualizar { get; set; }
-        private string nomeProdutoOriginal { get; set; }
-        private int codigoProdutoOriginal { get; set; }
+        string nomeProduto { get; set; }
 
         //CADASTRAR
         public CadastrarProduto(ListaProdutos lista, Marca marca)
@@ -35,13 +34,12 @@ namespace Pedidos.SqlServer.View
         }
 
         //EDITAR
-        public CadastrarProduto(DetalheProduto detalhe, Produto produto)
+        public CadastrarProduto(DetalheProduto detalhe)
         {
             InitializeComponent();
-            nomeProdutoOriginal = detalhe.produtoAtual.nome;
-            codigoProdutoOriginal = detalhe.produtoAtual.codigo;
-            produtoNaPagina = produto;
             BindingContext = detalhe.produtoAtual;
+            nomeProduto = detalhe.produtoAtual.nome;
+            produtoNaPagina = detalhe.produtoAtual;
             detalheParaAtualizar = detalhe;
             Cabecalho.Text = "Editar";
             BtnEnviar.Text = "Salvar";
@@ -54,41 +52,20 @@ namespace Pedidos.SqlServer.View
             SlTitulo.BackgroundColor = Master.CorPermissao;
         }
 
-        private bool checarAlteracao()
-        {
-            int alterado = 0;
-
-            if (Nome.Text == nomeProdutoOriginal)
-                alterado++;
-            if (int.Parse(Codigo.Text) == codigoProdutoOriginal)
-                alterado++;
-
-            if (alterado == 2)
-                return false;
-            else
-                return true;
-        }
-
         private async void EnviarDados(object sender, EventArgs args)
         {
-            bool podeAtualizar = false;
+            bool podeAtualizar;
             Carregando.IsVisible = true;
 
-            if (checarAlteracao())
+            if (!isCadastro)
             {
-                if (!isCadastro)
-                {
-                    var resultado = await DisplayAlert("Atualizar?", "Deseja atualizar os dados de:\n" + nomeProdutoOriginal + "?", "NÂO", "SIM");
-                    podeAtualizar = resultado ? false : true;
-                }
-                else
-                {
-                    podeAtualizar = true;
-                }
+                var resultado = await DisplayAlert("Atualizar?", "Deseja atualizar os dados de:\n" + nomeProduto + " ?", "NÂO", "SIM");
+                podeAtualizar = resultado ? false : true;
             }
             else
             {
-                await DisplayAlert("Error", "Não ocorreu nenhuma alteração de dados", "Ok");
+                var resultado = await DisplayAlert("Cadastrar?", "Deseja cadastrar :\n" + Nome.Text + " ?", "NÂO", "SIM");
+                podeAtualizar = resultado ? false : true;
             }
 
             if (podeAtualizar)

@@ -59,7 +59,7 @@ namespace Pedidos
                 }
                 catch
                 {
-                    msgInternet();
+                    msg();
                 }
             }
             else
