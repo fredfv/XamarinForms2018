@@ -14,7 +14,6 @@ namespace Pedidos
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class LoginPage : ContentPage
 	{
-
         private List<Pessoa> usuarioLogado { get; set; }
         private Usuario usuarioParaLogar { get; set; }
         private int login { get; set; }
@@ -24,8 +23,6 @@ namespace Pedidos
         {
             ver = false;
 			InitializeComponent();
-            Login.Text = "adm";
-            Senha.Text = "123456";
             btnLogar.Text = "LOGAR";
         }
 
@@ -48,9 +45,7 @@ namespace Pedidos
                 try
                 {
                     Carregando.IsRunning = true;
-
                     usuarioParaLogar = await ServiceWS.Logar(Login.Text, Senha.Text);
-
                     usuarioLogado = await ServiceWS.GetPessoaPorIdAsync(usuarioParaLogar.IdPessoa);
 
                     if (usuarioParaLogar.Login == Login.Text)
@@ -76,12 +71,9 @@ namespace Pedidos
         private void msg()
         {
             Carregando.IsRunning = false;
-
             DisplayAlert("Erro ao logar", "Usuario ou senha errados!", "Ok");
-
             Login.Text = "";
             Senha.Text = "";
-
             VerPass.IsEnabled = true;
             btnLogar.Text = "Logar";
             area.IsEnabled = true;
@@ -91,9 +83,7 @@ namespace Pedidos
         private void msgInternet()
         {
             Carregando.IsRunning = false;
-
             DisplayAlert("Error", "Sem conexão com a Internet", "Ok");
-
             VerPass.IsEnabled = true;
             btnLogar.Text = "Logar";
             area.IsEnabled = true;

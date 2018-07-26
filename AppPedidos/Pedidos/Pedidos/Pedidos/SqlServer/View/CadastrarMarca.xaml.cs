@@ -27,10 +27,8 @@ namespace Pedidos.SqlServer.View
 		{
 			InitializeComponent ();
             listaParaAtualizar = lista;
-
             Cabecalho.Text = "Cadastrar";
             BtnEnviar.Text = "Enviar";
-
             isCadastro = true;
         }
 
@@ -41,13 +39,10 @@ namespace Pedidos.SqlServer.View
             nomeMarcaOriginal = detalhe.marcaAtual.nome;
             codigoMarcaOriginal = detalhe.marcaAtual.codigo;
             BindingContext = detalhe.marcaAtual;
-
             marcaNaPagina = detalhe.marcaAtual;
             detalheParaAtualizar = detalhe;
-
             Cabecalho.Text = "Editar";
             BtnEnviar.Text = "Salvar";
-
             isCadastro = false;
         }
 

@@ -27,7 +27,6 @@ namespace Pedidos.SqlServer.View
         {
             InitializeComponent();
             marcaAtual = marca;
-
             tipoAcao = acao;
             switch (tipoAcao)
             {
@@ -64,16 +63,26 @@ namespace Pedidos.SqlServer.View
             try
             {
                 ListaInterna = await Service.ServiceWS.GetProdutosAsync(marcaAtual.id);
-                podeBuscar = true;
                 Lista.ItemsSource = ListaInterna;
             }
             catch
             {
                 await DisplayAlert("Error", "Erro ao carregar Produtos", "Ok");
-                podeBuscar = false;
                 ErrorLista.IsVisible = true;
             }
             Carregando.IsVisible = false;
+
+            if (ListaInterna != null)
+            {
+                podeBuscar = true;
+                buscarEntry.Placeholder = "Pesquisar. . . Nome ou Código . . .";
+                buscarEntry.IsEnabled = true;
+            }
+            else
+            {
+                buscarEntry.IsEnabled = false;
+                buscarEntry.Placeholder = "Nenhum Produto encontrado";
+            }
         }
 
         private void Buscar(object sender, TextChangedEventArgs args)

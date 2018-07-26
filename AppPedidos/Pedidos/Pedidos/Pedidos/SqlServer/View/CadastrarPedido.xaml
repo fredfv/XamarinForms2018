@@ -9,11 +9,8 @@
                     <Label x:Name="Cabecalho" FontSize="23" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" Margin="30, 10"/>
                     <Button Text="X" FontSize="20" Clicked="FecharModal" HorizontalOptions="EndAndExpand" VerticalOptions="Center" FontAttributes="Bold" WidthRequest="40" HeightRequest="40" BackgroundColor="White" TextColor="Black"/>
                 </StackLayout>
-                
                 <ActivityIndicator HorizontalOptions="Fill"  VerticalOptions="Fill" HeightRequest="50" x:Name="Carregando" Color="Green" IsRunning="true" />
-            
             </StackLayout>
-            
             <ScrollView>
                 <StackLayout Spacing="20">
                     <Frame>

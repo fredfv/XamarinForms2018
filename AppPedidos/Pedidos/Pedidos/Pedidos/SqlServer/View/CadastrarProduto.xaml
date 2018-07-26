@@ -8,9 +8,7 @@
                 <Label x:Name="Cabecalho" FontSize="23" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" Margin="30, 10"/>
                 <Button Text="X" FontSize="20" Clicked="FecharModal" HorizontalOptions="EndAndExpand" VerticalOptions="Center" FontAttributes="Bold" WidthRequest="40" HeightRequest="40" BackgroundColor="White" TextColor="Black"/>
             </StackLayout>
-
             <ActivityIndicator HorizontalOptions="Fill"  IsVisible="False" VerticalOptions="Fill" HeightRequest="50" x:Name="Carregando" Color="Green" IsRunning="True" />
-
             <StackLayout Spacing="50" Padding="10" Margin="10">
                 <Entry x:Name="Nome" Text="{Binding nome}" Placeholder="Nome" PlaceholderColor="LightGray" />
                 <Entry x:Name="Codigo" Text="{Binding codigo}" Placeholder="Codigo" Keyboard="Numeric" PlaceholderColor="LightGray"/>

@@ -9,7 +9,7 @@
     <ContentPage.Content>
         <StackLayout Spacing="10">
             <Frame >
-                <Entry x:Name="buscarEntry" Placeholder="Pesquisar. . . Nome ou Código . . ."  PlaceholderColor="Gray" TextChanged="Buscar"/>
+                <Entry x:Name="buscarEntry" PlaceholderColor="Gray" TextChanged="Buscar"/>
             </Frame>
             <ActivityIndicator HorizontalOptions="Fill"  VerticalOptions="Fill" HeightRequest="50" x:Name="Carregando" Color="Green" IsRunning="true" />
             <Frame x:Name="ErrorLista" IsVisible="False">

@@ -10,7 +10,6 @@ using Pedidos.SqlServer.Model;
 using Pedidos.SqlServer.Service;
 using Pedidos.Menu;
 
-
 namespace Pedidos.SqlServer.View
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
@@ -57,7 +56,6 @@ namespace Pedidos.SqlServer.View
             {
                 await DisplayAlert("Error", "Erro ao carregar pagina", "Ok");
             }
-
         }
     }
 }

@@ -8,40 +8,28 @@
             <StackLayout Margin="10" Padding="10">
                 <Label Text="Nome - " TextColor="DarkGreen" FontSize="20" FontAttributes="Italic"/>
                 <Label Text="{Binding nome}" FontAttributes="Bold" FontSize="24"/>
-
                 <Label Text="Data de Nascimento - " TextColor="DarkGreen" FontSize="18" FontAttributes="Italic"/>
                 <Label Text="{Binding dataNascimento}" FontSize="22"/>
-
                 <Label Text="CPF - " TextColor="DarkGreen" FontSize="18" FontAttributes="Italic" />
                 <Label Text="{Binding cpf}" FontSize="22"/>
-
                 <Label Text="RG - " TextColor="DarkGreen" FontSize="18" FontAttributes="Italic"/>
                 <Label Text="{Binding rg}" FontSize="22"/>
-
                 <Label Text="Sexo - " TextColor="DarkGreen" FontSize="18" FontAttributes="Italic" />
                 <Label Text="{Binding sexo}" FontSize="22"/>
-
                 <Label Text="Cidade - " TextColor="DarkGreen" FontSize="18" FontAttributes="Italic" />
                 <Label Text="{Binding cidade}" FontSize="22"/>
-
                 <Label Text="UF - " TextColor="DarkGreen" FontSize="18" FontAttributes="Italic" />
                 <Label Text="{Binding uf}" FontSize="22"/>
-
                 <Label Text="CEP - " TextColor="DarkGreen" FontSize="18" FontAttributes="Italic" />
                 <Label Text="{Binding cep}" FontSize="22"/>
-
                 <Label Text="Endereço - " TextColor="DarkGreen" FontSize="18" FontAttributes="Italic" />
                 <Label Text="{Binding endereco}" FontSize="22"/>
-
                 <Label Text="Bairro - " TextColor="DarkGreen" FontSize="18" FontAttributes="Italic" />
                 <Label Text="{Binding bairro}" FontSize="22"/>
-
                 <Label Text="Complemento - " TextColor="DarkGreen" FontSize="18" FontAttributes="Italic" />
                 <Label Text="{Binding complemento}" FontSize="22"/>
-
                 <Label Text="Numero - " TextColor="DarkGreen" FontSize="18" FontAttributes="Italic" />
                 <Label Text="{Binding numero}" FontSize="22"/>
-
                 <Label Text="Telefone - " TextColor="DarkGreen" FontSize="18" FontAttributes="Italic" />
                 <Label Text="{Binding telefone}" FontSize="22"/>
             </StackLayout>

@@ -26,7 +26,6 @@ namespace Pedidos.SqlServer.View
         public ListaMarcas(int acao)
         {
             InitializeComponent();
-
             tipoAcao = acao;
             switch (tipoAcao)
             {
@@ -76,6 +75,18 @@ namespace Pedidos.SqlServer.View
                 ErrorLista.IsVisible = true;
             }
             Carregando.IsVisible = false;
+
+            if (ListaInterna != null)
+            {
+                podeBuscar = true;
+                buscarEntry.Placeholder = "Pesquisar. . . Nome ou Código . . .";
+                buscarEntry.IsEnabled = true;
+            }
+            else
+            {
+                buscarEntry.IsEnabled = false;
+                buscarEntry.Placeholder = "Nenhum Produto encontrado";
+            }
         }
 
         private void Buscar(object sender, TextChangedEventArgs args)

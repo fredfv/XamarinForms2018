@@ -10,7 +10,6 @@ using Pedidos.SqlServer.Model;
 using Pedidos.Menu;
 using Pedidos.SqlServer.Service;
 
-
 namespace Pedidos.SqlServer.View
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
@@ -36,7 +35,6 @@ namespace Pedidos.SqlServer.View
         {
             Carregando.IsVisible = true;
             bool podeDeletar = false;
-
             var resultado = await DisplayAlert("EXCLUIR?", "Confirmar exclusão de:\n" + produtoAtual.nome + " ?", "NÃO", "SIM");
             podeDeletar = resultado ? false : true;
 
@@ -81,7 +79,6 @@ namespace Pedidos.SqlServer.View
             {
                 await DisplayAlert("Error", "Erro ao carregar pagina", "Ok");
             }
-
         }
     }
 }

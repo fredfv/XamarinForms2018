@@ -48,6 +48,10 @@ namespace Pedidos.SqlServer.View
             }
             Carregando.IsVisible = false;
 
+            if (ListaInterna != null)
+            {
+                podeBuscar = true;
+            }
         }
 
         private async void Buscar(object sender, DateChangedEventArgs args)
@@ -71,7 +75,6 @@ namespace Pedidos.SqlServer.View
         private void GoDetalhe(object sender, ItemTappedEventArgs args)
         {
             Pedido pedido = (Pedido)args.Item;
-
             (sender as ListView).SelectedItem = null;
             Navigation.PushAsync(new DetalhePedido(this, pedido));
         }

@@ -8,33 +8,32 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <ScrollView>
-            <Frame>
-                <StackLayout Margin="10" Padding="10">
-                    <Label Text="ID - " TextColor="LightGray" FontSize="18" FontAttributes="Bold" />
-                    <Label Text="{Binding id}" FontSize="22" FontAttributes="Bold"/>
-
-                    <Label Text="Nome do Produto - " TextColor="LightGray" FontSize="24" FontAttributes="Italic"/>
-                    <Label Text="{Binding nomeProduto}" FontAttributes="Bold" FontSize="24"/>
-
-                    <Label Text="Marca - " TextColor="LightGray" FontSize="20" FontAttributes="Italic"/>
-                    <Label x:Name="NomeMarca" FontAttributes="Italic" FontSize="24"/>
-
-                    <Label Text="Perda - " TextColor="LightGray" FontSize="18" FontAttributes="Italic" />
-                    <Label Text="{Binding perda}" FontSize="22"/>
-
-                    <Label Text="Troca - " TextColor="LightGray" FontSize="18" FontAttributes="Italic" />
-                    <Label Text="{Binding troca}" FontSize="22"/>
-
-                    <Label Text="Quantidade - " TextColor="LightGray" FontSize="18" FontAttributes="Italic" />
-                    <Label Text="{Binding quantidade}" FontSize="22"/>
-
-                    <Label Text="Troca - " TextColor="LightGray" FontSize="18" FontAttributes="Italic" />
-                    <Label HeightRequest="200" Text="{Binding obs}" FontSize="22"/>
-
-                    <Label Text="Data Inclusão - " TextColor="LightGray" FontSize="18" FontAttributes="Italic"/>
-                    <Label Text="{Binding dataInclusao}" FontSize="22"/>
-                </StackLayout>
-            </Frame>
+            <StackLayout Margin="10" Padding="10">
+                <Frame>
+                    <StackLayout>
+                        <Label Text="Perda - " TextColor="LightGray" FontSize="18" FontAttributes="Italic" />
+                        <Label Text="{Binding perda}" FontSize="22"/>
+                        <Label Text="Troca - " TextColor="LightGray" FontSize="18" FontAttributes="Italic" />
+                        <Label Text="{Binding troca}" FontSize="22"/>
+                        <Label Text="Quantidade - " TextColor="LightGray" FontSize="18" FontAttributes="Italic" />
+                        <Label Text="{Binding quantidade}" FontSize="22"/>
+                        <Label Text="Observação - " TextColor="LightGray" FontSize="18" FontAttributes="Italic" />
+                        <Label Text="{Binding obs}" FontSize="22"/>
+                    </StackLayout>
+                </Frame>
+                <Frame>
+                    <StackLayout>
+                        <Label Text="ID Pedido- " TextColor="LightGray" FontSize="20" FontAttributes="Bold" />
+                        <Label Text="{Binding id}" FontSize="24" FontAttributes="Bold"/>
+                        <Label Text="Nome do Produto - " TextColor="LightGray" FontSize="18" FontAttributes="Italic"/>
+                        <Label Text="{Binding nomeProduto}" FontAttributes="Italic" FontSize="22"/>
+                        <Label Text="Marca - " TextColor="LightGray" FontSize="18" FontAttributes="Italic"/>
+                        <Label x:Name="NomeMarca" FontAttributes="Italic" FontSize="22"/>
+                        <Label Text="Data Inclusão - " TextColor="LightGray" FontSize="18" FontAttributes="Italic"/>
+                        <Label Text="{Binding dataInclusao}" FontSize="22"/>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

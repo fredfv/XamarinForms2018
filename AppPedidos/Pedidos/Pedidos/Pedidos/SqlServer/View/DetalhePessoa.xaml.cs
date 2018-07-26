@@ -16,7 +16,6 @@ namespace Pedidos.SqlServer.View
 		public DetalhePessoa (Pessoa pessoa)
 		{
 			InitializeComponent ();
-
             BindingContext = pessoa;
 		}
 	}

@@ -34,11 +34,9 @@ namespace Pedidos.SqlServer.View
             listaParaAtualizar = lista;
             BtnCadastro.Text = "Cadastrar";
             Cabecalho.Text = "Gerar novo pedido";
-
             MarcaProduto.Text = produto.nomeMarca;
             NomeProduto.Text = produto.nome;
             IdProduto = produto.id;
-
             Carregando.IsVisible = false;
             isCadastro = true;
 		}
@@ -50,10 +48,8 @@ namespace Pedidos.SqlServer.View
             detalheParaAtualizar = detalhe;
             IdPedido = pedido.id;
             IdProduto = produto.id;
-
             BtnCadastro.Text = "Editar";
             Cabecalho.Text = "Editar pedido";
-
             NomeProduto.Text = pedido.nomeProduto;
             MarcaProduto.Text = produto.nomeMarca;
             Perda.Text = pedido.perda.ToString();
@@ -64,7 +60,6 @@ namespace Pedidos.SqlServer.View
             quantidadeOriginal = pedido.quantidade;
             Obs.Text = pedido.obs;
             obsOriginal = pedido.obs;
-
             Carregando.IsVisible = false;
             isCadastro = false;
         }
@@ -88,7 +83,6 @@ namespace Pedidos.SqlServer.View
             if (Obs.Text == obsOriginal)
                 alterado++;
 
-
             if (alterado == 4)
                 return false;
             else
@@ -100,21 +94,28 @@ namespace Pedidos.SqlServer.View
             bool podeAtualizar = false;
             Carregando.IsVisible = true;
 
-            if (checarAlteracao())
+            if (!isCadastro)
             {
-                if (!isCadastro)
+                if (checarAlteracao())
                 {
-                    var resultado = await DisplayAlert("Atualizar?", "Deseja atualizar o Pedido?", "NÂO", "SIM");
-                    podeAtualizar = resultado ? false : true;
+                    if (!isCadastro)
+                    {
+                        var resultado = await DisplayAlert("Atualizar?", "Deseja atualizar o Pedido?", "NÂO", "SIM");
+                        podeAtualizar = resultado ? false : true;
+                    }
+                    else
+                    {
+                        podeAtualizar = true;
+                    }
                 }
                 else
                 {
-                    podeAtualizar = true;
+                    await DisplayAlert("Error", "Não ocorreu nenhuma alteração de dados", "Ok");
                 }
             }
             else
             {
-                await DisplayAlert("Error", "Não ocorreu nenhuma alteração de dados", "Ok");
+                podeAtualizar = true;
             }
 
             if (podeAtualizar)

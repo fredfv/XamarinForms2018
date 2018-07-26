@@ -27,13 +27,10 @@ namespace Pedidos.SqlServer.View
         public CadastrarProduto(ListaProdutos lista, Marca marca)
         {
             InitializeComponent();
-
             marcaNaPagina = marca;
             listaParaAtualizar = lista;
-
             Cabecalho.Text = "Cadastrar";
             BtnEnviar.Text = "Enviar";
-
             isCadastro = true;
         }
 
@@ -41,19 +38,13 @@ namespace Pedidos.SqlServer.View
         public CadastrarProduto(DetalheProduto detalhe, Produto produto)
         {
             InitializeComponent();
-
             nomeProdutoOriginal = detalhe.produtoAtual.nome;
             codigoProdutoOriginal = detalhe.produtoAtual.codigo;
-
             produtoNaPagina = produto;
-            
             BindingContext = detalhe.produtoAtual;
-
             detalheParaAtualizar = detalhe;
-
             Cabecalho.Text = "Editar";
             BtnEnviar.Text = "Salvar";
-
             isCadastro = false;
         }
 
@@ -62,7 +53,6 @@ namespace Pedidos.SqlServer.View
             base.OnAppearing();
             SlTitulo.BackgroundColor = Master.CorPermissao;
         }
-
 
         private bool checarAlteracao()
         {
